@@ -7,27 +7,27 @@ function joinSession() {
 
 	OV = new OpenVidu();
 
-	let turnUsername = 'OPENVIDUAPP';
-	let turnCredential = 'MY_SECRET';
-	OV.setAdvancedConfiguration({
-		iceServers: [
-			{
-					urls: "turn:i5a204.p.ssafy.io:443?transport=udp",
-					username: turnUsername,
-					credential: turnCredential
-			},
-			{
-					urls: "turn:i5a204.p.ssafy.io:443?transport=tcp",
-					username: turnUsername,
-					credential: turnCredential
-			},
-			{
-					urls: "turns:i5a204.p.ssafy.io:443?transport=tcp",
-					username: turnUsername,
-					credential: turnCredential
-			}
-		]
-	})
+	// let turnUsername = 'OPENVIDUAPP';
+	// let turnCredential = 'MY_SECRET';
+	// OV.setAdvancedConfiguration({
+	// 	iceServers: [
+	// 		{
+	// 				urls: "turn:i5a204.p.ssafy.io:443?transport=udp",
+	// 				username: turnUsername,
+	// 				credential: turnCredential
+	// 		},
+	// 		{
+	// 				urls: "turn:i5a204.p.ssafy.io:443?transport=tcp",
+	// 				username: turnUsername,
+	// 				credential: turnCredential
+	// 		},
+	// 		{
+	// 				urls: "turns:i5a204.p.ssafy.io:443?transport=tcp",
+	// 				username: turnUsername,
+	// 				credential: turnCredential
+	// 		}
+	// 	]
+	// })
 
 	session = OV.initSession();
 
