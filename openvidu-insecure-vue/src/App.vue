@@ -74,7 +74,7 @@ export default {
       // --- Coturn Configuration ---
       let turnUsername = 'OPENVIDUAPP';
       let turnCredential = 'MY_SECRET';
-      OV.setAdvancedConfiguration({
+      this.OV.setAdvancedConfiguration({
         iceServers: [
           {
               urls: "turn:i5a204.p.ssafy.io:443?transport=udp",
