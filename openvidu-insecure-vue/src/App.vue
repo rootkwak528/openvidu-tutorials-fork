@@ -71,28 +71,28 @@ export default {
 			// --- Get an OpenVidu object ---
 			this.OV = new OpenVidu();
 
-      // --- Coturn Configuration ---
-      let turnUsername = 'OPENVIDUAPP';
-      let turnCredential = 'MY_SECRET';
-      this.OV.setAdvancedConfiguration({
-        iceServers: [
-          {
-              urls: "turn:i5a204.p.ssafy.io:443?transport=udp",
-              username: turnUsername,
-              credential: turnCredential
-          },
-          {
-              urls: "turn:i5a204.p.ssafy.io:443?transport=tcp",
-              username: turnUsername,
-              credential: turnCredential
-          },
-          {
-              urls: "turns:i5a204.p.ssafy.io:443?transport=tcp",
-              username: turnUsername,
-              credential: turnCredential
-          }
-        ]
-      })
+      // // --- Coturn Configuration ---
+      // let turnUsername = 'OPENVIDUAPP';
+      // let turnCredential = 'MY_SECRET';
+      // this.OV.setAdvancedConfiguration({
+      //   iceServers: [
+      //     {
+      //         urls: "turn:i5a204.p.ssafy.io:443?transport=udp",
+      //         username: turnUsername,
+      //         credential: turnCredential
+      //     },
+      //     {
+      //         urls: "turn:i5a204.p.ssafy.io:443?transport=tcp",
+      //         username: turnUsername,
+      //         credential: turnCredential
+      //     },
+      //     {
+      //         urls: "turns:i5a204.p.ssafy.io:443?transport=tcp",
+      //         username: turnUsername,
+      //         credential: turnCredential
+      //     }
+      //   ]
+      // })
 
 			// --- Init a session ---
 			this.session = this.OV.initSession();
