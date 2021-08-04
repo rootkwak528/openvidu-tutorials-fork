@@ -101,6 +101,9 @@ export default {
 
 			// On every new Stream received...
 			this.session.on('streamCreated', ({ stream }) => {
+        // 스트림 안 되는 문제 파악용 debug
+        console.log('hello from : ', stream)
+
 				const subscriber = this.session.subscribe(stream);
 				this.subscribers.push(subscriber);
 			});
