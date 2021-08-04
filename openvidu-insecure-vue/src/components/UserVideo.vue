@@ -29,7 +29,11 @@ export default {
 	methods: {
 		getConnectionData () {
 			const { connection } = this.streamManager.stream;
-			return JSON.parse(connection.data);
+      
+      // 스트림 안 되는 문제 파악용 debug
+      console.log(connection)
+			
+      return JSON.parse(connection.data);
 		},
 	},
 };
