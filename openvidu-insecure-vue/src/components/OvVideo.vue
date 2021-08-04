@@ -15,6 +15,7 @@ export default {
 
     // 스트림 안 되는 문제 파악용 debug
 		const addVideoElementStatus = this.streamManager.addVideoElement(this.$el);
+    console.log($el)
     console.log(addVideoElementStatus)
 	},
 };
