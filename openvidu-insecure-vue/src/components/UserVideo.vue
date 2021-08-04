@@ -31,7 +31,7 @@ export default {
 			const { connection } = this.streamManager.stream;
       
       // 스트림 안 되는 문제 파악용 debug
-      console.log(connection)
+      console.log(this.$el, connection)
 			
       return JSON.parse(connection.data);
 		},
