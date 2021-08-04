@@ -99,11 +99,17 @@ export default {
 
 			// --- Specify the actions when events take place in the session ---
 
+      // 스트림 안 되는 문제 파악용 debug
+      this.session.on('signal', ({ signalEvent }) => {
+        console.log(`   >>> signal from ${signalEvent}`)
+      })
+
+
 			// On every new Stream received...
 			this.session.on('streamCreated', ({ stream }) => {
 
         // 스트림 안 되는 문제 파악용 debug
-        console.log(`hello from : ${stream.connection.connectionId}`, stream)
+        console.log(`  >>> hello from ${stream.connection.connectionId}`, stream)
 
 				const subscriber = this.session.subscribe(stream);
 				this.subscribers.push(subscriber);
