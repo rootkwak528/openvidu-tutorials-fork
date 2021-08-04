@@ -155,6 +155,8 @@ export default {
 		},
 
 		leaveSession () {
+      console.log('log >> bye')
+
 			// --- Leave the session by calling 'disconnect' method over the Session object ---
 			if (this.session) this.session.disconnect();
 
