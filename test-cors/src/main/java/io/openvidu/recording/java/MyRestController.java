@@ -64,7 +64,8 @@ public class MyRestController {
 	/*** Session API ***/
 	/*******************/
 
-	@RequestMapping(value = "/get-token", method = RequestMethod.POST)
+//	@RequestMapping(value = "/get-token", method = RequestMethod.POST)
+	@RequestMapping(value = "/get-token", method = RequestMethod.GET)
 	//public ResponseEntity<JsonObject> getToken(@RequestBody Map<String, Object> sessionNameParam) {
 	public ResponseEntity<String> getToken(@RequestBody Map<String, Object> sessionNameParam) {
 
