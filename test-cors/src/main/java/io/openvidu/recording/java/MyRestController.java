@@ -66,7 +66,7 @@ public class MyRestController {
 
 	@RequestMapping(value = "/get-token", method = RequestMethod.POST)
 	//public ResponseEntity<JsonObject> getToken(@RequestBody Map<String, Object> sessionNameParam) {
-	public ResponseEntity<String> getToken(@RequestBody Map<String, String> sessionNameParam) {
+	public ResponseEntity<String> getToken(@RequestBody Map<String, Object> sessionNameParam) {
 
 		// vue 프로젝트 연결 확인 용 - 호근 추가 log
 		return ResponseEntity.status(200).body("안녕하세요" + sessionNameParam);
