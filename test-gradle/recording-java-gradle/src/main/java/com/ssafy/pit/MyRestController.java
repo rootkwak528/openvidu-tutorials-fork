@@ -33,7 +33,7 @@ import io.openvidu.java.client.Session;
 @RequestMapping("/api")
 public class MyRestController {
 
-	@Autowired private Gson gson;
+	// @Autowired private Gson gson;
 	
 	// OpenVidu object as entrypoint of the SDK
 	private OpenVidu openVidu;
