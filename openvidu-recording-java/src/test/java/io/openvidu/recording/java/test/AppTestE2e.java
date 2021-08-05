@@ -72,7 +72,7 @@ public class AppTestE2e {
 	private static final Logger log = LoggerFactory.getLogger(AppTestE2e.class);
 
 	static String OPENVIDU_SECRET = "MY_SECRET";
-	static String OPENVIDU_URL = "https://localhost:4443/";
+	static String OPENVIDU_URL = "https://localhost/";
 	static String APP_URL = "https://localhost:5000/";
 	static int NUMBER_OF_ATTEMPTS = 10;
 	static int RECORDING_DURATION = 5; // seconds
