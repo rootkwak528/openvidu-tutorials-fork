@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,10 +28,13 @@ import io.openvidu.java.client.Recording;
 import io.openvidu.java.client.RecordingProperties;
 import io.openvidu.java.client.Session;
 
+
 @RestController
 @RequestMapping("/api")
 public class MyRestController {
 
+	@Autowired private Gson gson;
+	
 	// OpenVidu object as entrypoint of the SDK
 	private OpenVidu openVidu;
 
