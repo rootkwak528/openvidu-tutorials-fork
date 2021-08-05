@@ -69,6 +69,7 @@ public class MyRestController {
 	public ResponseEntity<String> getToken(@RequestBody Map<String, Object> sessionNameParam) {
 
 		// vue 프로젝트 연결 확인 용 - 호근 추가 log
+		System.out.println("안녕하세요");
 		return ResponseEntity.status(200).body("안녕하세요" + sessionNameParam);
 
 //		System.out.println("Getting sessionId and token | {sessionName}=" + sessionNameParam);
