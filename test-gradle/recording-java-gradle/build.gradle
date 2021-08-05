@@ -38,7 +38,7 @@ dependencies {
 	// runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
 	// runtimeOnly 'mysql:mysql-connector-java'
 	// annotationProcessor 'org.projectlombok:lombok'
-	// testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	// testImplementation 'org.springframework.security:spring-security-test'
 	
 	implementation 'org.springframework.boot:spring-boot-starter-web:2.1.4.RELEASE'
