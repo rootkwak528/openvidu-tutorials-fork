@@ -34,7 +34,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	// implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
 	// compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	// developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	// runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
 	// runtimeOnly 'mysql:mysql-connector-java'
 	// annotationProcessor 'org.projectlombok:lombok'
