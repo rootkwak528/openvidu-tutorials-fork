@@ -57,8 +57,7 @@ dependencies {
     
     // Errors occurred while build effective model 
     // from /home/ubuntu/.gradle/caches/modules-2/files-2.1/io.openvidu/openvidu-java-client/2.19.0/4f0986166c5bfb0a8a45a3083e938456cdb8d0d5/openvidu-java-client-2.19.0.pom:
-    // implementation 'com.google.code.gson:gson:2.8.4'
-    compile 'com.google.code.gson:gson:2.8.4'
+    implementation 'com.google.code.gson:gson:2.8.4'
 }
 
 publishing {
