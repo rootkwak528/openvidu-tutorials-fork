@@ -29,7 +29,7 @@ import io.openvidu.java.client.RecordingProperties;
 import io.openvidu.java.client.Session;
 
 @CrossOrigin(
-        origins = "http://localhost:8080", 
+        origins = "*", 
         allowCredentials = "true", 
         allowedHeaders = "*", 
         methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT,RequestMethod.OPTIONS}
