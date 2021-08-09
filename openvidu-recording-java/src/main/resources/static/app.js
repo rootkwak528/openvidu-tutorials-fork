@@ -356,35 +356,8 @@ function stopRecording() {
 		res => {
 			console.log(res);
 			$('#textarea-http').text(JSON.stringify(res, null, "\t"));
-		}
-	);
-}
 
-function deleteRecording() {
-	var forceRecordingId = document.getElementById('forceRecordingId').value;
-	httpRequest(
-		'DELETE',
-		'api/recording/delete', {
-			recording: forceRecordingId
-		},
-		'Delete recording WRONG',
-		res => {
-			console.log("DELETE ok");
-			$('#textarea-http').text("DELETE ok");
-		}
-	);
-}
-
-function getRecording() {
-	var forceRecordingId = document.getElementById('forceRecordingId').value;
-	httpRequest(
-		'GET',
-		'api/recording/get/' + forceRecordingId, {},
-		'Get recording WRONG',
-		res => {
-			console.log(res);
-			$('#textarea-http').text(JSON.stringify(res, null, "\t"));
-			zip_url = res.url
+			zip_url = res.url;
 			console.log();
 			console.log(zip_url);
 			let connectionId = document.getElementById('forceValue').value;
@@ -413,6 +386,37 @@ function getRecording() {
 			// 				});
 			// 		}
 			// );
+
+			// 녹화본 정보 가져온 후 바로 recording zip 파일 삭제
+			// deleteRecording();
+		}
+	);
+}
+
+function deleteRecording() {
+	var forceRecordingId = document.getElementById('forceRecordingId').value;
+	httpRequest(
+		'DELETE',
+		'api/recording/delete', {
+			recording: forceRecordingId
+		},
+		'Delete recording WRONG',
+		res => {
+			console.log("DELETE ok");
+			$('#textarea-http').text("DELETE ok");
+		}
+	);
+}
+
+function getRecording() {
+	var forceRecordingId = document.getElementById('forceRecordingId').value;
+	httpRequest(
+		'GET',
+		'api/recording/get/' + forceRecordingId, {},
+		'Get recording WRONG',
+		res => {
+			console.log(res);
+			$('#textarea-http').text(JSON.stringify(res, null, "\t"));
 		}
 	);
 }
