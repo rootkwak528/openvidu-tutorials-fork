@@ -1,4 +1,4 @@
-// import JsZip from 'jszip' 
+import JsZip from 'jszip'
 
 var OV;
 var session;
@@ -385,7 +385,9 @@ function getRecording() {
 			console.log(res);
 			$('#textarea-http').text(JSON.stringify(res, null, "\t"));
 			zip_url = res.url
+			console.log();
 			console.log(zip_url);
+			let connectionId = document.getElementById('forceValue').value;
 			// let promise = new JSZip.external.Promise(function (resolve, reject) {
 			// 	JSZipUtils.getBinaryContent(zip_url, function(err, data) {
 			// 			if (err) {
