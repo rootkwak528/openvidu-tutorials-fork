@@ -7,7 +7,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,12 +27,6 @@ import io.openvidu.java.client.Recording;
 import io.openvidu.java.client.RecordingProperties;
 import io.openvidu.java.client.Session;
 
-@CrossOrigin(
-        origins = "*", 
-        allowCredentials = "true", 
-        allowedHeaders = "*", 
-        methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT,RequestMethod.OPTIONS}
-)
 @RestController
 @RequestMapping("/api")
 public class MyRestController {
@@ -66,11 +59,6 @@ public class MyRestController {
 
 	@RequestMapping(value = "/get-token", method = RequestMethod.POST)
 	public ResponseEntity<JsonObject> getToken(@RequestBody Map<String, Object> sessionNameParam) {
-	// public ResponseEntity<String> getToken(@RequestBody Map<String, Object> sessionNameParam) {
-
-		// vue 프로젝트 연결 확인 용 - 호근 추가 log
-		// System.out.println("안녕하세요");
-		// return ResponseEntity.status(200).body("안녕하세요" + sessionNameParam);
 
 		System.out.println("Getting sessionId and token | {sessionName}=" + sessionNameParam);
 
