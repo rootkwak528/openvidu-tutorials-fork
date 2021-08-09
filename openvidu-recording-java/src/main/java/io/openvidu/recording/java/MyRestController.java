@@ -337,6 +337,7 @@ public class MyRestController {
 
 		try {
 			Recording recording = this.openVidu.getRecording(recordingId);
+			System.out.println(recording.toString());
 			return new ResponseEntity<>(recording, HttpStatus.OK);
 		} catch (OpenViduJavaClientException | OpenViduHttpException e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
