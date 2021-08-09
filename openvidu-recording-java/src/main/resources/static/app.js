@@ -1,4 +1,4 @@
-import JsZip from 'jszip'
+//import JsZip from 'jszip.js'
 
 var OV;
 var session;
