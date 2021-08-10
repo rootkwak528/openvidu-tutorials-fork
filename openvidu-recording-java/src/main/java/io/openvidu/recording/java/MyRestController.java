@@ -401,8 +401,11 @@ public class MyRestController {
 					"openvidu" + File.separator + "recordings" + File.separator + sessionId + File.separator + recordName;
 			System.out.println("uRecordUrl: " + uRecordUrl);
 			
+			RecordUrlDto urlDto = new RecordUrlDto(recording, uRecordUrl);
+			
 			this.sessionRecordings.remove(recording.getSessionId());
-			return new ResponseEntity<>(recording, HttpStatus.OK);
+			// return new ResponseEntity<>(recording, HttpStatus.OK);
+			return new ResponseEntity<>(urlDto, HttpStatus.OK);
 			
 		} catch (OpenViduJavaClientException | OpenViduHttpException e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
