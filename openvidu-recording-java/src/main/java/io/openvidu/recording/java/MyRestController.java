@@ -322,7 +322,7 @@ public class MyRestController {
 	}
 
 	@RequestMapping(value = "/recording/stop", method = RequestMethod.POST)
-	public ResponseEntity<RecordUrlDto> stopRecording(@RequestBody Map<String, Object> params) throws IOException {
+	public ResponseEntity<?> stopRecording(@RequestBody Map<String, Object> params) throws IOException {
 		String recordingId = (String) params.get("recording");
 		String connectionId = (String) params.get("connectionId");
 
