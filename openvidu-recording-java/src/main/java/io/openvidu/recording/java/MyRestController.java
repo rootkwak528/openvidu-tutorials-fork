@@ -391,11 +391,14 @@ public class MyRestController {
 				}
 			}
 			
+			// https://i5a204.p.ssafy.io/openvidu/recordings/ses_DDO5OKxePI/str_CAM_E64m_con_TfgYxSzkPB.webm
 			// 사용자 녹화본 url로 변환
-			String uRecordPath = File.separator + "opt" + File.separator + "openvidu" + File.separator + "recordings" + File.separator + sessionId + File.separator + recordName;
-			File uRecordFile = new File(uRecordPath);
+			// String uRecordPath = File.separator + "opt" + File.separator + "openvidu" + File.separator + "recordings" + File.separator + sessionId + File.separator + recordName;
+			// File uRecordFile = new File(uRecordPath);
 			// URI uRecordUrl = uRecordFile.toURI();
-			URL uRecordUrl = new URL("file:" + File.separator + File.separator + uRecordPath);
+			// URL uRecordUrl = new URL("file:" + File.separator + File.separator + uRecordPath);
+			String uRecordUrl = "https:" + File.separator + File.separator + "i5a204.p.ssafy.io" + File.separator + 
+					"openvidu" + File.separator + "recordings" + File.separator + sessionId + File.separator + recordName;
 			System.out.println("uRecordUrl: " + uRecordUrl);
 			
 			this.sessionRecordings.remove(recording.getSessionId());
