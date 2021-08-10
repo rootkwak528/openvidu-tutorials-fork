@@ -381,8 +381,10 @@ public class MyRestController {
 				System.out.println("recordFile: " + recordFile);
 				System.out.println("connectionId: " + recordFile.get("connectionId").toString());
 				String curConnectionId = recordFile.get("connectionId").toString();
+				System.out.println("curConnectionId: " + curConnectionId);
 				if(connectionId.equals(curConnectionId)) {
-					recordName = recordFile.get("name").toString();
+					System.out.println();
+					recordName += recordFile.get("name").toString();
 					System.out.println("recordName: " + recordName);
 					break;
 				}
