@@ -394,7 +394,8 @@ public class MyRestController {
 			// 사용자 녹화본 url로 변환
 			String uRecordPath = File.separator + "opt" + File.separator + "openvidu" + File.separator + "recordings" + File.separator + sessionId + File.separator + recordName;
 			File uRecordFile = new File(uRecordPath);
-			URI uRecordUrl = uRecordFile.toURI();
+			// URI uRecordUrl = uRecordFile.toURI();
+			URL uRecordUrl = new URL("file:" + File.separator + File.separator + uRecordPath);
 			System.out.println("uRecordUrl: " + uRecordUrl);
 			
 			this.sessionRecordings.remove(recording.getSessionId());
