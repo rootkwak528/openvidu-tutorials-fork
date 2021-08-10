@@ -323,9 +323,10 @@ public class MyRestController {
 	@RequestMapping(value = "/recording/stop", method = RequestMethod.POST)
 	public ResponseEntity<?> stopRecording(@RequestBody Map<String, Object> params) throws IOException {
 		String recordingId = (String) params.get("recording");
-		String connectionId = (String) params.get("connectionId");
+		String connectionId = (String) params.get("connecting");
 
 		System.out.println("Stoping recording | {recordingId}=" + recordingId);
+		System.out.println("Stoping recording | {connectionId}=" + connectionId);
 
 		try {
 			Recording recording = this.openVidu.stopRecording(recordingId);
@@ -356,7 +357,7 @@ public class MyRestController {
 					byte buffer[] = new byte[1024];
 					while ((len = zis.read(buffer)) > 0) {
 						// out.write(buffer, 0, len);
-							fos.write(buffer, 0, len);
+						fos.write(buffer, 0, len);
 					}
 					fos.close();  
 					System.out.println("OK!");
@@ -379,20 +380,23 @@ public class MyRestController {
 				JsonObject recordFile = (JsonObject) recordArray.get(i);
 				System.out.println("recordFile: " + recordFile);
 				System.out.println("connectionId: " + recordFile.get("connectionId").toString());
-				if(connectionId.equals(recordFile.get("connectionId").toString())) {
+				String curConnectionId = recordFile.get("connectionId").toString();
+				if(connectionId.equals(curConnectionId)) {
 					recordName = recordFile.get("name").toString();
 					System.out.println("recordName: " + recordName);
+					break;
 				}
 			}
 			
-			// 사용자 녹화본 url로 변
+			// 사용자 녹화본 url로 변환
 			String uRecordPath = File.separator + "opt" + File.separator + "openvidu" + File.separator + "recordings" + File.separator + sessionId + File.separator + recordName + ".webm";
 			File uRecordFile = new File(uRecordPath);
 			URL uRecordUrl = uRecordFile.toURI().toURL();
-			System.out.println("uRecordUrl: " + uRecordUrl);
+			System.out.println("uRecordUrl: " + uRecordUrl.toString());
 			
 			this.sessionRecordings.remove(recording.getSessionId());
 			return new ResponseEntity<>(recording, HttpStatus.OK);
+			
 		} catch (OpenViduJavaClientException | OpenViduHttpException e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
