@@ -4,6 +4,7 @@ var session;
 var sessionName;
 var token;
 var numVideos = 0;
+// 민영 수정
 var connectionId;
 
 /* OPENVIDU METHODS */
@@ -29,8 +30,10 @@ function joinSession() {
 
 		session.on('connectionCreated', event => {
 			pushEvent(event);
+			// 민영 수정 시작
 			console.log(event.connection.connectionId);
 			connectionId = event.connection.connectionId;
+			// 민영 수정 끝
 		});
 
 		session.on('connectionDestroyed', event => {
@@ -351,13 +354,14 @@ function stopRecording() {
 		'POST',
 		'api/recording/stop', {
 			recording: forceRecordingId,
-			connectionId: connectionId
+			connectionId: connectionId // 민영 수정
 		},
 		'Stop recording WRONG',
 		res => {
 			console.log(res);
 			$('#textarea-http').text(JSON.stringify(res, null, "\t"));
 
+			// 민영 수정
 			// 녹화본 정보 가져온 후 바로 recording zip 파일 삭제
 			// deleteRecording();
 		}
