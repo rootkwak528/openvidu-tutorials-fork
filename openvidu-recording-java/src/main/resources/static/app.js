@@ -361,6 +361,7 @@ function stopRecording() {
 			console.log();
 			console.log(zip_url);
 			let connectionId = document.getElementById('forceValue').value;
+			//
 			// let promise = new JSZip.external.Promise(function (resolve, reject) {
 			// 	JSZipUtils.getBinaryContent(zip_url, function(err, data) {
 			// 			if (err) {
