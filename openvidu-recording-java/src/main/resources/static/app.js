@@ -353,7 +353,8 @@ function stopRecording() {
 		'POST',
 		'api/recording/stop', {
 			recording: forceRecordingId,
-			connectionId: connectionId
+			connectionId: document.getElementById('forceValue').value
+			//connectionId: connectionId
 		},
 		'Stop recording WRONG',
 		res => {
