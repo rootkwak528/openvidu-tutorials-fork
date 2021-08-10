@@ -30,7 +30,6 @@ function joinSession() {
 
 		session.on('connectionCreated', event => {
 			pushEvent(event);
-			event.
 			connectionId = event.connection.connectionId;
 		});
 
@@ -353,7 +352,7 @@ function stopRecording() {
 		'POST',
 		'api/recording/stop', {
 			recording: forceRecordingId,
-			connecting: connectionId
+			connectionId: connectionId
 		},
 		'Stop recording WRONG',
 		res => {
