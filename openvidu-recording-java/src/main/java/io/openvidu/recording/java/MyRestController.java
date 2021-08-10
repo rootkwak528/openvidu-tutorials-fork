@@ -373,9 +373,11 @@ public class MyRestController {
 			JsonArray recordArray = (JsonArray) jsonObject.get("files");
 			for(int i = 0; i < recordArray.size(); i++) {
 				JsonObject recordFile = (JsonObject) recordArray.get(i);
+				System.out.println("recordFile: " + recordFile);
+				System.out.println("connectionId: " + recordFile.get("connectionId").toString());
 				if(connectionId == recordFile.get("connectionId").toString()) {
 					String recordName = recordFile.get("name").toString();
-					System.out.println(recordName);
+					System.out.println("recordName: " + recordName);
 				}
 			}
 
