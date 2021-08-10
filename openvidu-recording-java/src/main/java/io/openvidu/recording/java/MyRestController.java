@@ -27,6 +27,17 @@ import io.openvidu.java.client.Recording;
 import io.openvidu.java.client.RecordingProperties;
 import io.openvidu.java.client.Session;
 
+// unzip
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+
+
 @RestController
 @RequestMapping("/api")
 public class MyRestController {
@@ -59,9 +70,6 @@ public class MyRestController {
 
 	@RequestMapping(value = "/get-token", method = RequestMethod.POST)
 	public ResponseEntity<JsonObject> getToken(@RequestBody Map<String, Object> sessionNameParam) {
-
-		// vue 프로젝트 연결 확인 용 - 호근 추가 log
-		System.out.println("안녕하세요");
 
 		System.out.println("Getting sessionId and token | {sessionName}=" + sessionNameParam);
 
@@ -294,6 +302,8 @@ public class MyRestController {
 
 		try {
 			Recording recording = this.openVidu.startRecording(sessionId, properties);
+			// url 확인 출력
+			System.out.println("start recording: " + recording.getUrl());
 			this.sessionRecordings.put(sessionId, true);
 			return new ResponseEntity<>(recording, HttpStatus.OK);
 		} catch (OpenViduJavaClientException | OpenViduHttpException e) {
@@ -302,13 +312,50 @@ public class MyRestController {
 	}
 
 	@RequestMapping(value = "/recording/stop", method = RequestMethod.POST)
-	public ResponseEntity<?> stopRecording(@RequestBody Map<String, Object> params) {
+	public ResponseEntity<?> stopRecording(@RequestBody Map<String, Object> params) throws IOException {
 		String recordingId = (String) params.get("recording");
 
 		System.out.println("Stoping recording | {recordingId}=" + recordingId);
 
 		try {
 			Recording recording = this.openVidu.stopRecording(recordingId);
+			
+			// url 확인 출력
+			System.out.println("stop recording - url: " + recording.getUrl());
+			String sessionId = recording.getSessionId();
+			System.out.println("stop recording - sessionid: " + sessionId);
+			
+			// upzip
+			String zipPath = File.separator + "opt" + File.separator + "openvidu" + File.separator + "recordings" + File.separator + sessionId + File.separator + sessionId + ".zip";
+			File zipFile = new File(zipPath);
+			// 압축 해제 위치 = 해제한 파일 위치 >> 그래야 openvidu에서 제공하는 delete 기능 사용
+			String upzipDir = File.separator + "opt" + File.separator + "openvidu" + File.separator + "recordings" + File.separator + sessionId + File.separator;
+			
+			ZipInputStream zis = new ZipInputStream(new FileInputStream(zipPath));
+	        ZipEntry ze = zis.getNextEntry();
+			
+	        
+	        while(ze!=null){
+	            String entryName = ze.getName();
+	            System.out.print("Extracting " + entryName + " -> " + upzipDir + File.separator +  entryName + "...");
+	            File f = new File(upzipDir + File.separator +  entryName);
+	            //create all folder needed to store in correct relative path.
+	            f.getParentFile().mkdirs();
+	            // OutputStream out = new FileOutputStream(entryName);
+	            FileOutputStream fos = new FileOutputStream(f);
+	            int len;
+	            byte buffer[] = new byte[1024];
+	            while ((len = zis.read(buffer)) > 0) {
+	            	// out.write(buffer, 0, len);
+	                fos.write(buffer, 0, len);
+	            }
+	            fos.close();  
+	            System.out.println("OK!");
+	            ze = zis.getNextEntry();         
+	        }
+	        zis.closeEntry();
+	        zis.close();
+
 			this.sessionRecordings.remove(recording.getSessionId());
 			return new ResponseEntity<>(recording, HttpStatus.OK);
 		} catch (OpenViduJavaClientException | OpenViduHttpException e) {
@@ -337,7 +384,8 @@ public class MyRestController {
 
 		try {
 			Recording recording = this.openVidu.getRecording(recordingId);
-			System.out.println(recording.toString());
+			// url 확인 출력
+			System.out.println("get recording: " + recording.getUrl());
 			return new ResponseEntity<>(recording, HttpStatus.OK);
 		} catch (OpenViduJavaClientException | OpenViduHttpException e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
