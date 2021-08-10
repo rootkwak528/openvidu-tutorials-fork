@@ -30,7 +30,8 @@ function joinSession() {
 
 		session.on('connectionCreated', event => {
 			pushEvent(event);
-			connectionId = event.connectionId;
+			event.
+			connectionId = event.connection.connectionId;
 		});
 
 		session.on('connectionDestroyed', event => {
