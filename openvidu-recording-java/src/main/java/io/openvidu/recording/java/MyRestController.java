@@ -380,7 +380,7 @@ public class MyRestController {
 				JsonObject recordFile = (JsonObject) recordArray.get(i);
 				System.out.println("recordFile: " + recordFile);
 				// System.out.println("connectionId: " + recordFile.get("connectionId").toString());
-				String curConnectionId = (String) recordFile.get("connectionId").toString().trim();
+				String curConnectionId = recordFile.get("connectionId").toString().replace("\"", "");
 				System.out.println("curConnectionId: " + curConnectionId);
 				System.out.println(connectionId.equals(curConnectionId));
 				if(connectionId.equals(curConnectionId)) {
