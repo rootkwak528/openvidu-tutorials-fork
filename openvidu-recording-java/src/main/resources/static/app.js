@@ -344,10 +344,12 @@ function startRecording() {
 
 function stopRecording() {
 	var forceRecordingId = document.getElementById('forceRecordingId').value;
+	let connectionId = document.getElementById('forceValue').value;
 	httpRequest(
 		'POST',
 		'api/recording/stop', {
-			recording: forceRecordingId
+			recording: forceRecordingId,
+			connectionId: connectionId
 		},
 		'Stop recording WRONG',
 		res => {

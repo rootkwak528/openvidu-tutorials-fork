@@ -322,6 +322,7 @@ public class MyRestController {
 	@RequestMapping(value = "/recording/stop", method = RequestMethod.POST)
 	public ResponseEntity<?> stopRecording(@RequestBody Map<String, Object> params) throws IOException {
 		String recordingId = (String) params.get("recording");
+		String connectionId = (String) params.get("connectionId");
 
 		System.out.println("Stoping recording | {recordingId}=" + recordingId);
 
@@ -369,8 +370,14 @@ public class MyRestController {
 			JsonReader recordJson = new JsonReader(new FileReader(jsonPath));
 			JsonObject jsonObject = gson.fromJson(recordJson, JsonObject.class);
 			System.out.println(jsonObject.get("files"));
-			// JsonArray recordArray = (JsonArray) jsonObject.get("files");
-			
+			JsonArray recordArray = (JsonArray) jsonObject.get("files");
+			for(int i = 0; i < recordArray.size(); i++) {
+				JsonObject recordFile = (JsonObject) recordArray.get(i);
+				if(connectionId == recordFile.get("connectionId").toString()) {
+					String recordName = recordFile.get("name").toString();
+					System.out.println(recordName);
+				}
+			}
 
 			this.sessionRecordings.remove(recording.getSessionId());
 			return new ResponseEntity<>(recording, HttpStatus.OK);
