@@ -369,7 +369,7 @@ public class MyRestController {
 			JsonReader recordJson = new JsonReader(new FileReader(jsonPath));
 			JsonObject jsonObject = gson.fromJson(recordJson, JsonObject.class);
 
-			System.out.println(jsonObject);
+			System.out.println(jsonObject.getProperties("files"));
 
 			this.sessionRecordings.remove(recording.getSessionId());
 			return new ResponseEntity<>(recording, HttpStatus.OK);
