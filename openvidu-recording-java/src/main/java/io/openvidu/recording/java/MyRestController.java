@@ -13,9 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+// json
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonElement;
+import com.google.gson.stream.JsonReader;
+import java.io.FileReader;
+// import java.io.FileNotFoundException;
+import java.util.Map;
+import java.util.Set;
 
 import io.openvidu.java.client.ConnectionProperties;
 import io.openvidu.java.client.ConnectionType;
@@ -36,6 +43,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
 
 
 @RestController
@@ -332,29 +340,36 @@ public class MyRestController {
 			String upzipDir = File.separator + "opt" + File.separator + "openvidu" + File.separator + "recordings" + File.separator + sessionId + File.separator;
 			
 			ZipInputStream zis = new ZipInputStream(new FileInputStream(zipPath));
-	        ZipEntry ze = zis.getNextEntry();
+			ZipEntry ze = zis.getNextEntry();
 			
-	        
-	        while(ze!=null){
-	            String entryName = ze.getName();
-	            System.out.print("Extracting " + entryName + " -> " + upzipDir + File.separator +  entryName + "...");
-	            File f = new File(upzipDir + File.separator +  entryName);
-	            //create all folder needed to store in correct relative path.
-	            f.getParentFile().mkdirs();
-	            // OutputStream out = new FileOutputStream(entryName);
-	            FileOutputStream fos = new FileOutputStream(f);
-	            int len;
-	            byte buffer[] = new byte[1024];
-	            while ((len = zis.read(buffer)) > 0) {
-	            	// out.write(buffer, 0, len);
-	                fos.write(buffer, 0, len);
-	            }
-	            fos.close();  
-	            System.out.println("OK!");
-	            ze = zis.getNextEntry();         
-	        }
-	        zis.closeEntry();
-	        zis.close();
+			while(ze!=null){
+					String entryName = ze.getName();
+					System.out.print("Extracting " + entryName + " -> " + upzipDir + File.separator +  entryName + "...");
+					File f = new File(upzipDir + File.separator +  entryName);
+					//create all folder needed to store in correct relative path.
+					f.getParentFile().mkdirs();
+					// OutputStream out = new FileOutputStream(entryName);
+					FileOutputStream fos = new FileOutputStream(f);
+					int len;
+					byte buffer[] = new byte[1024];
+					while ((len = zis.read(buffer)) > 0) {
+						// out.write(buffer, 0, len);
+							fos.write(buffer, 0, len);
+					}
+					fos.close();  
+					System.out.println("OK!");
+					ze = zis.getNextEntry();         
+			}
+			zis.closeEntry();
+			zis.close();
+
+			// 녹화본 정보가 담긴 json 파일 읽기
+			Gson gson = new Gson();
+			String jsonPath = File.separator + "opt" + File.separator + "openvidu" + File.separator + "recordings" + File.separator + sessionId + File.separator + sessionId + ".json";
+			JsonReader recordJson = new JsonReader(new FileReader(jsonPath));
+			JsonObject jsonObject = gson.fromJson(recordJson, JsonObject.class);
+
+			System.out.println(jsonObject);
 
 			this.sessionRecordings.remove(recording.getSessionId());
 			return new ResponseEntity<>(recording, HttpStatus.OK);

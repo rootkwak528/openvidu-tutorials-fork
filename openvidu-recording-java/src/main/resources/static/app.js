@@ -1,12 +1,9 @@
-//import JsZip from 'jszip.js'
-
 var OV;
 var session;
 
 var sessionName;
 var token;
 var numVideos = 0;
-var zip_url;
 
 /* OPENVIDU METHODS */
 
@@ -357,39 +354,8 @@ function stopRecording() {
 			console.log(res);
 			$('#textarea-http').text(JSON.stringify(res, null, "\t"));
 
-			zip_url = res.url;
-			console.log();
-			console.log(zip_url);
-			let connectionId = document.getElementById('forceValue').value;
-			//
-			// let promise = new JSZip.external.Promise(function (resolve, reject) {
-			// 	JSZipUtils.getBinaryContent(zip_url, function(err, data) {
-			// 			if (err) {
-			// 					reject(err);
-			// 			} else {
-			// 					resolve(data);
-			// 			}
-			// 	});
-			// });
-			// promise.then(JSZip.loadAsync).then(
-			// 		function (zip) {
-			// 				zip.forEach(function (fileName) {
-			// 						let file = zip.file(fileName);
-			// 						// 압축 파일 안에 저장된 파일이 압축이 풀리고 ArrayBuffer 타입으로 전달됨
-			// 						file.async("arraybuffer").then(
-			// 								function success(buf) {
-			// 										alert(fileName);
-			// 								},
-			// 								function error(e) {
-			// 										// 에러가 나셨습니다.
-			// 								}
-			// 						);
-			// 				});
-			// 		}
-			// );
-
 			// 녹화본 정보 가져온 후 바로 recording zip 파일 삭제
-			// deleteRecording();
+			deleteRecording();
 		}
 	);
 }
