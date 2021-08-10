@@ -41,6 +41,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URI;
 import java.net.URL;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -393,8 +394,8 @@ public class MyRestController {
 			// 사용자 녹화본 url로 변환
 			String uRecordPath = File.separator + "opt" + File.separator + "openvidu" + File.separator + "recordings" + File.separator + sessionId + File.separator + recordName;
 			File uRecordFile = new File(uRecordPath);
-			URL uRecordUrl = uRecordFile.toURI().toURL();
-			System.out.println("uRecordUrl: " + uRecordUrl.toString());
+			URI uRecordUrl = uRecordFile.toURI();
+			System.out.println("uRecordUrl: " + uRecordUrl);
 			
 			this.sessionRecordings.remove(recording.getSessionId());
 			return new ResponseEntity<>(recording, HttpStatus.OK);
