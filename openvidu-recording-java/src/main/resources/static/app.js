@@ -355,7 +355,7 @@ function stopRecording() {
 			$('#textarea-http').text(JSON.stringify(res, null, "\t"));
 
 			// 녹화본 정보 가져온 후 바로 recording zip 파일 삭제
-			deleteRecording();
+			// deleteRecording();
 		}
 	);
 }
