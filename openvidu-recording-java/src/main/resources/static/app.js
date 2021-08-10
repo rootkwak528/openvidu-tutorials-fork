@@ -28,6 +28,7 @@ function joinSession() {
 
 		session.on('connectionCreated', event => {
 			pushEvent(event);
+			var connectionId = event.connectionId;
 		});
 
 		session.on('connectionDestroyed', event => {
@@ -344,7 +345,7 @@ function startRecording() {
 
 function stopRecording() {
 	var forceRecordingId = document.getElementById('forceRecordingId').value;
-	let connectionId = document.getElementById('forceValue').value;
+	// let connectionId = document.getElementById('forceValue').value;
 	httpRequest(
 		'POST',
 		'api/recording/stop', {
