@@ -41,6 +41,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URL;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -370,17 +371,26 @@ public class MyRestController {
 			JsonReader recordJson = new JsonReader(new FileReader(jsonPath));
 			JsonObject jsonObject = gson.fromJson(recordJson, JsonObject.class);
 			System.out.println(jsonObject.get("files"));
+			
+			// files 읽어서 params와 같은 connectionId를 갖는 name 가져오기
 			JsonArray recordArray = (JsonArray) jsonObject.get("files");
+			String recordName = "";
 			for(int i = 0; i < recordArray.size(); i++) {
 				JsonObject recordFile = (JsonObject) recordArray.get(i);
 				System.out.println("recordFile: " + recordFile);
 				System.out.println("connectionId: " + recordFile.get("connectionId").toString());
-				if(connectionId == recordFile.get("connectionId").toString()) {
-					String recordName = recordFile.get("name").toString();
+				if(connectionId.equals(recordFile.get("connectionId").toString())) {
+					recordName = recordFile.get("name").toString();
 					System.out.println("recordName: " + recordName);
 				}
 			}
-
+			
+			// 사용자 녹화본 url로 변
+			String uRecordPath = File.separator + "opt" + File.separator + "openvidu" + File.separator + "recordings" + File.separator + sessionId + File.separator + recordName + ".webm";
+			File uRecordFile = new File(uRecordPath);
+			URL uRecordUrl = uRecordFile.toURI().toURL();
+			System.out.println("uRecordUrl: " + uRecordUrl);
+			
 			this.sessionRecordings.remove(recording.getSessionId());
 			return new ResponseEntity<>(recording, HttpStatus.OK);
 		} catch (OpenViduJavaClientException | OpenViduHttpException e) {
