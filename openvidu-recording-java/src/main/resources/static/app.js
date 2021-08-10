@@ -4,7 +4,7 @@ var session;
 var sessionName;
 var token;
 var numVideos = 0;
-
+var connectionId;
 
 /* OPENVIDU METHODS */
 
@@ -29,6 +29,8 @@ function joinSession() {
 
 		session.on('connectionCreated', event => {
 			pushEvent(event);
+			console.log(event.connect.connectionId);
+			connectionId = event.connect.connectionId
 		});
 
 		session.on('connectionDestroyed', event => {
@@ -349,7 +351,7 @@ function stopRecording() {
 		'POST',
 		'api/recording/stop', {
 			recording: forceRecordingId,
-			connectionId: document.getElementById('forceValue').value
+			connectionId: connectionId
 		},
 		'Stop recording WRONG',
 		res => {

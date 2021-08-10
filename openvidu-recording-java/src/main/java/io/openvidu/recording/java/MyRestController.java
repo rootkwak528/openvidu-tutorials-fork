@@ -379,19 +379,19 @@ public class MyRestController {
 			for(int i = 0; i < recordArray.size(); i++) {
 				JsonObject recordFile = (JsonObject) recordArray.get(i);
 				System.out.println("recordFile: " + recordFile);
-				System.out.println("connectionId: " + recordFile.get("connectionId").toString());
+				// System.out.println("connectionId: " + recordFile.get("connectionId").toString());
 				String curConnectionId = recordFile.get("connectionId").toString();
 				System.out.println("curConnectionId: " + curConnectionId);
 				if(connectionId.equals(curConnectionId)) {
-					System.out.println();
-					recordName += recordFile.get("name").toString();
+					recordName = (String)recordFile.get("name").toString();
+					System.out.println(recordName);
 					System.out.println("recordName: " + recordName);
 					break;
 				}
 			}
 			
 			// 사용자 녹화본 url로 변환
-			String uRecordPath = File.separator + "opt" + File.separator + "openvidu" + File.separator + "recordings" + File.separator + sessionId + File.separator + recordName + ".webm";
+			String uRecordPath = File.separator + "opt" + File.separator + "openvidu" + File.separator + "recordings" + File.separator + sessionId + File.separator + recordName;
 			File uRecordFile = new File(uRecordPath);
 			URL uRecordUrl = uRecordFile.toURI().toURL();
 			System.out.println("uRecordUrl: " + uRecordUrl.toString());
