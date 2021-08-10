@@ -4,6 +4,8 @@ var session;
 var sessionName;
 var token;
 var numVideos = 0;
+var connectionId;
+
 
 /* OPENVIDU METHODS */
 
@@ -28,7 +30,7 @@ function joinSession() {
 
 		session.on('connectionCreated', event => {
 			pushEvent(event);
-			var connectionId = event.connectionId;
+			connectionId = event.connectionId;
 		});
 
 		session.on('connectionDestroyed', event => {
