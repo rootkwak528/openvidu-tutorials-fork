@@ -368,8 +368,9 @@ public class MyRestController {
 			String jsonPath = File.separator + "opt" + File.separator + "openvidu" + File.separator + "recordings" + File.separator + sessionId + File.separator + sessionId + ".json";
 			JsonReader recordJson = new JsonReader(new FileReader(jsonPath));
 			JsonObject jsonObject = gson.fromJson(recordJson, JsonObject.class);
-
-			System.out.println(jsonObject.getProperties("files"));
+			System.out.println(jsonObject.get("files"));
+			// JsonArray recordArray = (JsonArray) jsonObject.get("files");
+			
 
 			this.sessionRecordings.remove(recording.getSessionId());
 			return new ResponseEntity<>(recording, HttpStatus.OK);
