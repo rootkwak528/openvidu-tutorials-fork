@@ -29,8 +29,8 @@ function joinSession() {
 
 		session.on('connectionCreated', event => {
 			pushEvent(event);
-			console.log(event.connect.connectionId);
-			connectionId = event.connect.connectionId
+			console.log(event.connection.connectionId);
+			connectionId = event.connection.connectionId;
 		});
 
 		session.on('connectionDestroyed', event => {
