@@ -85,8 +85,9 @@ public class MyRestController {
 	/*** Create Room ***/
 	/*******************/
 	// https://i5a204.p.ssafy.io:5000?sessionId=blahblahblabh&name=hogeun/
-	@GetMapping
+	// @GetMapping
 	// public ResponseEntity<JsonObject> getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) {
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public void getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) {
 				
 		sName = (String) sessionName.get("sessionName");
