@@ -466,17 +466,17 @@ function updateNumVideos(i) {
 			break;
 		case 2:
 			// $('video').addClass('two');
-			$('video').css('width', 'calc(50%-5px)')
+			$('video').css('max-width', 'calc(50%-5px)')
 			break;
 		case 3:
 			// $('video').addClass('three');
-			$('video').css('width', 'calc(33.3%-7px)')
+			$('video').css('max-width', 'calc(33.3%-7px)')
 			$('video').css('border-color', '#FF0000')
 			break;
 		case 4:
 			// $('video').addClass('four');
-			$('video').css('width', 'calc(50%-5px)')
-			$('video').css('height', 'calc(50%-5px)')
+			$('video').css('max-width', 'calc(50%-5px)')
+			$('video').css('max-height', 'calc(50%-5px)')
 			break;
 	}
 }
