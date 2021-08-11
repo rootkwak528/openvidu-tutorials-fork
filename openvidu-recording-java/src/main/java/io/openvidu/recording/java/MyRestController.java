@@ -90,7 +90,7 @@ public class MyRestController {
 	public void getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) {
 				
 		sName = (String) sessionName.get("sessionName");
-		nName = (String) nickName.get("connectionId");
+		nName = (String) nickName.get("nickName");
 		
 		System.out.println("sessionName: " + sName + ", nickName: " + nName);
 		
