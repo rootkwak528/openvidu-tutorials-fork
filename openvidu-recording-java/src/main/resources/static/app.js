@@ -35,6 +35,11 @@ function muteVideo() {
 const params = history.state
 console.log('$$ this is where you from : ', params)
 
+window.onpopstate = function (event) {
+	console.log(event.state)
+}
+history.back()
+
 // 호근 수정 끝 : session id
 
 /* OPENVIDU METHODS */
