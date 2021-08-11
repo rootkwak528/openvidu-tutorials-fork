@@ -34,7 +34,8 @@ function joinSession() {
 			pushEvent(event);
 			// 민영 수정 시작
 			console.log(event.connection.connectionId);
-			connectionId = event.connection.connectionId;
+			connectionId = !connectionId ? event.connect.connectionId : connectionId;
+			// connectionId = event.connection.connectionId;
 			// 민영 수정 끝
 		});
 
