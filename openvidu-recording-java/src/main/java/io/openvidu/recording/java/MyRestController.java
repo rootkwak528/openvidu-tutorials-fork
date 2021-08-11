@@ -22,7 +22,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonElement;
+//import com.google.gson.JsonElement;
 import com.google.gson.stream.JsonReader;
 import java.io.FileReader;
 // import java.io.FileNotFoundException;
@@ -73,9 +73,6 @@ public class MyRestController {
 	// Secret shared with our OpenVidu server
 	private String SECRET;
 
-	// json 사용을 위한 gson 선언
-	// Gson gson = new Gson();
-	
 	// room 생성 시 정보
 	String sName, nName;
 	
@@ -92,10 +89,14 @@ public class MyRestController {
 	// https://i5a204.p.ssafy.io:5000?sessionId=blahblahblabh&name=hogeun/
 	// @GetMapping
 	// public ResponseEntity<JsonObject> getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) {
-	@RequestMapping(value = "/createRoom", method = RequestMethod.GET)
 	//public ResponseEntity<Object> getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) throws URISyntaxException {
 	// public RedirectView getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) throws URISyntaxException {
-	public ModelAndView getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) throws URISyntaxException {
+	
+	
+	// https://13.124.187.160:5000/createRoom/?sessionName=1234&nickName=1234
+	@RequestMapping(value = "/createRoom", method = RequestMethod.GET)
+	public ResponseEntity<?> getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) throws URISyntaxException {
+	//public ModelAndView getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) throws URISyntaxException {
 		// 만들 방 정보 받아오기	
 		sName = (String) sessionName.get("sessionName");
 		nName = (String) nickName.get("nickName");
@@ -106,24 +107,25 @@ public class MyRestController {
 		JsonObject json = new JsonObject();
 		json.addProperty("sessionName", sName);
 		json.addProperty("nickName", nName);
+		System.out.println(json);
 		
 		// redirect하면서 데이터 전달
 		URI uri = new URI("https://i5a204.p.ssafy.io:5000/");
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setLocation(uri);
+		httpHeaders.add("sessinInfo", sName + "," + nName);
 
-		ModelAndView mnv = new ModelAndView();
+		return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
 		
-		RedirectView redirectView = new RedirectView();
-	    redirectView.setUrl("https://i5a204.p.ssafy.io:5000/");
-	    redirectView.addStaticAttribute("sessionInfo", json);
-	    
-	    mnv.setView(redirectView);
-	    return mnv;
-		
-		// return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
+//		ModelAndView mnv = new ModelAndView();
+//		
+//		RedirectView redirectView = new RedirectView();
+//	    redirectView.setUrl("https://i5a204.p.ssafy.io:5000/");
+//	    redirectView.addStaticAttribute("sessionInfo", json);
+//	    
+//	    mnv.setView(redirectView);
+//	    return mnv;
 	}
-	
 	
 	
 	
