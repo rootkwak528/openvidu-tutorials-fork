@@ -372,6 +372,7 @@ function stopRecording() {
 	);
 }
 
+/*
 function deleteRecording() {
 	var forceRecordingId = document.getElementById('forceRecordingId').value;
 	httpRequest(
@@ -386,7 +387,9 @@ function deleteRecording() {
 		}
 	);
 }
+*/
 
+/*
 function getRecording() {
 	var forceRecordingId = document.getElementById('forceRecordingId').value;
 	httpRequest(
@@ -399,7 +402,9 @@ function getRecording() {
 		}
 	);
 }
+*/
 
+/*
 function listRecordings() {
 	httpRequest(
 		'GET',
@@ -411,6 +416,7 @@ function listRecordings() {
 		}
 	);
 }
+*/
 
 /* APPLICATION REST METHODS */
 
