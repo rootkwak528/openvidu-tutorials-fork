@@ -11,19 +11,19 @@ var forceRecordingId;
 
 // 호근 수정
 var publisher;
-var muteVideo = true;
-var muteAudio = true;
+var audioActive = true;
+var videoActive = true;
 
 function muteAudio() {
 	console.log("muteAudio")
-	muteAudio = !muteAudio
-	// publisher.publishAudio(muteAudio)
+	audioActive = !audioActive
+	publisher.publishAudio(audioActive)
 }
 
 function muteVideo() {
 	console.log("muteVideo")
-	muteVideo = !muteVideo
-	// publisher.publishAudio(muteVideo)
+	videoActive = !videoActive
+	publisher.publishAudio(videoActive)
 }
 
 /* OPENVIDU METHODS */
