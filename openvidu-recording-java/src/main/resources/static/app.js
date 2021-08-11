@@ -14,16 +14,21 @@ var publisher;
 var audioActive = true;
 var videoActive = true;
 
+const muteAudioBtn = document.getElementById('muteAudioBtn')
+const muteVideoBtn = document.getElementById('muteVideoBtn')
+
 function muteAudio() {
 	console.log("muteAudio")
 	audioActive = !audioActive
+	muteAudioBtn.innerText = audioActive ? "mute audio" : "unmute audio"
 	publisher.publishAudio(audioActive)
 }
 
 function muteVideo() {
 	console.log("muteVideo")
 	videoActive = !videoActive
-	publisher.publishAudio(videoActive)
+	muteVideoBtn.innerText = videoActive ? "mute video" : "unmute video"
+	publisher.publishVideo(videoActive)
 }
 
 /* OPENVIDU METHODS */
