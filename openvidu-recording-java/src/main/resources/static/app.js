@@ -257,7 +257,7 @@ function fetchInfo() {
 		'Session couldn\'t be fetched',
 		res => {
 			console.warn("Session info has been fetched");
-			$('#textarea-http').text(JSON.stringify(res, null, "\t"));
+			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
 		}
 	);
 }
@@ -269,7 +269,7 @@ function fetchAll() {
 		'All session info couldn\'t be fetched',
 		res => {
 			console.warn("All session info has been fetched");
-			$('#textarea-http').text(JSON.stringify(res, null, "\t"));
+			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
 		}
 	);
 }
@@ -321,7 +321,7 @@ function httpRequest(method, url, body, errorMsg, callback) {
 			} else {
 				console.warn(errorMsg + ' (' + http.status + ')');
 				console.warn(http.responseText);
-				$('#textarea-http').text(errorMsg + ": HTTP " + http.status + " (" + http.responseText + ")");
+				// $('#textarea-http').text(errorMsg + ": HTTP " + http.status + " (" + http.responseText + ")");
 			}
 		}
 	}
@@ -458,11 +458,11 @@ function checkBtnsForce() {
 
 function checkBtnsRecordings() {
 	if (document.getElementById("forceRecordingId").value === "") {
-		document.getElementById('buttonGetRecording').disabled = true;
+		// document.getElementById('buttonGetRecording').disabled = true;
 		document.getElementById('buttonStopRecording').disabled = true;
 		document.getElementById('buttonDeleteRecording').disabled = true;
 	} else {
-		document.getElementById('buttonGetRecording').disabled = false;
+		// document.getElementById('buttonGetRecording').disabled = false;
 		document.getElementById('buttonStopRecording').disabled = false;
 		document.getElementById('buttonDeleteRecording').disabled = false;
 	}
