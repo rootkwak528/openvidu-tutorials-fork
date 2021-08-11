@@ -87,13 +87,13 @@ public class MyRestController {
 	// https://i5a204.p.ssafy.io:5000?sessionId=blahblahblabh&name=hogeun/
 	// @GetMapping
 	// public ResponseEntity<JsonObject> getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) {
-	// @RequestMapping(value = "", method = RequestMethod.GET)
-	// public void getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) {
+	@RequestMapping(value = "/createRoom", method = RequestMethod.GET)
+	public void getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) {
 				
-	// 	sName = (String) sessionName.get("sessionName");
-	// 	nName = (String) nickName.get("nickName");
+		sName = (String) sessionName.get("sessionName");
+		nName = (String) nickName.get("nickName");
 		
-	// 	System.out.println("sessionName: " + sName + ", nickName: " + nName);
+		System.out.println("sessionName: " + sName + ", nickName: " + nName);
 		
 		// Gson gson = new Gson();
 //		JsonObject json = new JsonObject();
@@ -101,7 +101,7 @@ public class MyRestController {
 //		json.addProperty("nickName", nName);
 		
 		// return new ResponseEntity<>(json, HttpStatus.OK);
-	// }
+	}
 	
 	
 	
