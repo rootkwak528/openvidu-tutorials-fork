@@ -32,7 +32,7 @@ function muteVideo() {
 
 // 호근 수정 시작 : session id
 
-const params = History.state
+const params = history.state
 console.log('$$ this is where you from : ', params)
 
 // 호근 수정 끝 : session id
