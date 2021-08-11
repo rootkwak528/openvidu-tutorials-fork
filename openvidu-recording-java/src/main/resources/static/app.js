@@ -32,13 +32,14 @@ function muteVideo() {
 
 // 호근 수정 시작 : session id
 
-const params = history.state
-console.log('$$ this is where you from : ', params)
+const sessionName = localStorage.getItem('sessionName')
+const nickname = localStorage.getItem('nickname')
 
-window.onpopstate = function (event) {
-	alert(event.state)
-}
-history.back()
+localStorage.removeItem('sessionName')
+localStorage.removeItem('nickname')
+
+$('#sessionName').value = sessionName
+$('#sessionName').disabled = true
 
 // 호근 수정 끝 : session id
 
