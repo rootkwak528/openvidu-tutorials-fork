@@ -4,29 +4,31 @@ var session;
 var sessionName;
 var token;
 var numVideos = 0;
+
 // 민영 수정
 var connectionId;
 var uRecordUrl;
 var forceRecordingId;
 
-// 호근 수정
+// 호근 수정 시작
 var publisher;
-var audioActive = true;
-var videoActive = true;
+var publishAudio = false;
+var publishVideo = true;
 
 function muteAudio() {
 	console.log("muteAudio")
-	audioActive = !audioActive
-	document.getElementById('muteAudioBtn').value = audioActive ? "mute audio" : "unmute audio"
-	publisher.publishAudio(audioActive)
+	publishAudio = !publishAudio
+	document.getElementById('muteAudioBtn').value = publishAudio ? "mute audio" : "unmute audio"
+	publisher.publishAudio(publishAudio)
 }
 
 function muteVideo() {
 	console.log("muteVideo")
-	videoActive = !videoActive
-	document.getElementById('muteVideoBtn').value = videoActive ? "mute video" : "unmute video"
-	publisher.publishVideo(videoActive)
+	publishVideo = !publishVideo
+	document.getElementById('muteVideoBtn').value = publishVideo ? "mute video" : "unmute video"
+	publisher.publishVideo(publishVideo)
 }
+// 호근 수정 끝
 
 /* OPENVIDU METHODS */
 
@@ -137,8 +139,8 @@ function joinSession() {
 				publisher = OV.initPublisher('video-container', {
 					audioSource: undefined, // The source of audio. If undefined default microphone
 					videoSource: undefined, // The source of video. If undefined default webcam
-					publishAudio: true, // Whether you want to start publishing with your audio unmuted or not
-					publishVideo: true, // Whether you want to start publishing with your video enabled or not
+					publishAudio: publishAudio, // Whether you want to start publishing with your audio unmuted or not
+					publishVideo: publishVideo, // Whether you want to start publishing with your video enabled or not
 					resolution: '640x480', // The resolution of your video
 					frameRate: 30, // The frame rate of your video
 					insertMode: 'APPEND', // How the video is inserted in the target element 'video-container'
@@ -460,16 +462,20 @@ function updateNumVideos(i) {
 	$('video').removeClass();
 	switch (numVideos) {
 		case 1:
-			$('video').addClass('two');
+			// $('video').addClass('two');
 			break;
 		case 2:
-			$('video').addClass('two');
+			// $('video').addClass('two');
+			$('#video-container>video').css('width', 'calc(50%-5px)')
 			break;
 		case 3:
-			$('video').addClass('three');
+			// $('video').addClass('three');
+			$('#video-container>video').css('width', 'calc(33.3%-7px)')
 			break;
 		case 4:
-			$('video').addClass('four');
+			// $('video').addClass('four');
+			$('#video-container>video').css('width', 'calc(50%-5px)')
+			$('#video-container>video').css('height', 'calc(50%-5px)')
 			break;
 	}
 }
