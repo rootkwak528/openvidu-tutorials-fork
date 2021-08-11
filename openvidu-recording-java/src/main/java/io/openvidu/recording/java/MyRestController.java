@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,6 +45,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -83,25 +85,31 @@ public class MyRestController {
 
 	/*******************/
 	/*** Create Room ***/
-	/*******************/
+	/**
+	 * @throws URISyntaxException *****************/
 	// https://i5a204.p.ssafy.io:5000?sessionId=blahblahblabh&name=hogeun/
 	// @GetMapping
 	// public ResponseEntity<JsonObject> getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) {
-	// @RequestMapping(value = "", method = RequestMethod.GET)
-	// public void getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) {
-				
-	// 	sName = (String) sessionName.get("sessionName");
-	// 	nName = (String) nickName.get("nickName");
+	@RequestMapping(value = "/createRoom", method = RequestMethod.GET)
+	public ResponseEntity<Object> getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) throws URISyntaxException {
+		// 만들 방 정보 받아오기	
+		sName = (String) sessionName.get("sessionName");
+		nName = (String) nickName.get("nickName");
+		System.out.println("sessionName: " + sName + ", nickName: " + nName);
 		
-	// 	System.out.println("sessionName: " + sName + ", nickName: " + nName);
+		// Json 형태로 저장
+		Gson gson = new Gson();
+		JsonObject json = new JsonObject();
+		json.addProperty("sessionName", sName);
+		json.addProperty("nickName", nName);
 		
-		// Gson gson = new Gson();
-//		JsonObject json = new JsonObject();
-//		json.addProperty("sessionName", sName);
-//		json.addProperty("nickName", nName);
-		
-		// return new ResponseEntity<>(json, HttpStatus.OK);
-	// }
+		// redirect하면서 데이터 전달
+		URI uri = new URI("https://i5a204.p.ssafy.io:5000/");
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setLocation(uri);
+
+		return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
+	}
 	
 	
 	
