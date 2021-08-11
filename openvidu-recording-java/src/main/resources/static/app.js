@@ -35,10 +35,10 @@ function muteVideo() {
 
 window.addEventListener("message", (event) => {
 	console.log(event.data)
-	$('#sessionName').value = event.data.sessionName
-	$('#sessionName').disabled = true
-	$('#nickname').value = event.data.nickname
-	$('#nickname').disabled = true
+	$('#sessionName').val(event.data.sessionName)
+	$('#sessionName').attr('disabled', true)
+	$('#nickname').val(event.data.nickname)
+	$('#nickname').attr('disabled', true)
 }, false)
 
 // 호근 수정 끝 : session id
