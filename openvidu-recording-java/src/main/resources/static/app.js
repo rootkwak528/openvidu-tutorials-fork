@@ -36,16 +36,16 @@ function muteVideo() {
 sessionName = localStorage.getItem('sessionName')
 nickname = localStorage.getItem('nickname')
 
-console.log(sessionName, nickname)
-
-localStorage.removeItem('sessionName')
-localStorage.removeItem('nickname')
+console.log('here the session name', sessionName, nickname)
 
 $('#sessionName').val = sessionName
 $('#sessionName').disabled = true
 
 $('#nickname').val = nickname
 $('#nickname').disabled = true
+
+localStorage.removeItem('sessionName')
+localStorage.removeItem('nickname')
 
 // 호근 수정 끝 : session id
 
