@@ -15,11 +15,13 @@ var muteVideo = true;
 var muteAudio = true;
 
 function muteAudio() {
+	console.log("muteAudio")
 	muteAudio = !muteAudio
 	publisher.publishAudio(muteAudio)
 }
 
 function muteVideo() {
+	console.log("muteVideo")
 	muteVideo = !muteVideo
 	publisher.publishAudio(muteVideo)
 }
