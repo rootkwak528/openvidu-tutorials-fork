@@ -44,8 +44,8 @@ $('#sessionName').disabled = true
 $('#nickname').val = nickname
 $('#nickname').disabled = true
 
-localStorage.removeItem('sessionName')
-localStorage.removeItem('nickname')
+// localStorage.removeItem('sessionName')
+// localStorage.removeItem('nickname')
 
 // 호근 수정 끝 : session id
 
