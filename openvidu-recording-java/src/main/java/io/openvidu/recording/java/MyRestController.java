@@ -50,7 +50,7 @@ import java.util.zip.ZipInputStream;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping()
 public class MyRestController {
 
 	// OpenVidu object as entrypoint of the SDK
@@ -73,7 +73,7 @@ public class MyRestController {
 	// Gson gson = new Gson();
 	
 	// room 생성 시 정보
-//	String sName, nName;
+	String sName, nName;
 	
 	public MyRestController(@Value("${openvidu.secret}") String secret, @Value("${openvidu.url}") String openviduUrl) {
 		this.SECRET = secret;
@@ -85,22 +85,22 @@ public class MyRestController {
 	/*** Create Room ***/
 	/*******************/
 	// https://i5a204.p.ssafy.io:5000?sessionId=blahblahblabh&name=hogeun/
-//	@GetMapping
-//	// public ResponseEntity<JsonObject> getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) {
-//	public void getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) {
-//				
-//		sName = (String) sessionName.get("sessionName");
-//		nName = (String) nickName.get("connectionId");
-//		
-//		System.out.println("sessionName: " + sName + ", nickName: " + nName);
-//		
-//		// Gson gson = new Gson();
-////		JsonObject json = new JsonObject();
-////		json.addProperty("sessionName", sName);
-////		json.addProperty("nickName", nName);
-//		
-//		// return new ResponseEntity<>(json, HttpStatus.OK);
-//	}
+	@GetMapping
+	// public ResponseEntity<JsonObject> getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) {
+	public void getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) {
+				
+		sName = (String) sessionName.get("sessionName");
+		nName = (String) nickName.get("connectionId");
+		
+		System.out.println("sessionName: " + sName + ", nickName: " + nName);
+		
+		// Gson gson = new Gson();
+//		JsonObject json = new JsonObject();
+//		json.addProperty("sessionName", sName);
+//		json.addProperty("nickName", nName);
+		
+		// return new ResponseEntity<>(json, HttpStatus.OK);
+	}
 	
 	
 	
@@ -109,7 +109,7 @@ public class MyRestController {
 	/*** Session API ***/
 	/*******************/
 
-	@RequestMapping(value = "/get-token", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/get-token", method = RequestMethod.POST)
 	public ResponseEntity<JsonObject> getToken(@RequestBody Map<String, Object> sessionNameParam) {
 
 		System.out.println("Getting sessionId and token | {sessionName}=" + sessionNameParam);
@@ -182,7 +182,7 @@ public class MyRestController {
 		}
 	}
 
-	@RequestMapping(value = "/remove-user", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/remove-user", method = RequestMethod.POST)
 	public ResponseEntity<JsonObject> removeUser(@RequestBody Map<String, Object> sessionNameToken) throws Exception {
 
 		System.out.println("Removing user | {sessionName, token}=" + sessionNameToken);
@@ -215,7 +215,7 @@ public class MyRestController {
 		}
 	}
 
-	@RequestMapping(value = "/close-session", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/close-session", method = RequestMethod.DELETE)
 	public ResponseEntity<JsonObject> closeSession(@RequestBody Map<String, Object> sessionName) throws Exception {
 
 		System.out.println("Closing session | {sessionName}=" + sessionName);
@@ -238,7 +238,7 @@ public class MyRestController {
 		}
 	}
 
-	@RequestMapping(value = "/fetch-info", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/fetch-info", method = RequestMethod.POST)
 	public ResponseEntity<JsonObject> fetchInfo(@RequestBody Map<String, Object> sessionName) {
 		try {
 			System.out.println("Fetching session info | {sessionName}=" + sessionName);
@@ -263,7 +263,7 @@ public class MyRestController {
 		}
 	}
 
-	@RequestMapping(value = "/fetch-all", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/fetch-all", method = RequestMethod.GET)
 	public ResponseEntity<?> fetchAll() {
 		try {
 			System.out.println("Fetching all session info");
@@ -280,7 +280,7 @@ public class MyRestController {
 		}
 	}
 
-	@RequestMapping(value = "/force-disconnect", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/force-disconnect", method = RequestMethod.DELETE)
 	public ResponseEntity<JsonObject> forceDisconnect(@RequestBody Map<String, Object> params) {
 		try {
 			// Retrieve the param from BODY
@@ -302,7 +302,7 @@ public class MyRestController {
 		}
 	}
 
-	@RequestMapping(value = "/force-unpublish", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/force-unpublish", method = RequestMethod.DELETE)
 	public ResponseEntity<JsonObject> forceUnpublish(@RequestBody Map<String, Object> params) {
 		try {
 			// Retrieve the param from BODY
@@ -328,7 +328,7 @@ public class MyRestController {
 	/** Recording API **/
 	/*******************/
 
-	@RequestMapping(value = "/recording/start", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/recording/start", method = RequestMethod.POST)
 	public ResponseEntity<?> startRecording(@RequestBody Map<String, Object> params) {
 		String sessionId = (String) params.get("session");
 		Recording.OutputMode outputMode = Recording.OutputMode.valueOf((String) params.get("outputMode"));
@@ -352,7 +352,7 @@ public class MyRestController {
 		}
 	}
 
-	@RequestMapping(value = "/recording/stop", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/recording/stop", method = RequestMethod.POST)
 	public ResponseEntity<?> stopRecording(@RequestBody Map<String, Object> params) throws IOException {
 		String recordingId = (String) params.get("recording");
 		String connectionId = (String) params.get("connectionId");
@@ -443,7 +443,7 @@ public class MyRestController {
 		}
 	}
 
-	@RequestMapping(value = "/recording/delete", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/recording/delete", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteRecording(@RequestBody Map<String, Object> params) {
 		String recordingId = (String) params.get("recording");
 
@@ -457,7 +457,7 @@ public class MyRestController {
 		}
 	}
 
-	@RequestMapping(value = "/recording/get/{recordingId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/recording/get/{recordingId}", method = RequestMethod.GET)
 	public ResponseEntity<?> getRecording(@PathVariable(value = "recordingId") String recordingId) {
 
 		System.out.println("Getting recording | {recordingId}=" + recordingId);
@@ -472,7 +472,7 @@ public class MyRestController {
 		}
 	}
 
-	@RequestMapping(value = "/recording/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/recording/list", method = RequestMethod.GET)
 	public ResponseEntity<?> listRecordings() {
 
 		System.out.println("Listing recordings");
