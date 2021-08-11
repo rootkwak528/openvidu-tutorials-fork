@@ -4,7 +4,9 @@ var session;
 var sessionName;
 var token;
 var numVideos = 0;
+// 민영 수정
 var connectionId;
+var uRecordUrl;
 
 /* OPENVIDU METHODS */
 
@@ -29,8 +31,10 @@ function joinSession() {
 
 		session.on('connectionCreated', event => {
 			pushEvent(event);
+			// 민영 수정 시작
 			console.log(event.connection.connectionId);
 			connectionId = event.connection.connectionId;
+			// 민영 수정 끝
 		});
 
 		session.on('connectionDestroyed', event => {
@@ -299,7 +303,7 @@ function forceUnpublish() {
 }
 
 function httpRequest(method, url, body, errorMsg, callback) {
-	$('#textarea-http').text('');
+	// $('#textarea-http').text('');
 	var http = new XMLHttpRequest();
 	http.open(method, url, true);
 	http.setRequestHeader('Content-type', 'application/json');
@@ -340,7 +344,7 @@ function startRecording() {
 			console.log(res);
 			document.getElementById('forceRecordingId').value = res.id;
 			checkBtnsRecordings();
-			$('#textarea-http').text(JSON.stringify(res, null, "\t"));
+			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
 		}
 	);
 }
@@ -351,14 +355,18 @@ function stopRecording() {
 		'POST',
 		'api/recording/stop', {
 			recording: forceRecordingId,
-			connectionId: connectionId
+			connectionId: connectionId // 민영 수정
 		},
 		'Stop recording WRONG',
 		res => {
 			console.log(res);
-			$('#textarea-http').text(JSON.stringify(res, null, "\t"));
+			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
 
+			// 민영 수정
+			uRecordUrl = res.url;
+			console.log(uRecordUrl);
 			// 녹화본 정보 가져온 후 바로 recording zip 파일 삭제
+			// > 지우지마! 지우면 url 접근 불가, 내 생각에는 사용자가 직접 영상 삭제하기
 			// deleteRecording();
 		}
 	);
@@ -374,7 +382,7 @@ function deleteRecording() {
 		'Delete recording WRONG',
 		res => {
 			console.log("DELETE ok");
-			$('#textarea-http').text("DELETE ok");
+			// $('#textarea-http').text("DELETE ok");
 		}
 	);
 }
@@ -387,7 +395,7 @@ function getRecording() {
 		'Get recording WRONG',
 		res => {
 			console.log(res);
-			$('#textarea-http').text(JSON.stringify(res, null, "\t"));
+			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
 		}
 	);
 }
@@ -399,7 +407,7 @@ function listRecordings() {
 		'List recordings WRONG',
 		res => {
 			console.log(res);
-			$('#textarea-http').text(JSON.stringify(res, null, "\t"));
+			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
 		}
 	);
 }
@@ -462,15 +470,15 @@ function checkBtnsRecordings() {
 
 function pushEvent(event) {
 	events += (!events ? '' : '\n') + event.type;
-	$('#textarea-events').text(events);
+	// $('#textarea-events').text(events);
 }
 
 function clearHttpTextarea() {
-	$('#textarea-http').text('');
+	// $('#textarea-http').text('');
 }
 
 function clearEventsTextarea() {
-	$('#textarea-events').text('');
+	// $('#textarea-events').text('');
 	events = '';
 }
 
