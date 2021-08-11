@@ -14,20 +14,17 @@ var publisher;
 var audioActive = true;
 var videoActive = true;
 
-const muteAudioBtn = document.getElementById('muteAudioBtn')
-const muteVideoBtn = document.getElementById('muteVideoBtn')
-
 function muteAudio() {
 	console.log("muteAudio")
 	audioActive = !audioActive
-	// muteAudioBtn.innerText = audioActive ? "mute audio" : "unmute audio"
+	document.getElementById('muteAudioBtn').value = audioActive ? "mute audio" : "unmute audio"
 	publisher.publishAudio(audioActive)
 }
 
 function muteVideo() {
 	console.log("muteVideo")
 	videoActive = !videoActive
-	// muteVideoBtn.innerText = videoActive ? "mute video" : "unmute video"
+	document.getElementById('muteVideoBtn').value = videoActive ? "mute video" : "unmute video"
 	publisher.publishVideo(videoActive)
 }
 
