@@ -33,19 +33,9 @@ function muteVideo() {
 
 // 호근 수정 시작 : session id
 
-sessionName = localStorage.getItem('sessionName')
-nickname = localStorage.getItem('nickname')
-
-console.log('here the session name', sessionName, nickname)
-
-$('#sessionName').val = sessionName
-$('#sessionName').disabled = true
-
-$('#nickname').val = nickname
-$('#nickname').disabled = true
-
-// localStorage.removeItem('sessionName')
-// localStorage.removeItem('nickname')
+window.onmessage(event => {
+	console.log(event.data)
+})
 
 // 호근 수정 끝 : session id
 
