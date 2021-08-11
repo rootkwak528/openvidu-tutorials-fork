@@ -33,9 +33,9 @@ function muteVideo() {
 
 // 호근 수정 시작 : session id
 
-window.onmessage = function (event) {
+window.addEventListener("message", (event) {
 	console.log('onmessage', event.data)
-}
+})
 
 // 호근 수정 끝 : session id
 
