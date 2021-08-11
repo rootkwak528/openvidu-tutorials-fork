@@ -20,14 +20,14 @@ const muteVideoBtn = document.getElementById('muteVideoBtn')
 function muteAudio() {
 	console.log("muteAudio")
 	audioActive = !audioActive
-	muteAudioBtn.innerText = audioActive ? "mute audio" : "unmute audio"
+	// muteAudioBtn.innerText = audioActive ? "mute audio" : "unmute audio"
 	publisher.publishAudio(audioActive)
 }
 
 function muteVideo() {
 	console.log("muteVideo")
 	videoActive = !videoActive
-	muteVideoBtn.innerText = videoActive ? "mute video" : "unmute video"
+	// muteVideoBtn.innerText = videoActive ? "mute video" : "unmute video"
 	publisher.publishVideo(videoActive)
 }
 
