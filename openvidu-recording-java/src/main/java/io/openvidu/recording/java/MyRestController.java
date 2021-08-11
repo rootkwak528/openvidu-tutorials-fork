@@ -91,7 +91,7 @@ public class MyRestController {
 	// @GetMapping
 	// public ResponseEntity<JsonObject> getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) {
 	@RequestMapping(value = "/createRoom", method = RequestMethod.GET)
-	public ResponseEntity<?> getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) throws URISyntaxException {
+	public ResponseEntity<Object> getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) throws URISyntaxException {
 		// 만들 방 정보 받아오기	
 		sName = (String) sessionName.get("sessionName");
 		nName = (String) nickName.get("nickName");
@@ -104,7 +104,7 @@ public class MyRestController {
 		json.addProperty("nickName", nName);
 		
 		// redirect하면서 데이터 전달
-		URI uri = new URI("https://13.124.187.160:5000");
+		URI uri = new URI("https://i5a204.p.ssafy.io:5000/");
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setLocation(uri);
 
