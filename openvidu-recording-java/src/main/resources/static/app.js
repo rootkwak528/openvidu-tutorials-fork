@@ -34,6 +34,7 @@ function muteVideo() {
 // 호근 수정 시작 : session id
 
 window.addEventListener("message", (event) => {
+	console.log(event.data)
 	$('#sessionName').value = event.data.sessionName
 	$('#sessionName').disabled = true
 	$('#nickname').value = event.data.nickname
