@@ -35,7 +35,7 @@ function muteVideo() {
 
 window.addEventListener("message", (event) => {
 	console.log('onmessage', event.data)
-})
+}, false)
 
 // 호근 수정 끝 : session id
 
