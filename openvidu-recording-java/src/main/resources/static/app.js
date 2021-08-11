@@ -7,6 +7,7 @@ var numVideos = 0;
 // 민영 수정
 var connectionId;
 var uRecordUrl;
+var forceRecordingId;
 
 /* OPENVIDU METHODS */
 
@@ -328,14 +329,14 @@ function httpRequest(method, url, body, errorMsg, callback) {
 }
 
 function startRecording() {
-	var outputMode = $('input[name=outputMode]:checked').val();
+	// var outputMode = $('input[name=outputMode]:checked').val();
 	var hasAudio = $('#has-audio-checkbox').prop('checked');
 	var hasVideo = $('#has-video-checkbox').prop('checked');
 	httpRequest(
 		'POST',
 		'api/recording/start', {
 			session: session.sessionId,
-			outputMode: outputMode,
+			outputMode: "INDIVIDUAL",	// 민영 수정
 			hasAudio: hasAudio,
 			hasVideo: hasVideo
 		},
@@ -343,6 +344,7 @@ function startRecording() {
 		res => {
 			console.log(res);
 			document.getElementById('forceRecordingId').value = res.id;
+			forceRecordingId = res.id;	// 민영 수정
 			checkBtnsRecordings();
 			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
 		}
@@ -350,7 +352,7 @@ function startRecording() {
 }
 
 function stopRecording() {
-	var forceRecordingId = document.getElementById('forceRecordingId').value;
+	// var forceRecordingId = document.getElementById('forceRecordingId').value;
 	httpRequest(
 		'POST',
 		'api/recording/stop', {
@@ -463,14 +465,15 @@ function checkBtnsForce() {
 }
 
 function checkBtnsRecordings() {
-	if (document.getElementById("forceRecordingId").value === "") {
+	if (forceRecordingId === "") {
+	// if (document.getElementById("forceRecordingId").value === "") {
 		// document.getElementById('buttonGetRecording').disabled = true;
 		document.getElementById('buttonStopRecording').disabled = true;
-		document.getElementById('buttonDeleteRecording').disabled = true;
+		// document.getElementById('buttonDeleteRecording').disabled = true;
 	} else {
 		// document.getElementById('buttonGetRecording').disabled = false;
 		document.getElementById('buttonStopRecording').disabled = false;
-		document.getElementById('buttonDeleteRecording').disabled = false;
+		// document.getElementById('buttonDeleteRecording').disabled = false;
 	}
 }
 
