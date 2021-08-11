@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 // json
@@ -93,7 +94,8 @@ public class MyRestController {
 	// public ResponseEntity<JsonObject> getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) {
 	@RequestMapping(value = "/createRoom", method = RequestMethod.GET)
 	//public ResponseEntity<Object> getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) throws URISyntaxException {
-	public RedirectView getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) throws URISyntaxException {
+	// public RedirectView getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) throws URISyntaxException {
+	public ModelAndView getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) throws URISyntaxException {
 		// 만들 방 정보 받아오기	
 		sName = (String) sessionName.get("sessionName");
 		nName = (String) nickName.get("nickName");
@@ -110,10 +112,14 @@ public class MyRestController {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setLocation(uri);
 
+		ModelAndView mnv = new ModelAndView();
+		
 		RedirectView redirectView = new RedirectView();
 	    redirectView.setUrl("https://i5a204.p.ssafy.io:5000/");
 	    redirectView.addStaticAttribute("sessionInfo", json);
-	    return redirectView;
+	    
+	    mnv.setView(redirectView);
+	    return mnv;
 		
 		// return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
 	}
