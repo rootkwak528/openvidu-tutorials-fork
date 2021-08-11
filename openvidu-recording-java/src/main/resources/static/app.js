@@ -9,6 +9,21 @@ var connectionId;
 var uRecordUrl;
 var forceRecordingId;
 
+// 호근 수정
+var publisher;
+var muteVideo = true;
+var muteAudio = true;
+
+function muteAudio() {
+	muteAudio = !muteAudio
+	publisher.publishAudio(muteAudio)
+}
+
+function muteVideo() {
+	muteVideo = !muteVideo
+	publisher.publishAudio(muteVideo)
+}
+
 /* OPENVIDU METHODS */
 
 function joinSession() {
@@ -115,7 +130,7 @@ function joinSession() {
 
 				// --- 6) Get your own camera stream ---
 
-				var publisher = OV.initPublisher('video-container', {
+				publisher = OV.initPublisher('video-container', {
 					audioSource: undefined, // The source of audio. If undefined default microphone
 					videoSource: undefined, // The source of video. If undefined default webcam
 					publishAudio: true, // Whether you want to start publishing with your audio unmuted or not
