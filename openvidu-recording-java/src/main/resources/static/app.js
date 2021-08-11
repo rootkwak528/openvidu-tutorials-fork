@@ -10,7 +10,7 @@ var connectionId;
 var uRecordUrl;
 var forceRecordingId;
 
-// 호근 수정 시작
+// 호근 수정 시작 : 음소거
 var publisher;
 var publishAudio = false;
 var publishVideo = true;
@@ -28,7 +28,14 @@ function muteVideo() {
 	document.getElementById('muteVideoBtn').value = publishVideo ? "mute video" : "unmute video"
 	publisher.publishVideo(publishVideo)
 }
-// 호근 수정 끝
+// 호근 수정 끝 : 음소거
+
+// 호근 수정 시작 : session id
+
+const params = document.referrer
+console.log('$$ this is where you from : ', params)
+
+// 호근 수정 끝 : session id
 
 /* OPENVIDU METHODS */
 
