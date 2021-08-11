@@ -36,7 +36,7 @@ const params = history.state
 console.log('$$ this is where you from : ', params)
 
 window.onpopstate = function (event) {
-	console.log(event.state)
+	alert(event.state)
 }
 history.back()
 
