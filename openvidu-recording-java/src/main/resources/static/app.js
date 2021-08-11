@@ -2,6 +2,7 @@ var OV;
 var session;
 
 var sessionName;
+var nickname;
 var token;
 var numVideos = 0;
 
@@ -32,8 +33,8 @@ function muteVideo() {
 
 // 호근 수정 시작 : session id
 
-const sessionName = localStorage.getItem('sessionName')
-const nickname = localStorage.getItem('nickname')
+sessionName = localStorage.getItem('sessionName')
+nickname = localStorage.getItem('nickname')
 
 localStorage.removeItem('sessionName')
 localStorage.removeItem('nickname')
