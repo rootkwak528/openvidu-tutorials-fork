@@ -41,6 +41,9 @@ localStorage.removeItem('nickname')
 $('#sessionName').value = sessionName
 $('#sessionName').disabled = true
 
+$('#nickname').value = nickname
+$('#nickname').disabled = true
+
 // 호근 수정 끝 : session id
 
 /* OPENVIDU METHODS */
