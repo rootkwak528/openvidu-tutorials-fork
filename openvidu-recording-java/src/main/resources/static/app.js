@@ -54,7 +54,7 @@ window.addEventListener("message", (event) => {
 // 호근 수정 시작 : video grid
 
 let colNum = 1;
-let videoHighlight = false;
+let isFocus = false;
 
 // 호근 수정 끝 : video grid
 
@@ -234,6 +234,14 @@ function joinSession() {
 
 				console.log(publisher);
 
+				// 호근 수정 시작 video grid
+
+				publisher.targetElement.addEventListener('dblclick', function(event) {
+					ondblclickVideo(event.target)
+				})
+
+				// 호근 수정 끝 video grid
+
 			})
 			.catch(error => {
 				console.warn('There was an error connecting to the session:', error.code, error.message);
@@ -311,11 +319,9 @@ function closeSession() {
 		'Session couldn\'t be closed',
 		res => {
 			console.warn("Session " + sessionName + " has been closed");
+			window.close();
 		}
 	);
-
-	window.close();
-	// leaveSession();
 }
 
 function fetchInfo() {
@@ -549,9 +555,49 @@ window.onresize = function (event) {
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
-$('video').dblclick(function (event) {
-	console.log(event.target)
-})
+// 더블클릭하면 커지기
+
+function ondblclickVideo(target) {
+	containerDOM = document.getElementById('video-container')
+	containerFocusDOM = document.getElementById('video-focus-container')
+	
+	// 타겟 비디오가 하이라이트 비디오라면,
+		// 하이라이트 비디오 일반 비디오로 옮기기
+	// 타겟 비디오가 일반 비디오라면,
+		// 하이라이트 비디오가 이미 있다면,
+			// 하이라이트 비디오 일반 비디오로 옮기기
+		// 타겟 비디오 하이라이트 비디오로 옮기기
+
+	if (target.classList.contains('focus')) {
+		
+		isFocus = false
+		target.classList.toggle('focus')
+		const oldChild = containerFocusDOM.removeChild(target)
+		const newChild = containerDOM.appendChild(oldChild)
+		newChild.addEventListener('dblclick', function(event) {
+			ondblclickVideo(event.target)
+		})
+
+	} else {
+
+		if (isFocus) {
+			let oldChild = document.querySelector('video')
+			oldChild.classList.toggle('focus')
+			oldChild = containerFocusDOM.removeChild(oldChild)
+			const newChild = containerDOM.appendChild(oldChild)
+			newChild.addEventListener('dblclick', function(event) {
+				ondblclickVideo(event.target)
+			})
+		}
+
+		isFocus = true
+		target.classList.toggle('focus')
+		const newChild = containerFocusDOM.appendChild(target)
+		newChild.addEventListener('dblclick', function(event) {
+			ondblclickVideo(event.target)
+		})
+	}
+}
 
 // 호근 수정 끝 : 비디오 그리드
 
