@@ -557,7 +557,7 @@ window.onresize = function (event) {
 
 function ondblclickVideo(target) {
 	console.log('from publisher : ', target)
-	console.log('target id : ', target.id)
+	console.log('target classList : ', target.classList)
 	// 타겟 비디오가 일반 비디오라면,
 		// 하이라이트 비디오가 이미 있다면,
 			// 하이라이트 비디오 일반 비디오로 옮기기
