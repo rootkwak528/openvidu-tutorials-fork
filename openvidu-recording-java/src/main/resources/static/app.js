@@ -238,10 +238,12 @@ function joinSession() {
 
 function leaveSession() {
 
+	console.log("leaveSession func");
+
 	// --- 9) Leave the session by calling 'disconnect' method over the Session object ---
 	session.disconnect();
-	// enableBtn();
-	window.close();
+	enableBtn();
+	// window.close();
 }
 
 /* OPENVIDU METHODS */
@@ -285,6 +287,7 @@ function removeUser() {
 }
 
 function closeSession() {
+	console.log("closeSession func");
 
 	stopRecording(publisher.connectionId);
 
