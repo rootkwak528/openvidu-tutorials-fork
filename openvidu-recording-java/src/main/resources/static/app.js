@@ -313,7 +313,7 @@ function closeSession() {
 		}
 	);
 
-	window.close();
+	// window.close();
 	// leaveSession();
 }
 
