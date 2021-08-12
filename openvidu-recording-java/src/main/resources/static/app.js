@@ -236,7 +236,9 @@ function joinSession() {
 
 				// 호근 수정 시작 video grid
 
-				publisher.targetElement.addEventListener('dblclick', ondblclickVideo(event))
+				publisher.targetElement.addEventListener('dblclick', function(event) {
+					ondblclickVideo(event)
+				})
 
 				// 호근 수정 끝 video grid
 
