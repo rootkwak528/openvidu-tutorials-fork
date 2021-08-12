@@ -488,8 +488,8 @@ function updateNumVideos(i) {
 	const maxWidth = parseInt(100 / colNum)
 	const maxHeight = parseInt(100 / rowNum)
 
-	$('video').attr('width', `calc(${maxWidth}vw - ${10 * (colNum - 1)}px)`)
-	$('video').attr('height', `calc(${maxHeight}vh - ${10 * (rowNum - 1)}px)`)
+	$('video').attr('width', `${window.innerWidth}px`)
+	$('video').attr('height', `${window.innerHeight}px`)
 
 	$('video').css('max-width', `calc(${maxWidth}vw - ${10 * (colNum - 1)}px)`)
 	$('video').css('max-height', `calc(${maxHeight}vh - ${10 * (rowNum - 1)}px)`)
