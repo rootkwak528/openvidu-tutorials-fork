@@ -528,6 +528,10 @@ function updateNumVideos(i) {
 }
 
 window.onresize = function () {
+	if (!numVideos) {
+		return
+	}
+	
 	const winWidth = window.innerWidth
 	const winHeight = window.innerHeight
 
