@@ -575,9 +575,9 @@ function ondblclickVideo(target) {
 		const newChild = containerDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
 
-		newChild.addEventListener('dblclick', function(event) {
-			ondblclickVideo(event.target)
-		})
+		// newChild.addEventListener('dblclick', function(event) {
+		// 	ondblclickVideo(event.target)
+		// })
 
 	} else {
 		if (isFocus) {
@@ -586,9 +586,9 @@ function ondblclickVideo(target) {
 			const newChild = containerDOM.appendChild(oldChild)
 			newChild.classList.toggle('focus')
 
-			newChild.addEventListener('dblclick', function(event) {
-				ondblclickVideo(event.target)
-			})
+			// newChild.addEventListener('dblclick', function(event) {
+			// 	ondblclickVideo(event.target)
+			// })
 		}
 
 		isFocus = true
