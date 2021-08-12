@@ -42,6 +42,7 @@ window.addEventListener("message", (event) => {
 	$('#nickname').val(event.data.nickname)
 	// 민영 수정 시작
 	nickname = event.data.nickname;
+	console.log("nickname: " + nickname);
 	// 민영 수정 끝
 	$('#nickname').attr('disabled', true)
 }, false)
@@ -75,7 +76,6 @@ function joinSession() {
 			console.log(event.connection.connectionId);
 			connectionId = !connectionId ? event.connection.connectionId : connectionId;
 			// connectionId = event.connection.connectionId;
-			userList.push()
 			let userInfo = [connectionId, nickname];
 			userList.push(userInfo);
 			// 민영 수정 끝
