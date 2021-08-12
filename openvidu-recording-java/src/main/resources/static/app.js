@@ -41,6 +41,7 @@ window.addEventListener("message", (event) => {
 	$('#sessionName').attr('disabled', true)
 	$('#nickname').val(event.data.nickname)
 	// 민영 수정 시작
+	sessionName = event.data.sessionName;
 	nickname = event.data.nickname;
 	console.log("nickname: " + nickname);
 	// 민영 수정 끝
