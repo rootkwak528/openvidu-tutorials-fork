@@ -571,7 +571,7 @@ function ondblclickVideo(target) {
 		// 타겟 비디오 하이라이트 비디오로 옮기기
 	
 	for (let i=0; i<2; i++) {
-		target = target.classList.toggle('focus')
+		target.classList.toggle('focus')
 		if (!dblclickNodes.has(target)) {
 			dblclickNodes.add(target)
 			target.addEventListener('dblclick', function(event) {
