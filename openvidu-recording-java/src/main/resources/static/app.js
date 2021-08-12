@@ -569,7 +569,7 @@ function ondblclickVideo(target) {
 			// 하이라이트 비디오 일반 비디오로 옮기기
 		// 타겟 비디오 하이라이트 비디오로 옮기기
 
-	if (target.classList.includes('focus')) {
+	if (target.classList.contains('focus')) {
 		
 		isFocus = false
 		target.classList.toggle('focus')
@@ -577,7 +577,7 @@ function ondblclickVideo(target) {
 		containerDOM.appendChild(oldFocusChild)
 
 	} else {
-		
+
 		if (isFocus) {
 			let oldFocusChild = document.getElementsByClassName('focus')
 			oldFocusChild = containerFocusDOM.removeChild(target)
