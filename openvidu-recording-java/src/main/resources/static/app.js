@@ -575,6 +575,7 @@ function ondblclickVideo(target) {
 		const oldChild = containerFocusDOM.removeChild(target)
 		const newChild = containerDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
+		$(newChild).dblclick(ondblclickVideo(newChild))
 
 	} else {
 		if (isFocus) {
@@ -582,12 +583,14 @@ function ondblclickVideo(target) {
 			const oldChild = containerFocusDOM.removeChild(targetNode)
 			const newChild = containerDOM.appendChild(oldChild)
 			newChild.classList.toggle('focus')
+			$(newChild).dblclick(ondblclickVideo(newChild))
 		}
 
 		isFocus = true
 		const oldChild = containerDOM.removeChild(target)
 		const newChild = containerFocusDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
+		$(newChild).dblclick(ondblclickVideo(newChild))
 	}
 }
 
