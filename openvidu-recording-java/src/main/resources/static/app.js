@@ -239,6 +239,7 @@ function joinSession() {
 				$(publisher.targetElement).dblclick(function () {
 					ondblclickVideo(publisher.targetElement)
 				})
+				console.log(publisher.targetElement)
 
 				// 호근 수정 끝 video grid
 
