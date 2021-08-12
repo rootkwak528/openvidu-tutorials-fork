@@ -236,17 +236,6 @@ function joinSession() {
 
 				console.log(publisher);
 
-				// 호근 수정 시작 video grid
-
-				publisher.targetElement.addEventListener('click', function(event) {
-					event.target.addEventListener('click', function() {
-						ondblclickVideo(event.target)
-					})
-					ondblclickVideo(event.target)
-				})
-
-				// 호근 수정 끝 video grid
-
 			})
 			.catch(error => {
 				console.warn('There was an error connecting to the session:', error.code, error.message);
@@ -561,6 +550,12 @@ window.onresize = function (event) {
 }
 
 // 더블클릭하면 커지기
+
+window.ondblclick = function (event) {
+	if (event.target.tagName == 'VIDEO') {
+		ondblclickVideo(event.target)
+	}
+}
 
 function ondblclickVideo(target) {
 	console.log('double clicked, ', target.id)
