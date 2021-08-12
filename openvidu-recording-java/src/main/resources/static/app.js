@@ -508,47 +508,47 @@ window.onbeforeunload = function () { // Gracefully leave session
 
 // 호근 수정 시작 : 비디오 그리드
 
-// function updateNumVideos(i) {
-// 	numVideos += i;
+function updateNumVideos(i) {
+	numVideos += i;
 
-// 	const winWidth = window.innerWidth
-// 	const winHeight = window.innerHeight
+	const winWidth = window.innerWidth
+	const winHeight = window.innerHeight
 
-// 	while (true) {
-// 		const colNumPlusOne = colNum + 1
-// 		const rowNum = Math.ceil(numVideos / colNumPlusOne)
-// 		const videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
-// 		if (rowNum * videoSizeX + 10 * (rowNum - 1) > winHeight) {
-// 			break
-// 		}
-// 		colNum = colNumPlusOne
-// 	}
+	let rowNum = Math.ceil(numVideos / colNum)
+	let videoSizeX = (winWidth - 10 * (colNum - 1)) / colNum
+	let totalHeight = rowNum * videoSizeX * 3 / 4 + 10 * (rowNum - 1)
 
-// 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
-// }
+	while (totalHeight > winHeight) {
+		colNum += 1
+		rowNum = Math.ceil(numVideos / colNum)
+		videoSizeX = (winWidth - 10 * (colNum - 1)) / colNum
+		totalHeight = rowNum * videoSizeX * 3 / 4 + 10 * (rowNum - 1)
+	}
+	console.log(winHeight, totalHeight)
 
-// window.onresize = function () {
-// 	if (!numVideos) {
-// 		return
-// 	}
+	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
+}
 
-// 	// const winWidth = window.innerWidth
-// 	// const winHeight = window.innerHeight
+window.onresize(function () {
+	colNum = 1
+	
+	const winWidth = window.innerWidth
+	const winHeight = window.innerHeight
 
-// 	console.log('colNum calculating... ')
-// 	// while (true) {
-// 	// 	const colNumPlusOne = colNum + 1
-// 	// 	const rowNum = Math.ceil(numVideos / colNumPlusOne)
-// 	// 	const videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
-// 	// 	if (rowNum * videoSizeX + 10 * (rowNum - 1) > winHeight) {
-// 	// 		break
-// 	// 	}
-// 	// 	colNum = colNumPlusOne
-// 	// }
-// 	// console.log('colNum : ', colNum)
+	let rowNum = Math.ceil(numVideos / colNum)
+	let videoSizeX = (winWidth - 10 * (colNum - 1)) / colNum
+	let totalHeight = rowNum * videoSizeX * 3 / 4 + 10 * (rowNum - 1)
 
-// 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
-// }
+	while (totalHeight > winHeight) {
+		colNum += 1
+		rowNum = Math.ceil(numVideos / colNum)
+		videoSizeX = (winWidth - 10 * (colNum - 1)) / colNum
+		totalHeight = rowNum * videoSizeX * 3 / 4 + 10 * (rowNum - 1)
+	}
+	console.log(winHeight, totalHeight)
+
+	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
+})
 
 // 호근 수정 끝 : 비디오 그리드
 
