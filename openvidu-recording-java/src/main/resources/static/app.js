@@ -229,9 +229,8 @@ function joinSession() {
 
 function leaveSession() {
 
-	if(publisher.connectionId == connectionId) {
-		stopRecording();
-	}
+	stopRecording(publisher.connectionId);
+
 	// --- 9) Leave the session by calling 'disconnect' method over the Session object ---
 	session.disconnect();
 	enableBtn();
@@ -393,7 +392,7 @@ function startRecording() {
 	);
 }
 
-function stopRecording() {
+function stopRecording(param) {
 	// var forceRecordingId = document.getElementById('forceRecordingId').value;
 	httpRequest(
 		'POST',
