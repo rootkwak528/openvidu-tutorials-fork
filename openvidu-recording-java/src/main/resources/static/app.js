@@ -513,17 +513,18 @@ function updateNumVideos(i) {
 
 	const winWidth = window.innerWidth
 	const winHeight = window.innerHeight
+	console.log(winWidth, winHeight, numVideos)
 
-	let colNumPlusOne = colNum + 1
-	let rowNum = Math.ceil(numVideos / colNumPlusOne)
-	let videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
+	// let colNumPlusOne = colNum + 1
+	// let rowNum = Math.ceil(numVideos / colNumPlusOne)
+	// let videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
 
-	while (rowNum * videoSizeX + 10 * (rowNum - 1) <= winHeight) {
-		colNumPlusOne = colNum + 1
-		rowNum = Math.ceil(numVideos / colNumPlusOne)
-		videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
-		colNum = colNumPlusOne
-	}
+	// while (rowNum * videoSizeX + 10 * (rowNum - 1) <= winHeight) {
+	// 	colNumPlusOne = colNum + 1
+	// 	rowNum = Math.ceil(numVideos / colNumPlusOne)
+	// 	videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
+	// 	colNum = colNumPlusOne
+	// }
 
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
