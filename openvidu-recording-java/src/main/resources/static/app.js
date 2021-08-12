@@ -513,18 +513,19 @@ function updateNumVideos(i) {
 
 	const winWidth = window.innerWidth
 	const winHeight = window.innerHeight
+	console.log(winHeight)
 
 	let colNumPlusOne = colNum + 1
 	let rowNum = Math.ceil(numVideos / colNumPlusOne)
-	let videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne / 4
-	let totalHeight = rowNum * videoSizeX * 3 + 10 * (rowNum - 1)
+	let videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
+	let totalHeight = rowNum * videoSizeX * 3 / 4 + 10 * (rowNum - 1)
 
 	while (totalHeight > winHeight) {
 		colNum += 1
 		colNumPlusOne = colNum + 1
 		rowNum = Math.ceil(numVideos / colNumPlusOne)
-		videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne / 4
-		totalHeight = rowNum * videoSizeX * 3 + 10 * (rowNum - 1)
+		videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
+		totalHeight = rowNum * videoSizeX * 3 / 4 + 10 * (rowNum - 1)
 	}
 
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
