@@ -558,6 +558,7 @@ window.onresize = function (event) {
 // 더블클릭하면 커지기
 
 function ondblclickVideo(target) {
+	console.log(target)
 	containerDOM = document.getElementById('video-container')
 	containerFocusDOM = document.getElementById('video-focus-container')
 	
