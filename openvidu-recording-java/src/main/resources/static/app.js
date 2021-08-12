@@ -236,20 +236,8 @@ function joinSession() {
 
 				// 호근 수정 시작 video grid
 
-				// publisher.targetElement.addEventListener('dblclick', function(event) {
-				// 	ondblclickVideo(event)
-				// })
-
-				$(publisher.targetElement).dblclick(function () {
-					console.log('hello')
-				})
-
-				$(publisher.targetElement).dblclick(function () {
-					console.log('hello')
-				})
-
-				$(publisher.targetElement).dblclick(function () {
-					console.log('hello')
+				publisher.targetElement.addEventListener('dblclick', function(event) {
+					$(event.target).dblclick(ondblclickVideo(event.target))
 				})
 
 				// 호근 수정 끝 video grid
@@ -587,7 +575,6 @@ function ondblclickVideo(target) {
 		const oldChild = containerFocusDOM.removeChild(target)
 		const newChild = containerDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
-		$(newChild).dblclick(ondblclickVideo(newChild))
 
 	} else {
 		if (isFocus) {
@@ -595,14 +582,12 @@ function ondblclickVideo(target) {
 			const oldChild = containerFocusDOM.removeChild(targetNode)
 			const newChild = containerDOM.appendChild(oldChild)
 			newChild.classList.toggle('focus')
-			$(newChild).dblclick(ondblclickVideo(newChild))
 		}
 
 		isFocus = true
 		const oldChild = containerDOM.removeChild(target)
 		const newChild = containerFocusDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
-		$(newChild).dblclick(ondblclickVideo(newChild))
 	}
 }
 
