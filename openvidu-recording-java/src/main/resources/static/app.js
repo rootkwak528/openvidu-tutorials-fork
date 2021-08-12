@@ -120,6 +120,14 @@ function joinSession() {
 			subscriber.on('streamPlaying', event => {
 				pushEvent(event);
 			});
+
+			// 호근 수정 시작 video grid
+
+			subscriber.targetElement.addEventListener('dblclick', function(event) {
+				console.log(event.target)
+			})
+
+			// 호근 수정 끝 video grid
 		});
 
 		session.on('streamDestroyed', event => {
@@ -233,6 +241,14 @@ function joinSession() {
 				session.publish(publisher);
 
 				console.log(publisher);
+
+				// 호근 수정 시작 video grid
+
+				publisher.targetElement.addEventListener('dblclick', function(event) {
+					console.log(event.target)
+				})
+
+				// 호근 수정 끝 video grid
 
 			})
 			.catch(error => {
@@ -548,10 +564,6 @@ window.onresize = function (event) {
 
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
-
-$('video').dblclick(event, function () {
-	console.log('dblclick', event)
-})
 
 // 호근 수정 끝 : 비디오 그리드
 
