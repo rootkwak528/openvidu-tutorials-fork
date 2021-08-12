@@ -55,8 +55,6 @@ window.addEventListener("message", (event) => {
 
 let colNum = 1;
 let isFocus = false;
-const dblclickNodes1 = new Set();
-const dblclickNodes2 = new Set();
 
 // 호근 수정 끝 : video grid
 
@@ -558,7 +556,6 @@ window.ondblclick = function (event) {
 }
 
 function ondblclickVideo(target) {
-	console.log('double clicked, ', target.id)
 	containerDOM = document.getElementById('video-container')
 	containerFocusDOM = document.getElementById('video-focus-container')
 	
@@ -575,42 +572,18 @@ function ondblclickVideo(target) {
 		const newChild = containerDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
 
-		// if (!dblclickNodes.has(newChild)) {
-		// 	dblclickNodes.add(newChild)
-		// 	console.log(dblclickNodes)
-		// 	newChild.addEventListener('dblclick', function(event) {
-		// 		ondblclickVideo(event.target)
-		// 	})
-		// }
-
 	} else {
 		if (isFocus) {
 			const targetNode = document.querySelector('video')
 			const oldChild = containerFocusDOM.removeChild(targetNode)
 			const newChild = containerDOM.appendChild(oldChild)
 			newChild.classList.toggle('focus')
-
-			// if (!dblclickNodes.has(newChild)) {
-			// 	dblclickNodes.add(newChild)
-			// 	console.log(dblclickNodes)
-			// 	newChild.addEventListener('dblclick', function(event) {
-			// 		ondblclickVideo(event.target)
-			// 	})
-			// }
 		}
 
 		isFocus = true
 		const oldChild = containerDOM.removeChild(target)
 		const newChild = containerFocusDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
-
-		// if (!dblclickNodes.has(newChild)) {
-		// 	dblclickNodes.add(newChild)
-		// 	console.log(dblclickNodes)
-		// 	newChild.addEventListener('dblclick', function(event) {
-		// 		ondblclickVideo(event.target)
-		// 	})
-		// }
 	}
 }
 
