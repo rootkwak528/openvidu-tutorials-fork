@@ -34,7 +34,6 @@ function muteVideo() {
 // 호근 수정 시작 : session id
 
 window.addEventListener("message", (event) => {
-	console.log(event.data)
 	$('#sessionName').val(event.data.sessionName)
 	$('#sessionName').attr('disabled', true)
 	$('#nickname').val(event.data.nickname)
@@ -478,29 +477,15 @@ window.onbeforeunload = function () { // Gracefully leave session
 
 function updateNumVideos(i) {
 	numVideos += i;
-	$('video').removeClass();
-	switch (numVideos) {
-		case 1:
-			// $('video').addClass('two');
-			break;
-		case 2:
-			// $('video').addClass('two');
-			$('video').css('max-width', '40vw')
-			$('video').css('width', '40vw')
-			break;
-		case 3:
-			// $('video').addClass('three');
-			$('video').css('max-width', '30vw')
-			$('video').css('width', '30vw')
-			break;
-		case 4:
-			// $('video').addClass('four');
-			$('video').css('max-width', '40vw')
-			$('video').css('width', '40vw')
-			$('video').css('max-height', '40vh')
-			$('video').css('height', '40vh')
-			break;
-	}
+
+	const colNum = Math.ceil(Math.sqrt(numVideos));
+	const rowNum = Math.ceil(numVideos / colNum);
+
+	const maxWidth = parseInt(100 / colNum)
+	const maxHeight = parseInt(100 / rowNum)
+
+	$('video').css('max-width', `${maxWidth}vw - ${10 * (colNum - 1)}px`)
+	$('video').css('max-height', `${maxHeight}vh - ${10 * (rowNum - 1)}px`)
 }
 
 function checkBtnsForce() {
