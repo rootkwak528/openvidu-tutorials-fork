@@ -416,7 +416,7 @@ function stopRecording() {
 		'api/recording/stop', {
 			recording: forceRecordingId,
 			connectionId: connectionId, // 민영 수정
-			// userJson:  userJson // 민영 수정
+			userJson: userJson // 민영 수정
 		},
 		'Stop recording WRONG',
 		res => {
