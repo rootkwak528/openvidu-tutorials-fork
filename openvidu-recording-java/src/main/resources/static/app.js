@@ -55,6 +55,7 @@ window.addEventListener("message", (event) => {
 
 let colNum = 1;
 let isFocus = false;
+let availDblClick = true;
 
 // 호근 수정 끝 : video grid
 
@@ -558,6 +559,11 @@ window.onresize = function (event) {
 // 더블클릭하면 커지기
 
 function ondblclickVideo(target) {
+	if (!availDblClick) {
+		return
+	}
+	availDblClick = false
+
 	containerDOM = document.getElementById('video-container')
 	containerFocusDOM = document.getElementById('video-focus-container')
 	
@@ -575,9 +581,9 @@ function ondblclickVideo(target) {
 		const newChild = containerDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
 
-		// newChild.addEventListener('dblclick', function(event) {
-		// 	ondblclickVideo(event.target)
-		// })
+		newChild.addEventListener('dblclick', function(event) {
+			ondblclickVideo(event.target)
+		})
 
 	} else {
 		if (isFocus) {
@@ -586,9 +592,9 @@ function ondblclickVideo(target) {
 			const newChild = containerDOM.appendChild(oldChild)
 			newChild.classList.toggle('focus')
 
-			// newChild.addEventListener('dblclick', function(event) {
-			// 	ondblclickVideo(event.target)
-			// })
+			newChild.addEventListener('dblclick', function(event) {
+				ondblclickVideo(event.target)
+			})
 		}
 
 		isFocus = true
@@ -596,10 +602,11 @@ function ondblclickVideo(target) {
 		const newChild = containerFocusDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
 
-		// newChild.addEventListener('dblclick', function(event) {
-		// 	ondblclickVideo(event.target)
-		// })
+		newChild.addEventListener('dblclick', function(event) {
+			ondblclickVideo(event.target)
+		})
 	}
+	availDblClick = true
 }
 
 // 호근 수정 끝 : 비디오 그리드
