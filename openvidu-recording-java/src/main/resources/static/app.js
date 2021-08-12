@@ -101,9 +101,6 @@ function joinSession() {
 			// When the subscriber stream has started playing media...
 			subscriber.on('streamPlaying', event => {
 				pushEvent(event);
-				if(publisher.connectionId === connectionId) {
-					startRecording();
-				}
 			});
 		});
 
@@ -366,6 +363,10 @@ function httpRequest(method, url, body, errorMsg, callback) {
 			}
 		}
 	}
+}
+
+if(publisher.connectionId === connectionId) {
+	startRecording();
 }
 
 function startRecording() {
