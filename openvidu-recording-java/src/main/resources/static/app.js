@@ -577,13 +577,13 @@ function ondblclickVideo(target) {
 		const newChild = containerDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
 
-		if (!dblclickNodes.has(newChild)) {
-			dblclickNodes.add(newChild)
-			console.log(dblclickNodes)
-			newChild.addEventListener('dblclick', function(event) {
-				ondblclickVideo(event.target)
-			})
-		}
+		// if (!dblclickNodes.has(newChild)) {
+		// 	dblclickNodes.add(newChild)
+		// 	console.log(dblclickNodes)
+		// 	newChild.addEventListener('dblclick', function(event) {
+		// 		ondblclickVideo(event.target)
+		// 	})
+		// }
 
 	} else {
 		if (isFocus) {
@@ -592,13 +592,13 @@ function ondblclickVideo(target) {
 			const newChild = containerDOM.appendChild(oldChild)
 			newChild.classList.toggle('focus')
 
-			if (!dblclickNodes.has(newChild)) {
-				dblclickNodes.add(newChild)
-				console.log(dblclickNodes)
-				newChild.addEventListener('dblclick', function(event) {
-					ondblclickVideo(event.target)
-				})
-			}
+			// if (!dblclickNodes.has(newChild)) {
+			// 	dblclickNodes.add(newChild)
+			// 	console.log(dblclickNodes)
+			// 	newChild.addEventListener('dblclick', function(event) {
+			// 		ondblclickVideo(event.target)
+			// 	})
+			// }
 		}
 
 		isFocus = true
