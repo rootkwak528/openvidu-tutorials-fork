@@ -528,9 +528,11 @@ function updateNumVideos(i) {
 }
 
 window.onresize = function () {
+	console.log('hello 1')
 	if (!numVideos) {
 		return
 	}
+	console.log('hello 2')
 
 	const winWidth = window.innerWidth
 	const winHeight = window.innerHeight
@@ -544,7 +546,7 @@ window.onresize = function () {
 		}
 		colNum = colNumPlusOne
 	}
-	console.log(colNum)
+	console.log('hello 3 ', colNum)
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
