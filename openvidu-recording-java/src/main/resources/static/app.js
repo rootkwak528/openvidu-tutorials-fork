@@ -54,7 +54,7 @@ window.addEventListener("message", (event) => {
 // 호근 수정 시작 : video grid
 
 let colNum = 1;
-let videoHighlight = false;
+let isHighlight = false;
 
 // 호근 수정 끝 : video grid
 
@@ -120,14 +120,6 @@ function joinSession() {
 			subscriber.on('streamPlaying', event => {
 				pushEvent(event);
 			});
-
-			// 호근 수정 시작 video grid
-
-			subscriber.targetElement.addEventListener('dblclick', function(event) {
-				console.log('from subscriber : ', event.target)
-			})
-
-			// 호근 수정 끝 video grid
 		});
 
 		session.on('streamDestroyed', event => {
@@ -245,7 +237,7 @@ function joinSession() {
 				// 호근 수정 시작 video grid
 
 				publisher.targetElement.addEventListener('dblclick', function(event) {
-					console.log('from publisher : ', event.target)
+					ondblclickVideo(event.target)
 				})
 
 				// 호근 수정 끝 video grid
@@ -563,8 +555,16 @@ window.onresize = function (event) {
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
-function ondblclickVideo() {
-	consolee.log('hello')
+function ondblclickVideo(target) {
+	console.log('from publisher : ', target)
+	console.log('target id : ', target.id)
+	// 타겟 비디오가 일반 비디오라면,
+		// 하이라이트 비디오가 이미 있다면,
+			// 하이라이트 비디오 일반 비디오로 옮기기
+		// 타겟 비디오 하이라이트 비디오로 옮기기
+
+	// 타겟 비디오가 하이라이트 비디오라면,
+		// 하이라이트 비디오 일반 비디오로 옮기기
 }
 
 // 호근 수정 끝 : 비디오 그리드
