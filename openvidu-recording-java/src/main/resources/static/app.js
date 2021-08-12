@@ -569,6 +569,16 @@ function ondblclickVideo(target) {
 		// 하이라이트 비디오가 이미 있다면,
 			// 하이라이트 비디오 일반 비디오로 옮기기
 		// 타겟 비디오 하이라이트 비디오로 옮기기
+	
+	for (let i=0; i<2; i++) {
+		target = target.classList.toggle('focus')
+		if (!dblclickNodes.has(target)) {
+			dblclickNodes.add(target)
+			target.addEventListener('dblclick', function(event) {
+				ondblclickVideo(event.target)
+			})
+		}
+	}
 
 	if (target.classList.contains('focus')) {
 		
