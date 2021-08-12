@@ -187,10 +187,8 @@ function joinSession() {
 				// When the publisher stream has started playing media...
 				publisher.on('streamCreated', event => {
 					pushEvent(event);
-
-					if(publisher.connectionId == connectionId) {
-						startRecording();
-					}
+					console.log("publisher: start recording");
+					startRecording();
 				});
 
 				// When our HTML video has been added to DOM...
