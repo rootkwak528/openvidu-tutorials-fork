@@ -478,6 +478,8 @@ window.onbeforeunload = function () { // Gracefully leave session
 	}
 }
 
+// 호근 수정 시작 : 비디오 그리드
+
 function updateNumVideos(i) {
 	numVideos += i;
 
@@ -486,10 +488,12 @@ function updateNumVideos(i) {
 
 	const maxWidth = parseInt(100 / colNum)
 	const maxHeight = parseInt(100 / rowNum)
-
-	$('video').css('max-width', `${maxWidth}vw - ${10 * (colNum - 1)}px`)
-	$('video').css('max-height', `${maxHeight}vh - ${10 * (rowNum - 1)}px`)
+	
+	$('video').css('max-width', `calc(${maxWidth}vw - ${10 * (colNum - 1)}px)`)
+	$('video').css('max-height', `calc(${maxHeight}vh - ${10 * (rowNum - 1)}px)`)
 }
+
+// 호근 수정 끝 : 비디오 그리드
 
 function checkBtnsForce() {
 	if (document.getElementById("forceValue").value === "") {
