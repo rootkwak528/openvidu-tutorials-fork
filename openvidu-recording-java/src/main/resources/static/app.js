@@ -10,6 +10,9 @@ var numVideos = 0;
 var connectionId;
 var uRecordUrl;
 var forceRecordingId;
+var userJson;
+var userList = [];
+var nickname;
 
 // 호근 수정 시작 : 음소거
 var publisher;
@@ -37,6 +40,12 @@ window.addEventListener("message", (event) => {
 	$('#sessionName').val(event.data.sessionName)
 	$('#sessionName').attr('disabled', true)
 	$('#nickname').val(event.data.nickname)
+	// 민영 수정 시작
+	sessionName = event.data.sessionName;
+	console.log("sessionName: " + sessionName);
+	nickname = event.data.nickname;
+	console.log("nickname: " + nickname);
+	// 민영 수정 끝
 	$('#nickname').attr('disabled', true)
 }, false)
 
@@ -75,6 +84,8 @@ function joinSession() {
 			console.log(event.connection.connectionId);
 			connectionId = !connectionId ? event.connection.connectionId : connectionId;
 			// connectionId = event.connection.connectionId;
+			let userInfo = [connectionId, nickname];
+			userList.push(userInfo);
 			// 민영 수정 끝
 		});
 
@@ -235,10 +246,12 @@ function joinSession() {
 
 function leaveSession() {
 
+	console.log("leaveSession func");
+
 	// --- 9) Leave the session by calling 'disconnect' method over the Session object ---
 	session.disconnect();
 	enableBtn();
-
+	// window.close();
 }
 
 /* OPENVIDU METHODS */
@@ -282,8 +295,12 @@ function removeUser() {
 }
 
 function closeSession() {
+	console.log("closeSession func");
 
-	stopRecording(publisher.connectionId);
+	// stopRecording(publisher.connection.connectionId);
+	stopRecording();
+
+	console.log(sessionName);
 
 	httpRequest(
 		'DELETE',
@@ -295,6 +312,9 @@ function closeSession() {
 			console.warn("Session " + sessionName + " has been closed");
 		}
 	);
+
+	// window.close();
+	// leaveSession();
 }
 
 function fetchInfo() {
@@ -399,13 +419,16 @@ function startRecording() {
 	);
 }
 
-function stopRecording(param) {
+function stopRecording() {
 	// var forceRecordingId = document.getElementById('forceRecordingId').value;
+	userJson = JSON.stringify(userList);
+	console.log(userJson);
 	httpRequest(
 		'POST',
 		'api/recording/stop', {
 			recording: forceRecordingId,
-			connectionId: param // 민영 수정
+			connectionId: connectionId, // 민영 수정
+			userJson: userJson // 민영 수정
 		},
 		'Stop recording WRONG',
 		res => {
