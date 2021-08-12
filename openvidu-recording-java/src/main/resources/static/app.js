@@ -55,7 +55,8 @@ window.addEventListener("message", (event) => {
 
 let colNum = 1;
 let isFocus = false;
-const dblclickNodes = new Set();
+const dblclickNodes1 = new Set();
+const dblclickNodes2 = new Set();
 
 // 호근 수정 끝 : video grid
 
@@ -570,9 +571,13 @@ function ondblclickVideo(target) {
 			// 하이라이트 비디오 일반 비디오로 옮기기
 		// 타겟 비디오 하이라이트 비디오로 옮기기
 	
-	if (!dblclickNodes.has(target.id)) {
-		dblclickNodes.add(target.id)
-		console.log(dblclickNodes)
+	if (!dblclickNodes1.has(target.id)) {
+		dblclickNodes1.add(target.id)
+		target.addEventListener('dblclick', function() {
+			ondblclickVideo(target)
+		})
+	} else if (!dblclickNodes2.has(target.id)) {
+		dblclickNodes2.add(target.id)
 		target.addEventListener('dblclick', function() {
 			ondblclickVideo(target)
 		})
