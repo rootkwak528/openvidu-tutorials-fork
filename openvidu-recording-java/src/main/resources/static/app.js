@@ -574,7 +574,7 @@ function ondblclickVideo(target) {
 	if (target.classList.contains('focus')) {
 		
 		isFocus = false
-		// target.classList.toggle('focus')
+		target.classList.toggle('focus')
 		const oldChild = containerFocusDOM.removeChild(target)
 		const newChild = containerDOM.appendChild(oldChild)
 		newChild.addEventListener('dblclick', function(event) {
