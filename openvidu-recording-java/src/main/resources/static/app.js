@@ -239,7 +239,9 @@ function joinSession() {
 				// 호근 수정 시작 video grid
 
 				publisher.targetElement.addEventListener('dblclick', function(event) {
-					ondblclickVideo(event.target)
+					event.target.addEventListener('dblclick', function() {
+						ondblclickVideo(event.target)
+					})
 				})
 
 				// 호근 수정 끝 video grid
@@ -570,18 +572,6 @@ function ondblclickVideo(target) {
 		// 하이라이트 비디오가 이미 있다면,
 			// 하이라이트 비디오 일반 비디오로 옮기기
 		// 타겟 비디오 하이라이트 비디오로 옮기기
-	
-	if (!dblclickNodes1.has(target.id)) {
-		dblclickNodes1.add(target.id)
-		target.addEventListener('dblclick', function() {
-			ondblclickVideo(target)
-		})
-	} else if (!dblclickNodes2.has(target.id)) {
-		dblclickNodes2.add(target.id)
-		target.addEventListener('dblclick', function() {
-			ondblclickVideo(target)
-		})
-	}
 
 	if (target.classList.contains('focus')) {
 		isFocus = false
