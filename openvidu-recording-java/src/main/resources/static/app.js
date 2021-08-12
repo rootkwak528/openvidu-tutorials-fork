@@ -560,9 +560,6 @@ window.onresize = function (event) {
 function ondblclickVideo(target) {
 	containerDOM = document.getElementById('video-container')
 	containerFocusDOM = document.getElementById('video-focus-container')
-
-	console.log('from publisher : ', target)
-	console.log('target classList : ', target.classList)
 	
 	// 타겟 비디오가 하이라이트 비디오라면,
 		// 하이라이트 비디오 일반 비디오로 옮기기
@@ -584,10 +581,10 @@ function ondblclickVideo(target) {
 	} else {
 
 		if (isFocus) {
-			let oldChild = document.getElementsByClassName('focus')
-			oldChild = containerFocusDOM.removeChild(oldChild)
+			let oldChild = document.querySelector('video')
 			oldChild.classList.toggle('focus')
-			const newChild = containerDOM.appendChild(oldFocusChild)
+			oldChild = containerFocusDOM.removeChild(oldChild)
+			const newChild = containerDOM.appendChild(oldChild)
 			newChild.addEventListener('dblclick', function(event) {
 				ondblclickVideo(event.target)
 			})
@@ -599,7 +596,6 @@ function ondblclickVideo(target) {
 		newChild.addEventListener('dblclick', function(event) {
 			ondblclickVideo(event.target)
 		})
-
 	}
 }
 
