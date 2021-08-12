@@ -527,6 +527,23 @@ function updateNumVideos(i) {
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
+window.onresize = function () {
+	const winWidth = window.innerWidth
+	const winHeight = window.innerHeight
+
+	while (true) {
+		const colNumPlusOne = colNum + 1
+		const rowNum = Math.ceil(numVideos / colNumPlusOne)
+		const videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
+		if (rowNum * videoSizeX + 10 * (rowNum - 1) > winHeight) {
+			break
+		}
+		colNum = colNumPlusOne
+	}
+
+	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
+}
+
 // 호근 수정 끝 : 비디오 그리드
 
 function checkBtnsForce() {
