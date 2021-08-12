@@ -573,9 +573,8 @@ function ondblclickVideo(target) {
 	if (!dblclickNodes.has(target.id)) {
 		dblclickNodes.add(target.id)
 		console.log(dblclickNodes)
-		target.addEventListener('dblclick', function(event) {
-			ondblclickVideo(event.target)
-			ondblclickVideo(event.target)
+		target.addEventListener('dblclick', function() {
+			ondblclickVideo(target)
 		})
 	}
 
