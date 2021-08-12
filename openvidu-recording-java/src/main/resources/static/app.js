@@ -102,7 +102,7 @@ function joinSession() {
 			// When the subscriber stream has started playing media...
 			subscriber.on('streamPlaying', event => {
 				pushEvent(event);
-				if(publisher.connectionId == connectionId) {
+				if(publisher.connectionId === connectionId) {
 					startRecording();
 				}
 			});
@@ -228,7 +228,7 @@ function joinSession() {
 
 function leaveSession() {
 
-	if(publisher.connectionId == connectionId) {
+	if(publisher.connectionId === connectionId) {
 		stopRecording();
 	}
 	// --- 9) Leave the session by calling 'disconnect' method over the Session object ---
