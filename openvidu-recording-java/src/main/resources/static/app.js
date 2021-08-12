@@ -570,16 +570,15 @@ function ondblclickVideo(target) {
 			// 하이라이트 비디오 일반 비디오로 옮기기
 		// 타겟 비디오 하이라이트 비디오로 옮기기
 	
-	if (!dblclickNodes.has(target.id)) {
-		dblclickNodes.add(target.id)
-		console.log(dblclickNodes)
-		target.addEventListener('dblclick', function(event) {
-			ondblclickVideo(event.target)
-		})
-	}
+	// if (!dblclickNodes.has(target.id)) {
+	// 	dblclickNodes.add(target.id)
+	// 	console.log(dblclickNodes)
+	// 	target.addEventListener('dblclick', function(event) {
+	// 		ondblclickVideo(event.target)
+	// 	})
+	// }
 
 	if (target.classList.contains('focus')) {
-		console.log('focus on')
 		isFocus = false
 		const oldChild = containerFocusDOM.removeChild(target)
 		const newChild = containerDOM.appendChild(oldChild)
