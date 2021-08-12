@@ -241,11 +241,10 @@ public class MyRestController {
 
 	@RequestMapping(value = "/api/close-session", method = RequestMethod.DELETE)
 	public ResponseEntity<JsonObject> closeSession(@RequestBody Map<String, Object> sessionName) throws Exception {
-
-		System.out.println("Closing session | {sessionName}=" + sessionName);
-
 		// Retrieve the param from BODY
 		String session = (String) sessionName.get("sessionName");
+		
+		System.out.println("Closing session | {sessionName}=" + session);
 
 		// If the session exists
 		if (this.mapSessions.get(session) != null && this.mapSessionNamesTokens.get(session) != null) {

@@ -294,6 +294,8 @@ function closeSession() {
 	// stopRecording(publisher.connection.connectionId);
 	stopRecording();
 
+	console.log(sessionName);
+
 	httpRequest(
 		'DELETE',
 		'api/close-session', {
