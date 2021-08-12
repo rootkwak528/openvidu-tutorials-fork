@@ -173,6 +173,10 @@ input.btn {
   gap: 10px;
 }
 
+video {
+  aspect-ratio: 4 / 3;
+}
+
 /* 호근 수정 끝 */
 
 /* #video-container {
