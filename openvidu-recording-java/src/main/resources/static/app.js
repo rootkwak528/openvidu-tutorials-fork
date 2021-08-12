@@ -529,6 +529,25 @@ function updateNumVideos(i) {
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
+window.onresize(function () {
+	const winWidth = window.innerWidth
+	const winHeight = window.innerHeight
+
+	let rowNum = Math.ceil(numVideos / colNum)
+	let videoSizeX = (winWidth - 10 * (colNum - 1)) / colNum
+	let totalHeight = rowNum * videoSizeX * 3 / 4 + 10 * (rowNum - 1)
+
+	while (totalHeight > winHeight) {
+		colNum += 1
+		rowNum = Math.ceil(numVideos / colNum)
+		videoSizeX = (winWidth - 10 * (colNum - 1)) / colNum
+		totalHeight = rowNum * videoSizeX * 3 / 4 + 10 * (rowNum - 1)
+	}
+	console.log(winHeight, totalHeight)
+
+	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
+})
+
 // 호근 수정 끝 : 비디오 그리드
 
 function checkBtnsForce() {
