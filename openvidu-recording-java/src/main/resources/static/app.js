@@ -411,6 +411,7 @@ function startRecording() {
 function stopRecording() {
 	// var forceRecordingId = document.getElementById('forceRecordingId').value;
 	userJson = JSON.stringify(userList);
+	console.log(userJson);
 	httpRequest(
 		'POST',
 		'api/recording/stop', {

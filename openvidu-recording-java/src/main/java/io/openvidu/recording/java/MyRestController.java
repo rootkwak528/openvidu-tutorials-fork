@@ -380,11 +380,13 @@ public class MyRestController {
 	public ResponseEntity<?> stopRecording(@RequestBody Map<String, Object> params) throws IOException {
 		String recordingId = (String) params.get("recording");
 		String connectionId = (String) params.get("connectionId");
-		JsonArray userJson = (JsonArray) params.get("userJson");
+		Object userJson = params.get("userJson");
 
+		System.out.println("userJson을 Object으로 받음");
+		
 		System.out.println("Stoping recording | {recordingId}=" + recordingId);
 		System.out.println("Stoping recording | {connectionId}=" + connectionId);
-		System.out.println(userJson.get(0));
+		System.out.println(userJson.toString());
 		
 		try {
 			Recording recording = this.openVidu.stopRecording(recordingId);
