@@ -571,15 +571,15 @@ function ondblclickVideo(target) {
 		// 타겟 비디오 하이라이트 비디오로 옮기기
 	
 	if (!dblclickNodes.has(target.id)) {
-		console.log(target.id)
 		dblclickNodes.add(target.id)
+		console.log(dblclickNodes)
 		target.addEventListener('dblclick', function(event) {
 			ondblclickVideo(event.target)
 		})
 	}
 
 	if (target.classList.contains('focus')) {
-		
+		console.log('focus on')
 		isFocus = false
 		const oldChild = containerFocusDOM.removeChild(target)
 		const newChild = containerDOM.appendChild(oldChild)
