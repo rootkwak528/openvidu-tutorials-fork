@@ -242,17 +242,14 @@ function joinSession() {
 
 				$(publisher.targetElement).dblclick(function () {
 					console.log('hello')
-					ondblclickVideo(publisher.targetElement)
 				})
 
 				$(publisher.targetElement).dblclick(function () {
 					console.log('hello')
-					ondblclickVideo(publisher.targetElement)
 				})
 
 				$(publisher.targetElement).dblclick(function () {
 					console.log('hello')
-					ondblclickVideo(publisher.targetElement)
 				})
 
 				// 호근 수정 끝 video grid
