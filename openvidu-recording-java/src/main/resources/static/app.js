@@ -514,21 +514,18 @@ function updateNumVideos(i) {
 	const winWidth = window.innerWidth
 	const winHeight = window.innerHeight
 
-	for (let i=0; i < 5; i++) {
-		const colNumPlusOne = colNum + 1
-		const rowNum = Math.ceil(numVideos / colNumPlusOne)
-		const videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
-		if (rowNum * videoSizeX + 10 * (rowNum - 1) > winHeight) {
-			break
-		}
+	let colNumPlusOne = colNum + 1
+	let rowNum = Math.ceil(numVideos / colNumPlusOne)
+	let videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
+
+	while (rowNum * videoSizeX + 10 * (rowNum - 1) <= winHeight) {
+		colNumPlusOne = colNum + 1
+		rowNum = Math.ceil(numVideos / colNumPlusOne)
+		videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
 		colNum = colNumPlusOne
 	}
 
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
-}
-
-window.onresize = function (event) {
-	console.log('resize happen >> ', event)
 }
 
 // 호근 수정 끝 : 비디오 그리드
