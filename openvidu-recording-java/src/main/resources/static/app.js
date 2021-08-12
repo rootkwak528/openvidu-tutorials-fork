@@ -220,6 +220,10 @@ function joinSession() {
 
 		return false;
 	});
+
+	if(publisher.connectionId === connectionId) {
+		startRecording();
+	}
 }
 
 function leaveSession() {
@@ -363,10 +367,6 @@ function httpRequest(method, url, body, errorMsg, callback) {
 			}
 		}
 	}
-}
-
-if(publisher.connectionId === connectionId) {
-	startRecording();
 }
 
 function startRecording() {
