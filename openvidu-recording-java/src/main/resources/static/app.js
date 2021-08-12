@@ -529,9 +529,9 @@ function updateNumVideos(i) {
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
-window.onresize(function () {
+window.onresize(function (event) {
 	colNum = 1
-	
+
 	const winWidth = window.innerWidth
 	const winHeight = window.innerHeight
 
