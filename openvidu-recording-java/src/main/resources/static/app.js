@@ -559,6 +559,7 @@ window.onresize = function (event) {
 
 function ondblclickVideo(event) {
 	const target = event.target
+	console.log(event, event.target)
 	containerDOM = document.getElementById('video-container')
 	containerFocusDOM = document.getElementById('video-focus-container')
 	
