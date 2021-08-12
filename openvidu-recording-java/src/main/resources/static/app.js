@@ -571,6 +571,7 @@ function ondblclickVideo(target) {
 		// 타겟 비디오 하이라이트 비디오로 옮기기
 	
 	if (!dblclickNodes.has(target.id)) {
+		console.log(target.id)
 		dblclickNodes.add(target.id)
 		target.addEventListener('dblclick', function(event) {
 			ondblclickVideo(event.target)
