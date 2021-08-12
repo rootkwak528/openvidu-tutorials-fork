@@ -124,7 +124,7 @@ function joinSession() {
 			// 호근 수정 시작 video grid
 
 			subscriber.targetElement.addEventListener('dblclick', function(event) {
-				console.log(event.target)
+				console.log('from subscriber : ', event.target)
 			})
 
 			// 호근 수정 끝 video grid
@@ -245,7 +245,7 @@ function joinSession() {
 				// 호근 수정 시작 video grid
 
 				publisher.targetElement.addEventListener('dblclick', function(event) {
-					console.log(event.target)
+					console.log('from publisher : ', event.target)
 				})
 
 				// 호근 수정 끝 video grid
@@ -327,11 +327,9 @@ function closeSession() {
 		'Session couldn\'t be closed',
 		res => {
 			console.warn("Session " + sessionName + " has been closed");
+			window.close();
 		}
 	);
-
-	window.close();
-	// leaveSession();
 }
 
 function fetchInfo() {
@@ -563,6 +561,10 @@ window.onresize = function (event) {
 	}
 
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
+}
+
+function ondblclickVideo() {
+	consolee.log('hello')
 }
 
 // 호근 수정 끝 : 비디오 그리드
