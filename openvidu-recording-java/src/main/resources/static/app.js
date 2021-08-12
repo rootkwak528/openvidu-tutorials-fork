@@ -307,7 +307,8 @@ function closeSession() {
 		}
 	);
 
-	leaveSession();
+	window.close();
+	// leaveSession();
 }
 
 function fetchInfo() {
