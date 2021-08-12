@@ -519,7 +519,6 @@ function updateNumVideos(i) {
 		const rowNum = Math.ceil(numVideos / colNumPlusOne)
 		const videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
 		if (rowNum * videoSizeX + 10 * (rowNum - 1) > winHeight) {
-			console.log('hello')
 			break
 		}
 		colNum = colNumPlusOne
@@ -545,7 +544,7 @@ window.onresize = function () {
 		}
 		colNum = colNumPlusOne
 	}
-
+	console.log(colNum)
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
