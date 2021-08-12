@@ -289,7 +289,7 @@ function removeUser() {
 function closeSession() {
 	console.log("closeSession func");
 
-	stopRecording(publisher.connectionId);
+	stopRecording(publisher.connection.connectionId);
 
 	httpRequest(
 		'DELETE',
