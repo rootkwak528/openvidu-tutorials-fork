@@ -236,9 +236,7 @@ function joinSession() {
 
 				// 호근 수정 시작 video grid
 
-				publisher.targetElement.addEventListener('dblclick', function(event) {
-					ondblclickVideo(event.target)
-				})
+				publisher.targetElement.addEventListener('dblclick', ondblclickVideo(event))
 
 				// 호근 수정 끝 video grid
 
@@ -557,7 +555,8 @@ window.onresize = function (event) {
 
 // 더블클릭하면 커지기
 
-function ondblclickVideo(target) {
+function ondblclickVideo(event) {
+	const target = event.target
 	containerDOM = document.getElementById('video-container')
 	containerFocusDOM = document.getElementById('video-focus-container')
 	
