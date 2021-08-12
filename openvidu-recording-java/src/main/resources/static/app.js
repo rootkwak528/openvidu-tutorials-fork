@@ -42,6 +42,12 @@ window.addEventListener("message", (event) => {
 
 // 호근 수정 끝 : session id
 
+// 호근 수정 시작 : video grid
+
+let colNum = 1;
+
+// 호근 수정 끝 : video grid
+
 /* OPENVIDU METHODS */
 
 function joinSession() {
@@ -482,19 +488,18 @@ window.onbeforeunload = function () { // Gracefully leave session
 function updateNumVideos(i) {
 	numVideos += i;
 
-	const colNum = Math.ceil(Math.sqrt(numVideos));
-	// const rowNum = Math.ceil(numVideos / colNum);
+	const winWidth = window.innerWidth
+	const winHeight = window.innerHeight
 
-	// const maxWidth = parseInt(100 / colNum)
-	// const maxHeight = parseInt(100 / rowNum)
-
-	// $('video').attr('width', `${window.innerWidth}px`)
-	// $('video').attr('height', `${window.innerHeight}px`)
-
-	// $('video').css('aspect-ratio', `4/3`)
-
-	// $('video').css('max-width', `calc(${maxWidth}vw - ${10 * (colNum - 1)}px)`)
-	// $('video').css('max-height', `calc(${maxHeight}vh - ${10 * (rowNum - 1)}px)`)
+	while (true) {
+		const colNumPlusOne = colNum + 1
+		const rowNum = Math.ceil(numVideos / colNumPlusOne)
+		const videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
+		if (rowNum * videoSizeX + 10 * (rowNum - 1) > winHeight) {
+			break
+		}
+		colNum = colNumPlusOne
+	}
 
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
