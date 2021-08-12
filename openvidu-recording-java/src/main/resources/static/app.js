@@ -596,9 +596,9 @@ function ondblclickVideo(target) {
 		const newChild = containerFocusDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
 
-		newChild.addEventListener('dblclick', function(event) {
-			ondblclickVideo(event.target)
-		})
+		// newChild.addEventListener('dblclick', function(event) {
+		// 	ondblclickVideo(event.target)
+		// })
 	}
 }
 
