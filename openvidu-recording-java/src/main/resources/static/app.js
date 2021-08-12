@@ -527,27 +527,8 @@ function updateNumVideos(i) {
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
-window.onresize = function () {
-	console.log('hello 1')
-	if (!numVideos) {
-		return
-	}
-	console.log('hello 2')
-
-	const winWidth = window.innerWidth
-	const winHeight = window.innerHeight
-
-	for (let i=0; i < 5; i++) {
-		const colNumPlusOne = colNum + 1
-		const rowNum = Math.ceil(numVideos / colNumPlusOne)
-		const videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
-		if (rowNum * videoSizeX + 10 * (rowNum - 1) > winHeight) {
-			break
-		}
-		colNum = colNumPlusOne
-	}
-	console.log('hello 3 ', colNum)
-	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
+window.onresize = function (event) {
+	console.log('resize happen >> ', event)
 }
 
 // 호근 수정 끝 : 비디오 그리드
