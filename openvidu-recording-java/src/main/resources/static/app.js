@@ -530,6 +530,8 @@ function updateNumVideos(i) {
 }
 
 window.onresize(function () {
+	colNum = 1
+	
 	const winWidth = window.innerWidth
 	const winHeight = window.innerHeight
 
