@@ -581,8 +581,8 @@ function ondblclickVideo(target) {
 
 	} else {
 		if (isFocus) {
-			let oldChild = document.querySelector('video')
-			oldChild = containerFocusDOM.removeChild(oldChild)
+			const targetNode = document.querySelector('video')
+			const oldChild = containerFocusDOM.removeChild(targetNode)
 			const newChild = containerDOM.appendChild(oldChild)
 			newChild.classList.toggle('focus')
 
