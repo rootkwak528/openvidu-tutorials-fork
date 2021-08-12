@@ -557,7 +557,8 @@ window.onresize = function (event) {
 
 // 더블클릭하면 커지기
 
-function ondblclickVideo(target) {
+function ondblclickVideo(event) {
+	const target = event.target
 	containerDOM = document.getElementById('video-container')
 	containerFocusDOM = document.getElementById('video-focus-container')
 	
@@ -575,9 +576,8 @@ function ondblclickVideo(target) {
 		const newChild = containerDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
 
-		newChild.addEventListener('dblclick', function(event) {
-			ondblclickVideo(event.target)
-		})
+		newChild.removeEventListener('dblclick', ondblclickVideo(event))
+		newChild.addEventListener('dblclick', ondblclickVideo(event))
 
 	} else {
 		if (isFocus) {
@@ -586,9 +586,8 @@ function ondblclickVideo(target) {
 			const newChild = containerDOM.appendChild(oldChild)
 			newChild.classList.toggle('focus')
 
-			newChild.addEventListener('dblclick', function(event) {
-				ondblclickVideo(event.target)
-			})
+			newChild.removeEventListener('dblclick', ondblclickVideo(event))
+			newChild.addEventListener('dblclick', ondblclickVideo(event))
 		}
 
 		isFocus = true
@@ -596,9 +595,8 @@ function ondblclickVideo(target) {
 		const newChild = containerFocusDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
 
-		newChild.addEventListener('dblclick', function(event) {
-			ondblclickVideo(event.target)
-		})
+		newChild.removeEventListener('dblclick', ondblclickVideo(event))
+		newChild.addEventListener('dblclick', ondblclickVideo(event))
 	}
 }
 
