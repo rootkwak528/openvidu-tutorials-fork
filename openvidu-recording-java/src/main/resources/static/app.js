@@ -11,7 +11,7 @@ var connectionId;
 var uRecordUrl;
 var forceRecordingId;
 var userJson;
-var userList;
+var userList = [];
 var nickname;
 
 // 호근 수정 시작 : 음소거
