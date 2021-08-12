@@ -529,9 +529,10 @@ function updateNumVideos(i) {
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
-window.onresize(function () {
+window.onresize = function (event) {
 	colNum = 1
-	
+	console.log(event)
+
 	const winWidth = window.innerWidth
 	const winHeight = window.innerHeight
 
@@ -548,7 +549,7 @@ window.onresize(function () {
 	console.log(winHeight, totalHeight)
 
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
-})
+}
 
 // 호근 수정 끝 : 비디오 그리드
 
