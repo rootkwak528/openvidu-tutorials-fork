@@ -168,8 +168,14 @@ input.btn {
 /* 호근 수정 시작 */
 
 #video-container {
+  display: grid;
 	width: 100%;
   gap: 10px;
+}
+
+video {
+  aspect-ratio: 4 / 3;
+  width: 100%;
 }
 
 /* 호근 수정 끝 */
