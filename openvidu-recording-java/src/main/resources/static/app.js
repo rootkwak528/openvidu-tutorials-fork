@@ -549,8 +549,8 @@ window.onresize = function (event) {
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
-$('video').dblclick(function (event) {
-	console.log(event.target)
+$('video').dblclick(event, function () {
+	console.log('dblclick', event)
 })
 
 // 호근 수정 끝 : 비디오 그리드
