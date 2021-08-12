@@ -175,6 +175,8 @@ input.btn {
 
 #video-focus-container {
   width: 80%;
+  max-height: 70%;
+  margin: 0 auto;
 }
 
 #video-container {
