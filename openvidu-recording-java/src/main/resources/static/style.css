@@ -179,6 +179,10 @@ input.btn {
   margin: 0 auto;
 }
 
+#video-focus-container video {
+  max-height: 70vh;
+}
+
 #video-container {
   display: grid;
 	width: 100%;
