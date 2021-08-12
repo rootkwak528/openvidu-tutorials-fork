@@ -11,7 +11,7 @@ var connectionId;
 var uRecordUrl;
 var forceRecordingId;
 var userJson;
-var userList = new Set();
+var userList = [];
 var nickname;
 
 // 호근 수정 시작 : 음소거
@@ -55,7 +55,7 @@ window.addEventListener("message", (event) => {
 
 let colNum = 1;
 let isFocus = false;
-const dblclickNodes = {};
+const dblclickNodes = new Set();
 
 // 호근 수정 끝 : video grid
 
