@@ -175,6 +175,7 @@ input.btn {
 
 video {
   aspect-ratio: 4 / 3;
+  width: 100%;
 }
 
 /* 호근 수정 끝 */
