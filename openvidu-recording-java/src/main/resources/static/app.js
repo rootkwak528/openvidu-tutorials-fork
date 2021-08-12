@@ -532,20 +532,20 @@ window.onresize = function () {
 		return
 	}
 
-	const winWidth = window.innerWidth
-	const winHeight = window.innerHeight
+	// const winWidth = window.innerWidth
+	// const winHeight = window.innerHeight
 
 	console.log('colNum calculating... ')
-	while (true) {
-		const colNumPlusOne = colNum + 1
-		const rowNum = Math.ceil(numVideos / colNumPlusOne)
-		const videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
-		if (rowNum * videoSizeX + 10 * (rowNum - 1) > winHeight) {
-			break
-		}
-		colNum = colNumPlusOne
-	}
-	console.log('colNum : ', colNum)
+	// while (true) {
+	// 	const colNumPlusOne = colNum + 1
+	// 	const rowNum = Math.ceil(numVideos / colNumPlusOne)
+	// 	const videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
+	// 	if (rowNum * videoSizeX + 10 * (rowNum - 1) > winHeight) {
+	// 		break
+	// 	}
+	// 	colNum = colNumPlusOne
+	// }
+	// console.log('colNum : ', colNum)
 
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
