@@ -524,14 +524,12 @@ function updateNumVideos(i) {
 		videoSizeX = (winWidth - 10 * (colNum - 1)) / colNum
 		totalHeight = rowNum * videoSizeX * 3 / 4 + 10 * (rowNum - 1)
 	}
-	console.log(winHeight, totalHeight)
 
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
 window.onresize = function (event) {
 	colNum = 1
-	console.log(event)
 
 	const winWidth = window.innerWidth
 	const winHeight = window.innerHeight
@@ -546,7 +544,6 @@ window.onresize = function (event) {
 		videoSizeX = (winWidth - 10 * (colNum - 1)) / colNum
 		totalHeight = rowNum * videoSizeX * 3 / 4 + 10 * (rowNum - 1)
 	}
-	console.log(winHeight, totalHeight)
 
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
