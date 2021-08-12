@@ -606,13 +606,13 @@ function ondblclickVideo(target) {
 		const newChild = containerFocusDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
 
-		if (!dblclickNodes.has(newChild)) {
-			dblclickNodes.add(newChild)
-			console.log(dblclickNodes)
-			newChild.addEventListener('dblclick', function(event) {
-				ondblclickVideo(event.target)
-			})
-		}
+		// if (!dblclickNodes.has(newChild)) {
+		// 	dblclickNodes.add(newChild)
+		// 	console.log(dblclickNodes)
+		// 	newChild.addEventListener('dblclick', function(event) {
+		// 		ondblclickVideo(event.target)
+		// 	})
+		// }
 	}
 }
 
