@@ -167,6 +167,12 @@ input.btn {
 
 /* 호근 수정 시작 */
 
+#video-grid {
+  display: grid;
+  width: 100%;
+  gap: 10px;
+}
+
 #video-container {
   display: grid;
 	width: 100%;
