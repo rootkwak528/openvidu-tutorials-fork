@@ -42,6 +42,7 @@ window.addEventListener("message", (event) => {
 	$('#nickname').val(event.data.nickname)
 	// 민영 수정 시작
 	sessionName = event.data.sessionName;
+	console.log("sessionName: " + sessionName);
 	nickname = event.data.nickname;
 	console.log("nickname: " + nickname);
 	// 민영 수정 끝
@@ -257,7 +258,7 @@ function enableBtn (){
 /* APPLICATION REST METHODS */
 
 function getToken(callback) {
-	sessionName = $("#sessionName").val(); // Video-call chosen by the user
+	// sessionName = $("#sessionName").val(); // Video-call chosen by the user
 
 	httpRequest(
 		'POST',
