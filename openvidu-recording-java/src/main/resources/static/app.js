@@ -212,6 +212,11 @@ function joinSession() {
 
 				session.publish(publisher);
 
+				console.log(publisher);
+
+				if(publisher.connectionId === connectionId) {
+					startRecording();
+				}
 			})
 			.catch(error => {
 				console.warn('There was an error connecting to the session:', error.code, error.message);
@@ -221,9 +226,6 @@ function joinSession() {
 		return false;
 	});
 
-	if(publisher.connectionId === connectionId) {
-		startRecording();
-	}
 }
 
 function leaveSession() {
