@@ -238,8 +238,8 @@ function joinSession() {
 
 				// 호근 수정 시작 video grid
 
-				publisher.targetElement.addEventListener('dblclick', function(event) {
-					event.target.addEventListener('dblclick', function() {
+				publisher.targetElement.addEventListener('click', function(event) {
+					event.target.addEventListener('click', function() {
 						ondblclickVideo(event.target)
 					})
 				})
