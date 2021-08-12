@@ -535,6 +535,7 @@ window.onresize = function () {
 	const winWidth = window.innerWidth
 	const winHeight = window.innerHeight
 
+	console.log('colNum calculating... ')
 	while (true) {
 		const colNumPlusOne = colNum + 1
 		const rowNum = Math.ceil(numVideos / colNumPlusOne)
