@@ -236,15 +236,9 @@ function joinSession() {
 
 				// 호근 수정 시작 video grid
 
-				console.log('1 ', publisher.targetElement)
 				publisher.targetElement.addEventListener('dblclick', function(event) {
-					ondblclickVideo(event)
+					ondblclickVideo(event.target)
 				})
-
-				$(publisher.targetElement).dblclick(function () {
-					ondblclickVideo(publisher.targetElement)
-				})
-				console.log('2 ', publisher.targetElement)
 
 				// 호근 수정 끝 video grid
 
