@@ -236,8 +236,8 @@ function joinSession() {
 
 				// 호근 수정 시작 video grid
 
-				publisher.targetElement.addEventListener('dblclick', function(event) {
-					ondblclickVideo(event)
+				$(publisher.targetElement).dblclick(function () {
+					ondblclickVideo(publisher.targetElement)
 				})
 
 				// 호근 수정 끝 video grid
@@ -557,9 +557,7 @@ window.onresize = function (event) {
 
 // 더블클릭하면 커지기
 
-function ondblclickVideo(event) {
-	const target = event.target
-	console.log(event, target)
+function ondblclickVideo(target) {
 	containerDOM = document.getElementById('video-container')
 	containerFocusDOM = document.getElementById('video-focus-container')
 	
@@ -576,9 +574,7 @@ function ondblclickVideo(event) {
 		const oldChild = containerFocusDOM.removeChild(target)
 		const newChild = containerDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
-
-		newChild.removeEventListener('dblclick', ondblclickVideo(event))
-		newChild.addEventListener('dblclick', ondblclickVideo(event))
+		$(newChild).dblclick(ondblclickVideo(newChild))
 
 	} else {
 		if (isFocus) {
@@ -586,18 +582,14 @@ function ondblclickVideo(event) {
 			const oldChild = containerFocusDOM.removeChild(targetNode)
 			const newChild = containerDOM.appendChild(oldChild)
 			newChild.classList.toggle('focus')
-
-			newChild.removeEventListener('dblclick', ondblclickVideo(event))
-			newChild.addEventListener('dblclick', ondblclickVideo(event))
+			$(newChild).dblclick(ondblclickVideo(newChild))
 		}
 
 		isFocus = true
 		const oldChild = containerDOM.removeChild(target)
 		const newChild = containerFocusDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
-
-		newChild.removeEventListener('dblclick', ondblclickVideo(event))
-		newChild.addEventListener('dblclick', ondblclickVideo(event))
+		$(newChild).dblclick(ondblclickVideo(newChild))
 	}
 }
 
