@@ -491,7 +491,7 @@ function updateNumVideos(i) {
 	// $('video').attr('width', `${window.innerWidth}px`)
 	// $('video').attr('height', `${window.innerHeight}px`)
 
-	// $('video').css('aspect-ratio', `4/3`)
+	$('video').css('aspect-ratio', `4/3`)
 
 	// $('video').css('max-width', `calc(${maxWidth}vw - ${10 * (colNum - 1)}px)`)
 	// $('video').css('max-height', `calc(${maxHeight}vh - ${10 * (rowNum - 1)}px)`)

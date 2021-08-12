@@ -168,7 +168,7 @@ input.btn {
 /* 호근 수정 시작 */
 
 #video-container {
-  display: flex;
+  display: grid;
 	width: 100%;
   gap: 10px;
 }
