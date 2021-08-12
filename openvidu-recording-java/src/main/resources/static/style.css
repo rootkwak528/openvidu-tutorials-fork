@@ -169,7 +169,7 @@ input.btn {
 
 #video-grid {
   display: grid;
-  width: 100%;
+  width: 80%;
   gap: 10px;
 }
 
