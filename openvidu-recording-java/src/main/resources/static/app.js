@@ -508,47 +508,45 @@ window.onbeforeunload = function () { // Gracefully leave session
 
 // 호근 수정 시작 : 비디오 그리드
 
-// function updateNumVideos(i) {
-// 	numVideos += i;
+function updateNumVideos(i) {
+	numVideos += i;
 
-// 	const winWidth = window.innerWidth
-// 	const winHeight = window.innerHeight
+	const winWidth = window.innerWidth
+	const winHeight = window.innerHeight
 
-// 	while (true) {
-// 		const colNumPlusOne = colNum + 1
-// 		const rowNum = Math.ceil(numVideos / colNumPlusOne)
-// 		const videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
-// 		if (rowNum * videoSizeX + 10 * (rowNum - 1) > winHeight) {
-// 			break
-// 		}
-// 		colNum = colNumPlusOne
-// 	}
+	for (let i=0; i < 5; i++) {
+		const colNumPlusOne = colNum + 1
+		const rowNum = Math.ceil(numVideos / colNumPlusOne)
+		const videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
+		if (rowNum * videoSizeX + 10 * (rowNum - 1) > winHeight) {
+			break
+		}
+		colNum = colNumPlusOne
+	}
 
-// 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
-// }
+	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
+}
 
-// window.onresize = function () {
-// 	if (!numVideos) {
-// 		return
-// 	}
+window.onresize = function () {
+	if (!numVideos) {
+		return
+	}
 
-// 	// const winWidth = window.innerWidth
-// 	// const winHeight = window.innerHeight
+	const winWidth = window.innerWidth
+	const winHeight = window.innerHeight
 
-// 	console.log('colNum calculating... ')
-// 	// while (true) {
-// 	// 	const colNumPlusOne = colNum + 1
-// 	// 	const rowNum = Math.ceil(numVideos / colNumPlusOne)
-// 	// 	const videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
-// 	// 	if (rowNum * videoSizeX + 10 * (rowNum - 1) > winHeight) {
-// 	// 		break
-// 	// 	}
-// 	// 	colNum = colNumPlusOne
-// 	// }
-// 	// console.log('colNum : ', colNum)
+	for (let i=0; i < 5; i++) {
+		const colNumPlusOne = colNum + 1
+		const rowNum = Math.ceil(numVideos / colNumPlusOne)
+		const videoSizeX = (winWidth - 10 * (colNumPlusOne - 1)) / colNumPlusOne
+		if (rowNum * videoSizeX + 10 * (rowNum - 1) > winHeight) {
+			break
+		}
+		colNum = colNumPlusOne
+	}
 
-// 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
-// }
+	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
+}
 
 // 호근 수정 끝 : 비디오 그리드
 
