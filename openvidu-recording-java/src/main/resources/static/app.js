@@ -549,7 +549,7 @@ window.onresize = function (event) {
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
-$('video').addEventListener('dblclick', function (event) {
+$('video').dblclick(function (event) {
 	console.log(event.target)
 })
 
