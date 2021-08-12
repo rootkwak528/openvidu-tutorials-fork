@@ -229,8 +229,6 @@ function joinSession() {
 
 function leaveSession() {
 
-	stopRecording(publisher.connectionId);
-
 	// --- 9) Leave the session by calling 'disconnect' method over the Session object ---
 	session.disconnect();
 	enableBtn();
@@ -278,6 +276,9 @@ function removeUser() {
 }
 
 function closeSession() {
+
+	stopRecording(publisher.connectionId);
+
 	httpRequest(
 		'DELETE',
 		'api/close-session', {
@@ -398,7 +399,7 @@ function stopRecording(param) {
 		'POST',
 		'api/recording/stop', {
 			recording: forceRecordingId,
-			connectionId: connectionId // 민영 수정
+			connectionId: param // 민영 수정
 		},
 		'Stop recording WRONG',
 		res => {
