@@ -7,12 +7,6 @@ body {
 	min-height: 100%;
 }
 
-#main-container {
-	padding-bottom: 80px;
-	height: 100%;
-	margin-top: -70px;
-}
-
 .vertical-center {
 	width: -webkit-fit-content;
 	width: fit-content;
@@ -100,7 +94,6 @@ input.btn {
 	color: #4d4d4d;
 }
 
-
 #join {
 	padding-top: 40px;
 }
@@ -176,7 +169,6 @@ input.btn {
 
 #video-container {
 	width: 100%;
-	display: flex;
   gap: 10px;
 }
 
@@ -188,18 +180,6 @@ input.btn {
 	display: block;
 	overflow: hidden;
 } */
-
-#video-container video.two {
-	max-width: 50%;
-}
-
-#video-container video.three {
-	max-width: 33.33%;
-}
-
-#video-container video.four {
-	max-width: 25%;
-}
 
 #video-container div {
 	position: absolute;
