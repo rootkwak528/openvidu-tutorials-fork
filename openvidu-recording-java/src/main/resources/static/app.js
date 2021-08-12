@@ -289,7 +289,8 @@ function removeUser() {
 function closeSession() {
 	console.log("closeSession func");
 
-	stopRecording(publisher.connection.connectionId);
+	// stopRecording(publisher.connection.connectionId);
+	stopRecording();
 
 	httpRequest(
 		'DELETE',
@@ -407,14 +408,14 @@ function startRecording() {
 	);
 }
 
-function stopRecording(param) {
+function stopRecording() {
 	// var forceRecordingId = document.getElementById('forceRecordingId').value;
 	userJson = JSON.stringify(userList);
 	httpRequest(
 		'POST',
 		'api/recording/stop', {
 			recording: forceRecordingId,
-			connectionId: param, // 민영 수정
+			connectionId: connectionId, // 민영 수정
 			// userJson:  userJson // 민영 수정
 		},
 		'Stop recording WRONG',
