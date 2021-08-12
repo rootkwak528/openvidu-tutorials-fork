@@ -576,7 +576,9 @@ function ondblclickVideo(target) {
 		const newChild = containerDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
 
-		if (!dblclickNodes.hasAudio(newChild)) {
+		if (!dblclickNodes.has(newChild)) {
+			dblclickNodes.add(newChild)
+			console.log(dblclickNodes)
 			newChild.addEventListener('dblclick', function(event) {
 				ondblclickVideo(event.target)
 			})
@@ -589,7 +591,9 @@ function ondblclickVideo(target) {
 			const newChild = containerDOM.appendChild(oldChild)
 			newChild.classList.toggle('focus')
 
-			if (!dblclickNodes.hasAudio(newChild)) {
+			if (!dblclickNodes.has(newChild)) {
+				dblclickNodes.add(newChild)
+				console.log(dblclickNodes)
 				newChild.addEventListener('dblclick', function(event) {
 					ondblclickVideo(event.target)
 				})
@@ -601,7 +605,9 @@ function ondblclickVideo(target) {
 		const newChild = containerFocusDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
 
-		if (!dblclickNodes.hasAudio(newChild)) {
+		if (!dblclickNodes.has(newChild)) {
+			dblclickNodes.add(newChild)
+			console.log(dblclickNodes)
 			newChild.addEventListener('dblclick', function(event) {
 				ondblclickVideo(event.target)
 			})
