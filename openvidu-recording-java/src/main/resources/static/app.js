@@ -187,6 +187,10 @@ function joinSession() {
 				// When the publisher stream has started playing media...
 				publisher.on('streamCreated', event => {
 					pushEvent(event);
+
+					if(publisher.connectionId == connectionId) {
+						startRecording();
+					}
 				});
 
 				// When our HTML video has been added to DOM...
@@ -214,9 +218,6 @@ function joinSession() {
 
 				console.log(publisher);
 
-				if(publisher.connectionId === connectionId) {
-					startRecording();
-				}
 			})
 			.catch(error => {
 				console.warn('There was an error connecting to the session:', error.code, error.message);
@@ -230,7 +231,7 @@ function joinSession() {
 
 function leaveSession() {
 
-	if(publisher.connectionId === connectionId) {
+	if(publisher.connectionId == connectionId) {
 		stopRecording();
 	}
 	// --- 9) Leave the session by calling 'disconnect' method over the Session object ---
