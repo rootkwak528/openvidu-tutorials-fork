@@ -242,6 +242,7 @@ function joinSession() {
 					event.target.addEventListener('click', function() {
 						ondblclickVideo(event.target)
 					})
+					ondblclickVideo(event.target)
 				})
 
 				// 호근 수정 끝 video grid
