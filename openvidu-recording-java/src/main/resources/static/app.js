@@ -41,7 +41,7 @@ window.addEventListener("message", (event) => {
 	$('#sessionName').attr('disabled', true)
 	$('#nickname').val(event.data.nickname)
 	// 민영 수정 시작
-	sessionName = event.data.sessionName;
+	sessionName = $("#sessionName").val();
 	console.log("sessionName: " + sessionName);
 	nickname = event.data.nickname;
 	console.log("nickname: " + nickname);
@@ -258,7 +258,7 @@ function enableBtn (){
 /* APPLICATION REST METHODS */
 
 function getToken(callback) {
-	// sessionName = $("#sessionName").val(); // Video-call chosen by the user
+	sessionName = $("#sessionName").val(); // Video-call chosen by the user
 
 	httpRequest(
 		'POST',
