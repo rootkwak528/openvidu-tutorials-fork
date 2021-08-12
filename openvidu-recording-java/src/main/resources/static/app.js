@@ -531,6 +531,7 @@ function updateNumVideos(i) {
 
 window.onresize(function (event) {
 	colNum = 1
+	console.log(event)
 
 	const winWidth = window.innerWidth
 	const winHeight = window.innerHeight
