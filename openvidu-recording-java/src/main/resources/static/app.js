@@ -54,6 +54,7 @@ window.addEventListener("message", (event) => {
 // 호근 수정 시작 : video grid
 
 let colNum = 1;
+let videoHighlight = false;
 
 // 호근 수정 끝 : video grid
 
@@ -547,6 +548,10 @@ window.onresize = function (event) {
 
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
+
+$(video).addEventListener('dbclick', function (event) {
+	console.log(event.target)
+})
 
 // 호근 수정 끝 : 비디오 그리드
 
