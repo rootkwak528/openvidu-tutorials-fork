@@ -239,13 +239,13 @@ input.btn {
 
 #video-container.horizontal-scroll {
   display: flex;
-  height: calc(35vh - 105px);
+  height: calc(35vh - 100px);
   overflow-x: auto;
   overflow-y: hidden;
 }
 
 #video-container.horizontal-scroll video {
-  height: 30vh;
+  height: calc(35vh - 105px);
 }
 
 video {
@@ -255,7 +255,7 @@ video {
 }
 
 video:hover {
-  box-shadow: 2px 2px 2px 2px #cccccc;
+  box-shadow: 1.8px 1.8px 1.8px 1.8px #cccccc;
 }
 
 /* 호근 수정 끝 */
@@ -550,6 +550,10 @@ table i {
   border-radius: 50px;
   border-style: hidden;
   font-size: revert;
+}
+
+.settings-btn:hover {
+  box-shadow: 0.7px 0.7px 0.7px 0.7px #cccccc;
 }
 
 .settings-btn i {
