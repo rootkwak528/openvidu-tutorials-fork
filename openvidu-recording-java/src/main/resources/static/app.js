@@ -598,6 +598,7 @@ function ondblclickVideo(target) {
 		const newChild = containerDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
 		containerDOM.classList.toggle('horizontal-scroll')
+		console.log('containerDOM OFF ', containerDOM, containerDOM.classList)
 
 	} else {
 		if (isFocus) {
@@ -612,6 +613,7 @@ function ondblclickVideo(target) {
 		const newChild = containerFocusDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
 		containerDOM.classList.toggle('horizontal-scroll')
+		console.log('containerDOM ON ', containerDOM, containerDOM.classList)
 	}
 }
 
