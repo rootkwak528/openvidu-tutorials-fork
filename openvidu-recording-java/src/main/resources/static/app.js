@@ -429,19 +429,14 @@ function httpRequest(method, url, body, errorMsg, callback) {
 
 function startRecording() {
 	// var outputMode = $('input[name=outputMode]:checked').val();
-	var hasAudio = $('#has-audio-checkbox').prop('checked');
-	var hasVideo = $('#has-video-checkbox').prop('checked');
-
-	console.log(hasAudio);
-	console.log(hasVideo);
-
+	
 	httpRequest(
 		'POST',
 		'api/recording/start', {
 			session: session.sessionId,
 			outputMode: "INDIVIDUAL",	// 민영 수정
-			hasAudio: hasAudio,
-			hasVideo: hasVideo
+			hasAudio: true,
+			hasVideo: true
 		},
 		'Start recording WRONG',
 		res => {
