@@ -239,6 +239,9 @@ function joinSession() {
 
 				console.log(publisher);
 
+				// 호근 수정 join-dialogue 숨기기
+				document.getElementById('join-container').style.display = 'none'
+
 			})
 			.catch(error => {
 				console.warn('There was an error connecting to the session:', error.code, error.message);
