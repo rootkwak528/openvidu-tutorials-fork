@@ -56,6 +56,7 @@ window.addEventListener("message", (event) => {
 
 let colNum = 1;
 let videoHighlight = false;
+let focusNum = 0;
 
 // 호근 수정 끝 : video grid
 
@@ -100,7 +101,7 @@ function joinSession() {
 			streamId = event.stream.streamId;
 			// let userInfo = [nickname, sessionId, connectionId, streamId];
 			// userList.push(userInfo);
-			sendUserInfo();
+			// sendUserInfo();
 
 			// Subscribe to the Stream to receive it
 			// HTML video will be appended to element with 'video-container' id
@@ -577,11 +578,14 @@ window.onresize = function (event) {
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
+<<<<<<< HEAD
 
 $('video').dblclick(function (event) {
 	console.log(event.target)
 })
 
+=======
+>>>>>>> 75bfde0b5e65bdfd7f6c0a5c9ac73d9756cc441c
 // 더블클릭하면 커지기
 
 window.ondblclick = function (event) {
@@ -602,26 +606,28 @@ function ondblclickVideo(target) {
 		// 타겟 비디오 하이라이트 비디오로 옮기기
 
 	if (target.classList.contains('focus')) {
-		isFocus = false
+		focusNum -= 1
 		const oldChild = containerFocusDOM.removeChild(target)
 		const newChild = containerDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
+		containerDOM.classList.toggle('horizontal-scroll')
 
-	} else {
-		if (isFocus) {
-			const targetNode = document.querySelector('video')
-			const oldChild = containerFocusDOM.removeChild(targetNode)
-			const newChild = containerDOM.appendChild(oldChild)
-			newChild.classList.toggle('focus')
-		}
-
-		isFocus = true
+	} else if (focusNum < 2) {
+		focusNum += 1
 		const oldChild = containerDOM.removeChild(target)
 		const newChild = containerFocusDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
+		containerDOM.classList.toggle('horizontal-scroll')
+
+	} else if (focusNum == 2) {
+		console.log('impossible')
+
 	}
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 75bfde0b5e65bdfd7f6c0a5c9ac73d9756cc441c
 
 // 호근 수정 끝 : 비디오 그리드
 

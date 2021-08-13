@@ -180,13 +180,24 @@ input.btn {
 }
 
 #video-focus-container video {
-  max-height: 70vh;
+  height: 70vh;
 }
 
 #video-container {
   display: grid;
 	width: 100%;
   gap: 10px;
+}
+
+#video-container.horizontal-scroll {
+  display: flex;
+  height: 30vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+#video-container.horizontal-scroll video {
+  height: 30vh;
 }
 
 video {
