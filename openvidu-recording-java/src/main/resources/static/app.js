@@ -573,9 +573,51 @@ window.onresize = function (event) {
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
+<<<<<<< HEAD
 $('video').dblclick(function (event) {
 	console.log(event.target)
 })
+=======
+// 더블클릭하면 커지기
+
+window.ondblclick = function (event) {
+	if (event.target.tagName == 'VIDEO') {
+		ondblclickVideo(event.target)
+	}
+}
+
+function ondblclickVideo(target) {
+	containerDOM = document.getElementById('video-container')
+	containerFocusDOM = document.getElementById('video-focus-container')
+	
+	// 타겟 비디오가 하이라이트 비디오라면,
+		// 하이라이트 비디오 일반 비디오로 옮기기
+	// 타겟 비디오가 일반 비디오라면,
+		// 하이라이트 비디오가 이미 있다면,
+			// 하이라이트 비디오 일반 비디오로 옮기기
+		// 타겟 비디오 하이라이트 비디오로 옮기기
+
+	if (target.classList.contains('focus')) {
+		isFocus = false
+		const oldChild = containerFocusDOM.removeChild(target)
+		const newChild = containerDOM.appendChild(oldChild)
+		newChild.classList.toggle('focus')
+
+	} else {
+		if (isFocus) {
+			const targetNode = document.querySelector('video')
+			const oldChild = containerFocusDOM.removeChild(targetNode)
+			const newChild = containerDOM.appendChild(oldChild)
+			newChild.classList.toggle('focus')
+		}
+
+		isFocus = true
+		const oldChild = containerDOM.removeChild(target)
+		const newChild = containerFocusDOM.appendChild(oldChild)
+		newChild.classList.toggle('focus')
+	}
+}
+>>>>>>> 4fe853b388c7a83e7e87f3a8850ed24a5da2986c
 
 // 호근 수정 끝 : 비디오 그리드
 
