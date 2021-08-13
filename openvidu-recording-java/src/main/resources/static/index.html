@@ -70,38 +70,36 @@
       </div>
     </div>        
   </div>
-  
-  <div class="settings">
-    <button class="settings-btn" id="muteAudioBtn" onclick="muteAudio()">
-      <i class="fas fa-microphone fa-2x"></i>
-      <!-- <i class="fas fa-microphone-slash"></i> -->
-    </button>
-    <button class="settings-btn" id="muteVideoBtn" onclick="muteVideo()">
-      <i class="fas fa-video fa-2x"></i>
-      <!-- <i class="fas fa-video-slash"></i> -->
-    </button>
-    <button class="settings-btn" id="buttonCloseSession" onmouseup="closeSession()" value="Close session">
-      <i class="fas fa-sign-out-alt fa-2x"></i>
-    </button>
-  </div>
 
-  <div class="settings-small">
-    <div class="dropup">
-      <button class="settings-btn" id="settingBtn">
-        <i class="fas fa-cog fa-2x"></i>
+  <div id="settings">
+    <div class="settings">
+      <button class="settings-btn" id="muteAudioBtn" onclick="muteAudio()">
+        <i class="fas fa-microphone fa-2x"></i>
       </button>
-      <div class="dropup-content">
-        <button class="settings-btn" id="muteAudioBtn2" onclick="muteAudio()">
-          <i class="fas fa-microphone fa-2x"></i>
-          <!-- <i class="fas fa-microphone-slash fa-2x"></i> -->
+      <button class="settings-btn" id="muteVideoBtn" onclick="muteVideo()">
+        <i class="fas fa-video fa-2x"></i>
+      </button>
+      <button class="settings-btn" id="buttonCloseSession" onmouseup="closeSession()" value="Close session">
+        <i class="fas fa-sign-out-alt fa-2x"></i>
+      </button>
+    </div>
+  
+    <div class="settings-small">
+      <div class="dropup">
+        <button class="settings-btn" id="settingBtn">
+          <i class="fas fa-cog fa-2x"></i>
         </button>
-        <button class="settings-btn" id="muteVideoBtn2" onclick="muteVideo()">
-          <i class="fas fa-video fa-2x"></i>
-          <!-- <i class="fas fa-video-slash fa-2x"></i> -->
-        </button>
-        <button class="settings-btn" id="buttonCloseSession" onmouseup="closeSession()" value="Close session">
-          <i class="fas fa-sign-out-alt fa-2x"></i>
-        </button>
+        <div class="dropup-content">
+          <button class="settings-btn" id="muteAudioBtn2" onclick="muteAudio()">
+            <i class="fas fa-microphone fa-2x"></i>
+          </button>
+          <button class="settings-btn" id="muteVideoBtn2" onclick="muteVideo()">
+            <i class="fas fa-video fa-2x"></i>
+          </button>
+          <button class="settings-btn" id="buttonCloseSession" onmouseup="closeSession()" value="Close session">
+            <i class="fas fa-sign-out-alt fa-2x"></i>
+          </button>
+        </div>
       </div>
     </div>
   </div>

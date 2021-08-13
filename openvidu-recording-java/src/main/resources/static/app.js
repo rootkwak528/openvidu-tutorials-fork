@@ -239,10 +239,11 @@ function joinSession() {
 
 				console.log(publisher);
 
-				// 호근 수정 join-dialogue 숨기기
+				// 호근 수정 join-dialogue 숨기기 & 비디오 관련 버튼들 보이기
 				document.getElementById('join-container').classList.toggle('d-flex')
 				document.getElementById('join-container').style.display = 'none'
 				document.getElementById('header').style.display = 'block'
+				document.getElementById('settings').style.display = 'block'
 
 			})
 			.catch(error => {
@@ -429,7 +430,7 @@ function httpRequest(method, url, body, errorMsg, callback) {
 
 function startRecording() {
 	// var outputMode = $('input[name=outputMode]:checked').val();
-	
+
 	httpRequest(
 		'POST',
 		'api/recording/start', {
