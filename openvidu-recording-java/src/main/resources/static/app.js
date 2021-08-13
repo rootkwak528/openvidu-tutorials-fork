@@ -642,7 +642,7 @@ function ondblclickVideo(target) {
 		if (!focusNum) {
 			containerFocusDOM.style.height = '0'
 			containerDOM.classList.toggle('horizontal-scroll')
-			$('video').css('width', 'auto')
+			$('video').css('width', '100%')
 		}
 
 	} else if (focusNum < 2) {
@@ -656,7 +656,7 @@ function ondblclickVideo(target) {
 
 		if (focusNum == 1) {
 			containerDOM.classList.toggle('horizontal-scroll')
-			$('video').css('width', '100%')
+			$('video').css('width', 'auto')
 		}
 
 	} else if (focusNum == 2) {
