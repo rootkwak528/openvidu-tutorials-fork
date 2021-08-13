@@ -13,6 +13,7 @@ var forceRecordingId;
 var userJson;
 var userList = [];
 var nickname;
+var streamId;
 
 // 호근 수정 시작 : 음소거
 var publisher;
@@ -54,7 +55,7 @@ window.addEventListener("message", (event) => {
 // 호근 수정 시작 : video grid
 
 let colNum = 1;
-let isFocus = false;
+let videoHighlight = false;
 
 // 호근 수정 끝 : video grid
 
@@ -85,8 +86,6 @@ function joinSession() {
 			console.log(event.connection.connectionId);
 			connectionId = !connectionId ? event.connection.connectionId : connectionId;
 			// connectionId = event.connection.connectionId;
-			let userInfo = [connectionId, nickname];
-			userList.push(userInfo);
 			// 민영 수정 끝
 		});
 
@@ -97,6 +96,11 @@ function joinSession() {
 		// On every new Stream received...
 		session.on('streamCreated', event => {
 			pushEvent(event);
+
+			streamId = event.stream.streamId;
+			// let userInfo = [nickname, sessionId, connectionId, streamId];
+			// userList.push(userInfo);
+			sendUserInfo();
 
 			// Subscribe to the Stream to receive it
 			// HTML video will be appended to element with 'video-container' id
@@ -311,10 +315,32 @@ function closeSession() {
 		'Session couldn\'t be closed',
 		res => {
 			console.warn("Session " + sessionName + " has been closed");
-			window.close();
 		}
 	);
+
+	window.close();
+	// leaveSession();
 }
+
+
+// 프록시 타겟을 백앤드 서버로 달면? 싸피서버+:8080(백앤드포트)
+
+// function sendUserInfo() {
+// 	httpRequest(
+// 		'POST',
+// 		'api/sendUserInfo', {	// 어디로 보낼지 경로 미정
+// 			sessionName: sessionName,	// 클래스 구분용 세션네임
+// 			nickname: nickname,				// 사용자 구분용 닉네임
+// 			videoUrl: "https://i5a204.p.ssafy.io/openvidu/recordings/" + sessionId + "/" + streamName + ".webm"	// 영상 url
+// 		},
+// 		'오류 메시지',
+// 		res => {›
+// 			console.warn("Session info has been fetched");
+// 			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
+// 		}
+// 	);
+// }
+
 
 function fetchInfo() {
 	httpRequest(
@@ -427,7 +453,7 @@ function stopRecording() {
 		'api/recording/stop', {
 			recording: forceRecordingId,
 			connectionId: connectionId, // 민영 수정
-			userJson: userJson // 민영 수정
+			userList: userList // 민영 수정
 		},
 		'Stop recording WRONG',
 		res => {
@@ -547,6 +573,11 @@ window.onresize = function (event) {
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
+<<<<<<< HEAD
+$('video').dblclick(function (event) {
+	console.log(event.target)
+})
+=======
 // 더블클릭하면 커지기
 
 window.ondblclick = function (event) {
@@ -588,6 +619,7 @@ function ondblclickVideo(target) {
 		containerDOM.classList.toggle('horizontal-scroll')
 	}
 }
+>>>>>>> 4fe853b388c7a83e7e87f3a8850ed24a5da2986c
 
 // 호근 수정 끝 : 비디오 그리드
 
@@ -629,36 +661,4 @@ function clearEventsTextarea() {
 }
 
 /* APPLICATION BROWSER METHODS */
-
-
-
-/* upzip */
-/*
-let zip_url = 'http://localhost/a.zip';
-let promise = new JSZip.external.Promise(function (resolve, reject) {
-		JSZipUtils.getBinaryContent(zip_url, function(err, data) {
-				if (err) {
-						reject(err);
-				} else {
-						resolve(data);
-				}
-		});
-});
-promise.then(JSZip.loadAsync).then(
-		function (zip) {
-				zip.forEach(function (fileName) {
-						let file = zip.file(fileName);
-						// 압축 파일 안에 저장된 파일이 압축이 풀리고 ArrayBuffer 타입으로 전달됨
-						file.async("arraybuffer").then(
-								function success(buf) {
-										alert(fileName);
-								},
-								function error(e) {
-										// 에러가 나셨습니다.
-								}
-						);
-				});
-		}
-);
-*/
 
