@@ -5,6 +5,7 @@ html {
 
 body {
 	max-height: 100%;
+  padding: 10px 20px 20px 20px;
 }
 
 .vertical-center {
@@ -238,7 +239,7 @@ input.btn {
 
 #video-container.horizontal-scroll {
   display: flex;
-  height: calc(35vh - 75px);
+  height: calc(35vh - 105px);
   overflow-x: auto;
   overflow-y: hidden;
 }
@@ -250,6 +251,11 @@ input.btn {
 video {
   aspect-ratio: 4 / 3;
   max-width: 100%;
+  border-radius: 10px;
+}
+
+video:hover {
+  box-shadow: 2px 2px 2px 2px #cccccc;
 }
 
 /* 호근 수정 끝 */
@@ -293,11 +299,6 @@ video {
     max-height: 100%;
     object-fit: scale-down;
 } */
-
-#session {
-	height: 100%;
-	padding-bottom: 80px;
-}
 
 #session img {
 	width: 100%;
@@ -467,9 +468,6 @@ table i {
   background: none;
   width: 100%;
   z-index: 99;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 10px;
   display: none;
 }
 
@@ -538,7 +536,7 @@ table i {
   height: 75px;
   position: fixed;
   background: none;
-  bottom: 0;
+  bottom: 20px;
   text-align: center;
   color: black;
   z-index: 100;
