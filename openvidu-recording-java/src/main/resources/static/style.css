@@ -173,15 +173,18 @@ input.btn {
   gap: 10px;
 }
 
-#video-focus-container {
+#video-focus-1st-container {
+  margin: 0 auto;
+}
+
+#video-focus-2nd-container {
   display: flex;
   gap: 10px;
   width: 100%;
   max-height: 70vh;
-  margin: 0 auto;
 }
 
-#video-focus-container video {
+#video-focus-2nd-container video {
   height: 70vh;
   width: auto;
 }
