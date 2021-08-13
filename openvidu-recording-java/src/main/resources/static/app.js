@@ -56,7 +56,7 @@ window.addEventListener("message", (event) => {
 
 let colNum = 1;
 let videoHighlight = false;
-let isFocus = false;
+let focusNum = 0;
 
 // 호근 수정 끝 : video grid
 
@@ -594,27 +594,22 @@ function ondblclickVideo(target) {
 		// 타겟 비디오 하이라이트 비디오로 옮기기
 
 	if (target.classList.contains('focus')) {
-		isFocus = false
+		focusNum -= 1
 		const oldChild = containerFocusDOM.removeChild(target)
 		const newChild = containerDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
 		containerDOM.classList.toggle('horizontal-scroll')
-		console.log('containerDOM OFF ', containerDOM, containerDOM.classList)
 
-	} else {
-		if (isFocus) {
-			const targetNode = document.querySelector('video')
-			const oldChild = containerFocusDOM.removeChild(targetNode)
-			const newChild = containerDOM.appendChild(oldChild)
-			newChild.classList.toggle('focus')
-		}
-
-		isFocus = true
+	} else if (focusNum < 2) {
+		focusNum += 1
 		const oldChild = containerDOM.removeChild(target)
 		const newChild = containerFocusDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
 		containerDOM.classList.toggle('horizontal-scroll')
-		console.log('containerDOM ON ', containerDOM, containerDOM.classList)
+
+	} else if (focusNum == 2) {
+		console.log('impossible')
+
 	}
 }
 
