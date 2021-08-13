@@ -249,7 +249,7 @@ input.btn {
 
 video {
   aspect-ratio: 4 / 3;
-  max-width: 100%;
+  width: 100%;
   border-radius: 10px;
 }
 
