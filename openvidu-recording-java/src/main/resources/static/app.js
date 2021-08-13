@@ -15,25 +15,45 @@ var userList = [];
 var nickname;
 var streamId;
 
-// 호근 수정 시작 : 음소거
+// 호근 민영 수정 시작 : 음소거
 var publisher;
 var publishAudio = false;
 var publishVideo = true;
 
+var isAudioMute = false;
+var isVideoMute = false;
+
 function muteAudio() {
-	console.log("muteAudio")
-	publishAudio = !publishAudio
-	document.getElementById('muteAudioBtn').value = publishAudio ? "mute audio" : "unmute audio"
-	publisher.publishAudio(publishAudio)
+  if(isAudioMute == true) {
+    isAudioMute = false;
+    document.getElementById("muteAudioBtn").innerHTML = `<i class="fas fa-microphone fa-2x"></i>`;
+    document.getElementById("muteAudioBtn").style.backgroundColor = "#e8e8e8";
+    document.getElementById("muteAudioBtn2").innerHTML = `<i class="fas fa-microphone fa-2x"></i>`;
+    document.getElementById("muteAudioBtn2").style.backgroundColor = "#e8e8e8";
+  } else {
+    isAudioMute = true;
+    document.getElementById("muteAudioBtn").innerHTML = `<i class="fas fa-microphone-slash fa-2x"></i>`;
+    document.getElementById("muteAudioBtn").style.backgroundColor = "#f35747";
+    document.getElementById("muteAudioBtn2").innerHTML = `<i class="fas fa-microphone-slash fa-2x"></i>`;
+    document.getElementById("muteAudioBtn2").style.backgroundColor = "#f35747";
+  }
 }
 
 function muteVideo() {
-	console.log("muteVideo")
-	publishVideo = !publishVideo
-	document.getElementById('muteVideoBtn').value = publishVideo ? "mute video" : "unmute video"
-	publisher.publishVideo(publishVideo)
+  if(isVideoMute == true) {
+    isVideoMute = false;
+    document.getElementById("muteVideoBtn").innerHTML = `<i class="fas fa-video fa-2x"></i>`;
+    document.getElementById("muteVideoBtn").style.backgroundColor = "#e8e8e8";
+    document.getElementById("muteVideoBtn2").innerHTML = `<i class="fas fa-video fa-2x"></i>`;
+    document.getElementById("muteVideoBtn2").style.backgroundColor = "#e8e8e8";
+  } else {
+    isVideoMute = true;document.getElementById("muteVideoBtn").innerHTML = `<i class="fas fa-video-slash fa-2x"></i>`;
+    document.getElementById("muteVideoBtn").style.backgroundColor = "#6cd8d7";
+    isVideoMute = true;document.getElementById("muteVideoBtn2").innerHTML = `<i class="fas fa-video-slash fa-2x"></i>`;
+    document.getElementById("muteVideoBtn2").style.backgroundColor = "#6cd8d7";
+  }
 }
-// 호근 수정 끝 : 음소거
+// 호근 민영 수정 끝 : 음소거
 
 // 호근 수정 시작 : session id
 
