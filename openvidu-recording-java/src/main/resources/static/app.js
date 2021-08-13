@@ -56,6 +56,7 @@ window.addEventListener("message", (event) => {
 
 let colNum = 1;
 let videoHighlight = false;
+let isFocus = false;
 
 // 호근 수정 끝 : video grid
 
