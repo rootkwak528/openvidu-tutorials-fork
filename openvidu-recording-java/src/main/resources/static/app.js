@@ -602,16 +602,22 @@ function ondblclickVideo(target) {
 		const oldChild = containerFocusDOM.removeChild(target)
 		const newChild = containerDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
-		containerDOM.classList.toggle('horizontal-scroll')
 		containerFocusDOM.style.gridTemplateColumns = '1fr '.repeat(focusNum)
+
+		if (!focusNum) {
+			containerDOM.classList.toggle('horizontal-scroll')
+		}
 
 	} else if (focusNum < 2) {
 		focusNum += 1
 		const oldChild = containerDOM.removeChild(target)
 		const newChild = containerFocusDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
-		containerDOM.classList.toggle('horizontal-scroll')
 		containerFocusDOM.style.gridTemplateColumns = '1fr '.repeat(focusNum)
+
+		if (focusNum == 1) {
+			containerDOM.classList.toggle('horizontal-scroll')
+		}
 
 	} else if (focusNum == 2) {
 		console.log('impossible')
