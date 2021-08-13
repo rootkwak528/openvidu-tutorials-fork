@@ -189,6 +189,12 @@ input.btn {
   gap: 10px;
 }
 
+.horizontal-scroll {
+  height: 30vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 video {
   aspect-ratio: 4 / 3;
   width: 100%;
