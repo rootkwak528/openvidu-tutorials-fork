@@ -15,15 +15,17 @@ var userList = [];
 var nickname;
 var streamId;
 
-// 호근 민영 수정 시작 : 음소거
+// 민영 호근 수정 시작 : 음소거
 var publisher;
 var publishAudio = false;
 var publishVideo = true;
-
 var isAudioMute = false;
 var isVideoMute = false;
 
 function muteAudio() {
+	publishAudio = !publishAudio
+	publisher.publishAudio(publishAudio)
+
   if(isAudioMute == true) {
     isAudioMute = false;
     document.getElementById("muteAudioBtn").innerHTML = `<i class="fas fa-microphone fa-2x"></i>`;
@@ -40,6 +42,9 @@ function muteAudio() {
 }
 
 function muteVideo() {
+	publishVideo = !publishVideo
+	publisher.publishVideo(publishVideo)
+
   if(isVideoMute == true) {
     isVideoMute = false;
     document.getElementById("muteVideoBtn").innerHTML = `<i class="fas fa-video fa-2x"></i>`;
@@ -53,7 +58,8 @@ function muteVideo() {
     document.getElementById("muteVideoBtn2").style.backgroundColor = "#6cd8d7";
   }
 }
-// 호근 민영 수정 끝 : 음소거
+
+// 민영 호근 수정 끝 : 음소거
 
 // 호근 수정 시작 : session id
 

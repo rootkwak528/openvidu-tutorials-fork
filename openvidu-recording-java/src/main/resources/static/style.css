@@ -551,6 +551,7 @@ table i {
   vertical-align: middle;
   border-radius: 50px;
   border-style: hidden;
+  font-size: revert;
 }
 
 .settings-btn i {
