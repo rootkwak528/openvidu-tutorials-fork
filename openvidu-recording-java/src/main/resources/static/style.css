@@ -195,6 +195,10 @@ input.btn {
   overflow-y: hidden;
 }
 
+#video-container.horizontal-scroll video {
+  height: 30vh;
+}
+
 video {
   aspect-ratio: 4 / 3;
   width: 100%;
