@@ -592,7 +592,7 @@ window.ondblclick = function (event) {
 
 function ondblclickVideo(target) {
 	containerDOM = document.getElementById('video-container')
-	containerFocusDOM = document.getElementById('video-focus-2nd-container')
+	containerFocusDOM = document.getElementById('video-focus-inner-container')
 	
 	// 타겟 비디오가 하이라이트 비디오라면,
 		// 하이라이트 비디오 일반 비디오로 옮기기
