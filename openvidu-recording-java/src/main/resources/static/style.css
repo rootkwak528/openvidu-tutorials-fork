@@ -189,7 +189,8 @@ input.btn {
   gap: 10px;
 }
 
-.horizontal-scroll {
+#video-container.horizontal-scroll {
+  display: flex;
   height: 30vh;
   overflow-x: auto;
   overflow-y: hidden;
