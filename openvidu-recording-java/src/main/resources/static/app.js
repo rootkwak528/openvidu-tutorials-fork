@@ -578,12 +578,15 @@ window.onresize = function (event) {
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
+<<<<<<< HEAD
 
 $('video').dblclick(function (event) {
 	console.log(event.target)
 })
 
 
+=======
+>>>>>>> aa90543edfab31fd2e68203f86fc573b0ddd6667
 // 더블클릭하면 커지기
 
 window.ondblclick = function (event) {
@@ -609,6 +612,7 @@ function ondblclickVideo(target) {
 		const newChild = containerDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
 		containerDOM.classList.toggle('horizontal-scroll')
+		containerFocusDOM.style.gridTemplateColumns = '1fr '.repeat(focusNum)
 
 	} else if (focusNum < 2) {
 		focusNum += 1
@@ -616,13 +620,17 @@ function ondblclickVideo(target) {
 		const newChild = containerFocusDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
 		containerDOM.classList.toggle('horizontal-scroll')
+		containerFocusDOM.style.gridTemplateColumns = '1fr '.repeat(focusNum)
 
 	} else if (focusNum == 2) {
 		console.log('impossible')
 
 	}
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> aa90543edfab31fd2e68203f86fc573b0ddd6667
 
 // 호근 수정 끝 : 비디오 그리드
 
