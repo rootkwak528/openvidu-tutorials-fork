@@ -9,11 +9,9 @@
 	<!-- Bootstrap -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
 	 crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	 crossorigin="anonymous">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-	 crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- Bootstrap -->
 
   <!-- Font Awesome -->
@@ -34,14 +32,36 @@
 <body>
 
   <div class="header">
-    <a href="#" id="logo">Logo</a>
+    <a href="#" id="logo"><img src="images/logo.png"/></a>
     <a href="#" id="classname">Class Name</a>
-    <a href="#" id="participants"><i class="fas fa-users" id="participants"> 13</i></a>
+    <a href="#" id="participants"><i class="fas fa-users" id="participants"></i></a>
   </div>
 
   <div id="main-container">
+    <div id="join-container" class="d-flex justify-content-center align-items-center">
+      <div id="join" class="vertical-center">
+        
+        <div id="join-dialog" class="jumbotron">
+          
+          <div id="img-div">
+            <img src="images/logo-lg.png" />
+          </div>
+          <form class="form-group" onsubmit="return false">
+            <div>
+              <label>Session</label><input class="form-control" type="text" id="sessionName" value="" required>
+            </div>
+            <div>
+              <label>Nickname</label><input class="form-control" type="text" id="nickname" value="" required>
+            </div>
+            <p class="text-center" style="margin: 0px;">
+              <button class="btn btn-md" id="join-btn" onclick="joinSession()">Join Training Room!</button>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <div id="session" style="display: none">
-      
       <div id="video-grid">
         <div id="video-focus-outer-container">
           <div id="video-focus-inner-container"></div>
@@ -52,100 +72,27 @@
 			<div id="session-header">
         <h1 id="session-title"></h1>
 				<input class="btn btn-sm btn-danger" type="button" id="buttonCloseSession" onmouseup="closeSession()" value="Close session">
-				<!-- <input class="btn btn-sm btn-danger" type="button" id="buttonLeaveSession" onmouseup="removeUser(); leaveSession()"
-				 value="Leave session"> -->
-				<!-- <div class="vertical-separator-top"></div>
-          <input class="form-control" id="forceValue" type="text" onkeyup="checkBtnsForce()">
-          <input class="btn btn-sm" type="button" id="buttonForceUnpublish" onmouseup="forceUnpublish()" value="Force unpublish"
+      </div>
+      <div id="recording-btns">
+        <div class="btns">
+          <form>
+            <label class="checkbox-inline">
+              <input type="checkbox" id="has-audio-checkbox" checked>Has audio
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" id="has-video-checkbox" checked>Has video
+            </label>
+          </form>
+        </div>
+        <div class="btns">
+          <input class="btn btn-md" type="button" id="buttonStartRecording" onmouseup="startRecording()" value="Start recording">
+          <input class="btn btn-md" type="button" id="buttonStopRecording" onmouseup="stopRecording()" value="Stop recording"
           disabled>
-          <input class="btn btn-sm" type="button" id="buttonForceDisconnect" onmouseup="forceDisconnect()" value="Force disconnect"
-          disabled>
-          <div class="vertical-separator-top"></div>
-          <input class="btn btn-sm" type="button" id="buttonFetchInfo" onmouseup="fetchInfo()" value="Fetch info">
-          <input class="btn btn-sm" type="button" id="buttonFetchAll" onmouseup="fetchAll()" value="Fetch all"> -->
+          <input class="form-control" id="forceRecordingId" type="text" onkeyup="checkBtnsRecordings()">
         </div>
-        <div id="recording-btns">
-          <div class="btns">
-            <!-- <input class="btn btn-md" type="button" id="buttonStartRecording" onmouseup="startRecording()" value="Start recording"> -->
-            <!-- <form>
-              <label class="radio-inline">
-                <input type="radio" name="outputMode" value="COMPOSED" id="radio-composed" checked>COMPOSED
-              </label>
-              <label class="radio-inline">
-                <input type="radio" name="outputMode" value="INDIVIDUAL" id="radio-individual">INDIVIDUAL
-              </label>
-            </form> -->
-            <form>
-              <label class="checkbox-inline">
-                <input type="checkbox" id="has-audio-checkbox" checked>Has audio
-              </label>
-              <label class="checkbox-inline">
-                <input type="checkbox" id="has-video-checkbox" checked>Has video
-              </label>
-            </form>
-          </div>
-          <div class="btns">
-            <!-- <input class="btn btn-md" type="button" id="buttonListRecording" onmouseup="listRecordings()" value="List recordings">
-              <div class="vertical-separator-bottom"></div>
-              <input class="btn btn-md" type="button" id="buttonGetRecording" onmouseup="getRecording()" value="Get recording"
-              disabled> -->
-              <input class="btn btn-md" type="button" id="buttonStartRecording" onmouseup="startRecording()" value="Start recording">
-              <input class="btn btn-md" type="button" id="buttonStopRecording" onmouseup="stopRecording()" value="Stop recording"
-              disabled>
-              <!-- <input class="btn btn-md" type="button" id="buttonDeleteRecording" onmouseup="deleteRecording()" value="Delete recording"
-                disabled> -->
-                <input class="form-control" id="forceRecordingId" type="text" onkeyup="checkBtnsRecordings()">
-              </div>
-              <!--
-                <div class="textarea-container" id="textarea-http-container">
-                  <button type="button" class="btn btn-outline-secondary" id="clear-http-btn" onclick="clearHttpTextarea()">Clear</button>
-                  <span>HTTP responses</span>
-                  <textarea id="textarea-http" readonly="true" class="form-control" name="textarea-http"></textarea>
-                </div>
-                <div class="textarea-container" id="textarea-events-container">
-                  <button type="button" class="btn btn-outline-secondary" id="clear-events-btn" onclick="clearEventsTextarea()">Clear</button>
-                  <span>OpenVidu events</span>
-                  <textarea id="textarea-events" readonly="true" class="form-control" name="textarea-events"></textarea>
-                </div>
-              -->
-            </div>
-          </div>
+      </div>
+    </div>          
+  </div>
+</body>
 
-          <button id="muteAudioBtn" onclick="muteAudio()">mute audio</button>
-          <button id="muteVideoBtn" onclick="muteVideo()">mute video</button>
-          
-          <div id="join" class="vertical-center">
-            <div id="img-div">
-              <img src="images/openvidu_grey_bg_transp_cropped.png" />
-            </div>
-            <div id="join-dialog" class="jumbotron">
-              <h1>Join a video session</h1>
-              <form class="form-group" onsubmit="return false">
-                <p>
-                  <label>Session</label>
-                  <input class="form-control" type="text" id="sessionName" value="" required>
-                  <input class="form-control" type="text" id="nickname" value="" required>
-                </p>
-                <p class="text-center">
-                  <button class="btn btn-lg btn-success" id="join-btn" onclick="joinSession()">Join!</button>
-                </p>
-              </form>
-              <hr>
-            </div>
-          </div>
-        </div>
-
-
-
-
-
-        <div class="settings">
-          <i class="fas fa-microphone">흰배경에 빨강</i>
-          <i class="fas fa-microphone-slash"></i>
-          <i class="fas fa-video"></i>
-          <i class="fas fa-video-slash"></i>
-          <i class="fas fa-sign-out-alt"></i>
-        </div>
-      </body>
-      
-      </html>
+</html>
