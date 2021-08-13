@@ -240,6 +240,7 @@ function joinSession() {
 				console.log(publisher);
 
 				// 호근 수정 join-dialogue 숨기기
+				document.getElementById('join-container').classList.toggle('d-flex')
 				document.getElementById('join-container').style.display = 'none'
 
 			})
