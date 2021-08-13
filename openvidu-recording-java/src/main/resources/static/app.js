@@ -573,11 +573,6 @@ window.onresize = function (event) {
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
-<<<<<<< HEAD
-$('video').dblclick(function (event) {
-	console.log(event.target)
-})
-=======
 // 더블클릭하면 커지기
 
 window.ondblclick = function (event) {
@@ -619,7 +614,6 @@ function ondblclickVideo(target) {
 		containerDOM.classList.toggle('horizontal-scroll')
 	}
 }
->>>>>>> 4fe853b388c7a83e7e87f3a8850ed24a5da2986c
 
 // 호근 수정 끝 : 비디오 그리드
 
