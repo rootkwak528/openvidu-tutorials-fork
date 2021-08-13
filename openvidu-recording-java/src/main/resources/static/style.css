@@ -251,6 +251,7 @@ video {
   aspect-ratio: 4 / 3;
   width: 100%;
   border-radius: 10px;
+  max-height: calc(100vh - 100px);
 }
 
 video:hover {
