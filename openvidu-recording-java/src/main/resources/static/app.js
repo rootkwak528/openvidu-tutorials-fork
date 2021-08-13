@@ -100,7 +100,7 @@ function joinSession() {
 			streamId = event.stream.streamId;
 			// let userInfo = [nickname, sessionId, connectionId, streamId];
 			// userList.push(userInfo);
-			sendUserInfo();
+			// sendUserInfo();
 
 			// Subscribe to the Stream to receive it
 			// HTML video will be appended to element with 'video-container' id
