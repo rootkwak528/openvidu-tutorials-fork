@@ -394,3 +394,48 @@ table i {
 		height: 10%;
 	}
 }
+
+
+
+
+/* header */
+
+/* Style the top navigation bar */
+.header {
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+/* Style the header links */
+.header a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+#participants {
+	float: right;
+}
+
+/* Change color on hover */
+.header a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+
+
+
+/* settings */
+.settings {
+  width:100%;
+  height:60px;
+  position:absolute;
+  bottom:0;
+  background:#ffffff;
+ text-align: center;
+ color: black;
+}
