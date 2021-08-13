@@ -582,6 +582,10 @@ function updateNumVideos(i) {
 		totalHeight = rowNum * videoSizeX * 3 / 4 + 10 * (rowNum - 1)
 	}
 
+	if (numVideos == 1) {
+		colNum = 1
+	}
+
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
@@ -636,6 +640,7 @@ function ondblclickVideo(target) {
 		containerFocusDOM.style.gridTemplateColumns = '1fr '.repeat(focusNum)
 
 		if (!focusNum) {
+			containerFocusDOM.style.height = '0'
 			containerDOM.classList.toggle('horizontal-scroll')
 		}
 
@@ -645,6 +650,8 @@ function ondblclickVideo(target) {
 		const newChild = containerFocusDOM.appendChild(oldChild)
 		newChild.classList.toggle('focus')
 		containerFocusDOM.style.gridTemplateColumns = '1fr '.repeat(focusNum)
+
+		containerFocusDOM.style.height = '65vh'
 
 		if (focusNum == 1) {
 			containerDOM.classList.toggle('horizontal-scroll')
