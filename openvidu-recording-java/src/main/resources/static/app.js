@@ -578,6 +578,10 @@ window.onresize = function (event) {
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
+$('video').dblclick(function (event) {
+	console.log(event.target)
+})
+
 // 더블클릭하면 커지기
 
 window.ondblclick = function (event) {
