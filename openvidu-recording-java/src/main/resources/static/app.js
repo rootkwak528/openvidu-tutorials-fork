@@ -147,6 +147,7 @@ function joinSession() {
 		session.on('streamCreated', event => {
 			pushEvent(event);
 
+			// 민영 수정
 			session.connection.data = nickname;
 
 			// 민영 수정 시작: DB로 사용자 videoURL 보내기
@@ -168,7 +169,7 @@ function joinSession() {
 				// Add a new HTML element for the user's name and nickname over its video
 				updateNumVideos(1);
 				// 민영 수정
-				appendNickname(event.element, subscriber.stream.connection.data);
+				// appendNickname(event.element, subscriber.stream.connection.data);
 			});
 
 			// When the HTML video has been appended to DOM...
@@ -279,7 +280,7 @@ function joinSession() {
 					updateNumVideos(1);
 					$(event.element).prop('muted', true); // Mute local video
 					// 민영 수정
-					appendNickname(event.element, nickname);
+					// appendNickname(event.element, nickname);
 				});
 
 				// When the HTML video has been appended to DOM...
