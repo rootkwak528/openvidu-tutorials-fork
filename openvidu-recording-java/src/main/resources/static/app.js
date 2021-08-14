@@ -65,23 +65,24 @@ function muteVideo() {
 
 // 민영 호근 수정 끝 : 음소거
 
-// 호근 수정 시작 : session id
+// 민영 호근 수정 시작 : session id
+
+let isTrainer
 
 window.addEventListener("message", (event) => {
+	// 버튼 변경
 	$('#sessionName').val(event.data.sessionName)
 	$('#sessionName').attr('disabled', true)
 	$('#nickname').val(event.data.nickname)
-	// 민영 수정 시작
-	sessionName = event.data.sessionName;
-	console.log("sessionName: " + sessionName);
-	nickname = event.data.nickname;
-	console.log("nickname: " + nickname);
-	// 민영 수정 끝
 	$('#nickname').attr('disabled', true)
 	document.getElementById("join-btn").disabled = false;
+
+	sessionName = event.data.sessionName;
+	nickname = event.data.nickname;
+	isTrainer = event.data.isTrainer;
 }, false)
 
-// 호근 수정 끝 : session id
+// 민영 호근 수정 끝 : session id
 
 // 호근 수정 시작 : video grid
 
@@ -185,6 +186,7 @@ function joinSession() {
 
 		session.on('recordingStopped', event => {
 			pushEvent(event);
+			window.close();
 		});
 
 		// On every asynchronous exception...
@@ -628,6 +630,11 @@ function updateNumVideos(i) {
 	}
 
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
+
+	// DB에 참여 인원 업데이트
+	// axios({
+	// 	url: 'https://i5a204.p.ssafy.io:8080/api'
+	// })
 }
 
 window.onresize = function (event) {
