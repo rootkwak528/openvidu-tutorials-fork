@@ -128,10 +128,13 @@ function joinSession() {
 		session.on('streamCreated', event => {
 			pushEvent(event);
 
+			// 민영 수정 시작: DB로 사용자 videoURL 보내기
 			streamId = event.stream.streamId;
 			// let userInfo = [nickname, sessionId, connectionId, streamId];
 			// userList.push(userInfo);
 			// sendUserInfo();
+			sendURL();
+			// 민영 수정 끝: DB로 사용자 videoURL 보내기
 
 			// Subscribe to the Stream to receive it
 			// HTML video will be appended to element with 'video-container' id
@@ -359,26 +362,6 @@ function closeSession() {
 	// leaveSession();
 }
 
-
-// 프록시 타겟을 백앤드 서버로 달면? 싸피서버+:8080(백앤드포트)
-
-// function sendUserInfo() {
-// 	httpRequest(
-// 		'POST',
-// 		'api/sendUserInfo', {	// 어디로 보낼지 경로 미정
-// 			sessionName: sessionName,	// 클래스 구분용 세션네임
-// 			nickname: nickname,				// 사용자 구분용 닉네임
-// 			videoUrl: "https://i5a204.p.ssafy.io/openvidu/recordings/" + sessionId + "/" + streamName + ".webm"	// 영상 url
-// 		},
-// 		'오류 메시지',
-// 		res => {›
-// 			console.warn("Session info has been fetched");
-// 			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
-// 		}
-// 	);
-// }
-
-
 function fetchInfo() {
 	httpRequest(
 		'POST',
@@ -458,6 +441,51 @@ function httpRequest(method, url, body, errorMsg, callback) {
 	}
 }
 
+
+
+
+/* 민영 수정 시작: DB로 url 보내기 */
+
+// function sendUserInfo() {
+// 	httpRequest(
+// 		'POST',
+// 		'api/sendUserInfo', {	// 어디로 보낼지 경로 미정
+// 			sessionName: sessionName,	// 클래스 구분용 세션네임
+// 			nickname: nickname,				// 사용자 구분용 닉네임
+// 			videoUrl: "https://i5a204.p.ssafy.io/openvidu/recordings/" + sessionId + "/" + streamName + ".webm"	// 영상 url
+// 		},
+// 		'오류 메시지',
+// 		res => {›
+// 			console.warn("Session info has been fetched");
+// 			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
+// 		}
+// 	);
+// }
+
+function sendURL() {
+	// url 형식: https://i5a204.p.ssafy.io/openvidu/recordings/ses_DDO5OKxePI/str_CAM_E64m_con_TfgYxSzkPB.webm
+	axios ({
+		url: '',
+		baseURL: 'https://i5a204.p.ssafy.io:8080/',
+		method: 'post',
+		headers: {
+			Authorization: localStorage.getItem("jwt-auth-token")
+		},
+		data: {
+			// nickname: nickname,
+			videoURL: 'https://i5a204.p.ssafy.io/openvidu/recordings/' + sessionId + '/' + streamName + '.webm',
+		}
+	})
+	.then (res => {
+		console.log("Success: send url to DB");
+	})
+	.catch (err => {
+		console.log("Fail: send url to DB");
+	})
+}
+/* 민영 수정 끝: DB로 url 보내기 */
+
+
 function startRecording() {
 	// var outputMode = $('input[name=outputMode]:checked').val();
 
@@ -477,32 +505,8 @@ function startRecording() {
 			// checkBtnsRecordings();
 			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
 
-			// 
 		}
 	);
-}
-
-function sendURL() {
-	/* 민영 수정: DB로 url 보내기 */
-	// url 형식: https://i5a204.p.ssafy.io/openvidu/recordings/ses_DDO5OKxePI/str_CAM_E64m_con_TfgYxSzkPB.webm
-	axios ({
-		url: '',
-		baseURL: 'https://i5a204.p.ssafy.io:8080/',
-		method: 'post',
-		headers: {
-			Authorization: localStorage.getItem("jwt-auth-token")
-		},
-		data: {
-			// nickname: nickname,
-			videoURL: 'https://i5a204.p.ssafy.io/openvidu/recordings/' + sessionId + '/' + streamId + '.webm',
-		}
-	})
-	.then (res => {
-		console.log("Success: send url to DB");
-	})
-	.catch (err => {
-		console.log("Fail: send url to DB");
-	})
 }
 
 function stopRecording() {
