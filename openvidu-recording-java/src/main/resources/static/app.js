@@ -567,8 +567,8 @@ window.onbeforeunload = function () { // Gracefully leave session
 
 function updateNumVideos(i) {
 	numVideos += i;
-	const participantBtn = document.getElementById('paticipants')
-	participantBtn.innerHTML = `<i class="fas fa-users" id="participants">${numVideos}</i>`
+	const participantDOM = document.getElementById('participants')
+	participantDOM.innerHTML = `<i class="fas fa-users" id="participants">${numVideos}</i>`
 
 	const winWidth = window.innerWidth
 	const winHeight = window.innerHeight
