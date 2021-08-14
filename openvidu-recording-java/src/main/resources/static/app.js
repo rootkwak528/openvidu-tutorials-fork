@@ -474,7 +474,7 @@ function startRecording() {
 			console.log(res);
 			// document.getElementById('forceRecordingId').value = res.id;
 			forceRecordingId = res.id;	// 민영 수정
-			checkBtnsRecordings();
+			// checkBtnsRecordings();
 			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
 
 			// 
@@ -698,13 +698,15 @@ function ondblclickVideo(target) {
 
 // 호근 수정 끝 : 비디오 그리드
 
+
+/* 민영 수정 시작: 필요없는 함수들 주석 */
 function checkBtnsForce() {
 	if (document.getElementById("forceValue").value === "") {
-		document.getElementById('buttonForceUnpublish').disabled = true;
-		document.getElementById('buttonForceDisconnect').disabled = true;
+		// document.getElementById('buttonForceUnpublish').disabled = true;
+		// document.getElementById('buttonForceDisconnect').disabled = true;
 	} else {
-		document.getElementById('buttonForceUnpublish').disabled = false;
-		document.getElementById('buttonForceDisconnect').disabled = false;
+		// document.getElementById('buttonForceUnpublish').disabled = false;
+		// document.getElementById('buttonForceDisconnect').disabled = false;
 	}
 }
 
@@ -712,14 +714,16 @@ function checkBtnsRecordings() {
 	if (forceRecordingId === "") {
 	// if (document.getElementById("forceRecordingId").value === "") {
 		// document.getElementById('buttonGetRecording').disabled = true;
-		document.getElementById('buttonStopRecording').disabled = true;
+		// document.getElementById('buttonStopRecording').disabled = true;
 		// document.getElementById('buttonDeleteRecording').disabled = true;
 	} else {
 		// document.getElementById('buttonGetRecording').disabled = false;
-		document.getElementById('buttonStopRecording').disabled = false;
+		// document.getElementById('buttonStopRecording').disabled = false;
 		// document.getElementById('buttonDeleteRecording').disabled = false;
 	}
 }
+/* 민영 수정 끝: 필요없는 함수들 주석 */
+
 
 function pushEvent(event) {
 	events += (!events ? '' : '\n') + event.type;
