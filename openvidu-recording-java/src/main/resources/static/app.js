@@ -360,6 +360,9 @@ function appendNickname(videoElement, connection) {
 		userData = connection;
 		nodeId = connection;
 	} else {
+		console.log(connection);
+		console.log(connection.data);
+		
 		userData = JSON.parse(connection.data).clientData;
 		nodeId = connection.connectionId;
 	}

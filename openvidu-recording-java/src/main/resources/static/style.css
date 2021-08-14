@@ -642,6 +642,6 @@ table i {
 }
 
 /* nickname */
-.data-node {
+#video-container .data-node {
   margin: 0;
 }
