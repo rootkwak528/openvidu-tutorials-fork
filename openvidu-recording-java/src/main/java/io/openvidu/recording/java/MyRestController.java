@@ -379,21 +379,26 @@ public class MyRestController {
 	public ResponseEntity<?> stopRecording(@RequestBody Map<String, Object> params) throws IOException {
 		String recordingId = (String) params.get("recording");
 		String connectionId = (String) params.get("connectionId");
-		Object userJson = params.get("userJson");
+		// Object userJson = params.get("userJson");
 
-		System.out.println("userJson을 Object으로 받음");
+		// System.out.println("userJson을 Object으로 받음");
 		
 		System.out.println("Stoping recording | {recordingId}=" + recordingId);
 		System.out.println("Stoping recording | {connectionId}=" + connectionId);
-		System.out.println(userJson.toString());
+		// System.out.println(userJson.toString());
 		
 		try {
+			System.out.println("error1");
 			Recording recording = this.openVidu.stopRecording(recordingId);
 			
 			// url 확인 출력
+			System.out.println("error2");
 			System.out.println("stop recording - url: " + recording.getUrl());
-			// String sessionId = recording.getSessionId();
-			Stirng sessionId = recordingId;
+
+			System.out.println("error3");
+			String sessionId = recording.getSessionId();
+			// Stirng sessionId = recordingId;
+			
 			System.out.println("stop recording - sessionid: " + sessionId);
 			
 			// upzip
