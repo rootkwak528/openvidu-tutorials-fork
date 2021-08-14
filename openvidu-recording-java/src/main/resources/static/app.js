@@ -472,18 +472,41 @@ function startRecording() {
 		'Start recording WRONG',
 		res => {
 			console.log(res);
-			document.getElementById('forceRecordingId').value = res.id;
+			// document.getElementById('forceRecordingId').value = res.id;
 			forceRecordingId = res.id;	// 민영 수정
 			checkBtnsRecordings();
 			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
+
+			// 
 		}
 	);
+}
+
+function sendURL() {
+	/* 민영 수정: DB로 url 보내기 */
+	// url 형식: https://i5a204.p.ssafy.io/openvidu/recordings/ses_DDO5OKxePI/str_CAM_E64m_con_TfgYxSzkPB.webm
+	axios ({
+		url: '',
+		baseURL: 'https://i5a204.p.ssafy.io:8080/',
+		method: 'post',
+		data: {
+			nickname: nickname,
+			url: 'https://i5a204.p.ssafy.io/openvidu/recordings/' + sessionId + '/' + streamId + '.webm',
+		}
+	})
+	.then (res => {
+		console.log("Success: send url to DB");
+	})
+	.catch (err => {
+		console.log("Fail: send url to DB");
+	})
 }
 
 function stopRecording() {
 	// var forceRecordingId = document.getElementById('forceRecordingId').value;
 	userJson = JSON.stringify(userList);
 	console.log(userJson);
+
 	httpRequest(
 		'POST',
 		'api/recording/stop', {
