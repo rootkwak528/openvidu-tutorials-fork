@@ -640,3 +640,7 @@ table i {
 .dropup:hover .dropbtn {
   background-color: none;
 }
+
+.data-node {
+  z-index: 999;
+}
