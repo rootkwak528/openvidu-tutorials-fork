@@ -68,6 +68,7 @@ function muteVideo() {
 // 민영 호근 수정 시작 : session id
 
 let isTrainer
+let classTitle
 
 window.addEventListener("message", (event) => {
 	// 버튼 변경
@@ -80,6 +81,9 @@ window.addEventListener("message", (event) => {
 	sessionName = event.data.sessionName;
 	nickname = event.data.nickname;
 	isTrainer = event.data.isTrainer;
+	classTitle = event.data.classTitle;
+
+	document.getElementById('classname').innerText = classTitle
 }, false)
 
 // 민영 호근 수정 끝 : session id
@@ -190,6 +194,7 @@ function joinSession() {
 				$('#join').show();
 				$('#session').hide();
 			}
+			alert('세션이 종료되었습니다.')
 			window.close();
 		});
 
