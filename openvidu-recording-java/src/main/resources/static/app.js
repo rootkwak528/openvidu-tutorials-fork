@@ -524,7 +524,7 @@ function stopRecording() {
 		'api/recording/stop', {
 			recording: sessionId,
 			connectionId: connectionId, // 민영 수정
-			userList: userList // 민영 수정
+			// userList: userList // 민영 수정
 		},
 		'Stop recording WRONG',
 		res => {
