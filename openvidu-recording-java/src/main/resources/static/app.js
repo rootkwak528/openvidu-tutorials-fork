@@ -135,7 +135,7 @@ function joinSession() {
 			// let userInfo = [nickname, sessionId, connectionId, streamId];
 			// userList.push(userInfo);
 			// sendUserInfo();
-			sendURL();
+			// sendURL();
 			// 민영 수정 끝: DB로 사용자 videoURL 보내기
 
 			// Subscribe to the Stream to receive it
@@ -464,6 +464,7 @@ function httpRequest(method, url, body, errorMsg, callback) {
 // 	);
 // }
 
+/*
 function sendURL() {
 	// url 형식: https://i5a204.p.ssafy.io/openvidu/recordings/ses_DDO5OKxePI/str_CAM_E64m_con_TfgYxSzkPB.webm
 	axios ({
@@ -485,6 +486,7 @@ function sendURL() {
 		console.log("Fail: send url to DB");
 	})
 }
+*/
 /* 민영 수정 끝: DB로 url 보내기 */
 
 
