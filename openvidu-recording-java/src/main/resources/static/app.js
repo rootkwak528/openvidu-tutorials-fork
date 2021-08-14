@@ -489,9 +489,12 @@ function sendURL() {
 		url: '',
 		baseURL: 'https://i5a204.p.ssafy.io:8080/',
 		method: 'post',
+		headers: {
+			Authorization: localStorage.getItem("jwt-auth-token")
+		},
 		data: {
-			nickname: nickname,
-			url: 'https://i5a204.p.ssafy.io/openvidu/recordings/' + sessionId + '/' + streamId + '.webm',
+			// nickname: nickname,
+			videoURL: 'https://i5a204.p.ssafy.io/openvidu/recordings/' + sessionId + '/' + streamId + '.webm',
 		}
 	})
 	.then (res => {
