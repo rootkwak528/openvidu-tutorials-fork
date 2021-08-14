@@ -219,7 +219,7 @@ function joinSession() {
 		// --- 4) Connect to the session passing the retrieved token and some more data from
 		//        the client (in this case a JSON with the nickname chosen by the user) ---
 
-		session.connect(token, {cientData: nickname})
+		session.connect(token, {clientData: nickname})
 			.then(() => {
 
 				// --- 5) Set page layout for active call ---
