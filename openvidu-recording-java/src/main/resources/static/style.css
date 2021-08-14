@@ -640,3 +640,8 @@ table i {
 .dropup:hover .dropbtn {
   background-color: none;
 }
+
+/* nickname */
+.data-node {
+  margin: 0;
+}
