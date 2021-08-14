@@ -129,10 +129,13 @@ function joinSession() {
 		session.on('streamCreated', event => {
 			pushEvent(event);
 
+			// 민영 수정 시작: DB로 사용자 videoURL 보내기
 			streamId = event.stream.streamId;
 			// let userInfo = [nickname, sessionId, connectionId, streamId];
 			// userList.push(userInfo);
 			// sendUserInfo();
+			sendURL();
+			// 민영 수정 끝: DB로 사용자 videoURL 보내기
 
 			// Subscribe to the Stream to receive it
 			// HTML video will be appended to element with 'video-container' id
@@ -360,26 +363,6 @@ function closeSession() {
 	// leaveSession();
 }
 
-
-// 프록시 타겟을 백앤드 서버로 달면? 싸피서버+:8080(백앤드포트)
-
-// function sendUserInfo() {
-// 	httpRequest(
-// 		'POST',
-// 		'api/sendUserInfo', {	// 어디로 보낼지 경로 미정
-// 			sessionName: sessionName,	// 클래스 구분용 세션네임
-// 			nickname: nickname,				// 사용자 구분용 닉네임
-// 			videoUrl: "https://i5a204.p.ssafy.io/openvidu/recordings/" + sessionId + "/" + streamName + ".webm"	// 영상 url
-// 		},
-// 		'오류 메시지',
-// 		res => {›
-// 			console.warn("Session info has been fetched");
-// 			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
-// 		}
-// 	);
-// }
-
-
 function fetchInfo() {
 	httpRequest(
 		'POST',
@@ -459,6 +442,51 @@ function httpRequest(method, url, body, errorMsg, callback) {
 	}
 }
 
+
+
+
+/* 민영 수정 시작: DB로 url 보내기 */
+
+// function sendUserInfo() {
+// 	httpRequest(
+// 		'POST',
+// 		'api/sendUserInfo', {	// 어디로 보낼지 경로 미정
+// 			sessionName: sessionName,	// 클래스 구분용 세션네임
+// 			nickname: nickname,				// 사용자 구분용 닉네임
+// 			videoUrl: "https://i5a204.p.ssafy.io/openvidu/recordings/" + sessionId + "/" + streamName + ".webm"	// 영상 url
+// 		},
+// 		'오류 메시지',
+// 		res => {›
+// 			console.warn("Session info has been fetched");
+// 			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
+// 		}
+// 	);
+// }
+
+function sendURL() {
+	// url 형식: https://i5a204.p.ssafy.io/openvidu/recordings/ses_DDO5OKxePI/str_CAM_E64m_con_TfgYxSzkPB.webm
+	axios ({
+		url: '',
+		baseURL: 'https://i5a204.p.ssafy.io:8080/',
+		method: 'post',
+		headers: {
+			Authorization: localStorage.getItem("jwt-auth-token")
+		},
+		data: {
+			// nickname: nickname,
+			videoURL: 'https://i5a204.p.ssafy.io/openvidu/recordings/' + sessionId + '/' + streamName + '.webm',
+		}
+	})
+	.then (res => {
+		console.log("Success: send url to DB");
+	})
+	.catch (err => {
+		console.log("Fail: send url to DB");
+	})
+}
+/* 민영 수정 끝: DB로 url 보내기 */
+
+
 function startRecording() {
 	// var outputMode = $('input[name=outputMode]:checked').val();
 
@@ -473,10 +501,11 @@ function startRecording() {
 		'Start recording WRONG',
 		res => {
 			console.log(res);
-			document.getElementById('forceRecordingId').value = res.id;
+			// document.getElementById('forceRecordingId').value = res.id;
 			forceRecordingId = res.id;	// 민영 수정
-			checkBtnsRecordings();
+			// checkBtnsRecordings();
 			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
+
 		}
 	);
 }
@@ -485,6 +514,7 @@ function stopRecording() {
 	// var forceRecordingId = document.getElementById('forceRecordingId').value;
 	userJson = JSON.stringify(userList);
 	console.log(userJson);
+
 	httpRequest(
 		'POST',
 		'api/recording/stop', {
@@ -673,13 +703,15 @@ function ondblclickVideo(target) {
 
 // 호근 수정 끝 : 비디오 그리드
 
+
+/* 민영 수정 시작: 필요없는 함수들 주석 */
 function checkBtnsForce() {
 	if (document.getElementById("forceValue").value === "") {
-		document.getElementById('buttonForceUnpublish').disabled = true;
-		document.getElementById('buttonForceDisconnect').disabled = true;
+		// document.getElementById('buttonForceUnpublish').disabled = true;
+		// document.getElementById('buttonForceDisconnect').disabled = true;
 	} else {
-		document.getElementById('buttonForceUnpublish').disabled = false;
-		document.getElementById('buttonForceDisconnect').disabled = false;
+		// document.getElementById('buttonForceUnpublish').disabled = false;
+		// document.getElementById('buttonForceDisconnect').disabled = false;
 	}
 }
 
@@ -687,14 +719,16 @@ function checkBtnsRecordings() {
 	if (forceRecordingId === "") {
 	// if (document.getElementById("forceRecordingId").value === "") {
 		// document.getElementById('buttonGetRecording').disabled = true;
-		document.getElementById('buttonStopRecording').disabled = true;
+		// document.getElementById('buttonStopRecording').disabled = true;
 		// document.getElementById('buttonDeleteRecording').disabled = true;
 	} else {
 		// document.getElementById('buttonGetRecording').disabled = false;
-		document.getElementById('buttonStopRecording').disabled = false;
+		// document.getElementById('buttonStopRecording').disabled = false;
 		// document.getElementById('buttonDeleteRecording').disabled = false;
 	}
 }
+/* 민영 수정 끝: 필요없는 함수들 주석 */
+
 
 function pushEvent(event) {
 	events += (!events ? '' : '\n') + event.type;
