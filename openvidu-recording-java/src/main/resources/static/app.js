@@ -84,6 +84,18 @@ window.addEventListener("message", (event) => {
 
 // 민영 호근 수정 끝 : session id
 
+// 민영 호근 수정 시작 : close
+
+function onClose() {
+	if (isTrainer) {
+		closeSession()
+	} else {
+		leaveSession()
+	}
+}
+
+// 민영 호근 수정 끝 : close
+
 // 호근 수정 시작 : video grid
 
 let colNum = 1;
