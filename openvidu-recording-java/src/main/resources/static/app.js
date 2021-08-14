@@ -190,6 +190,7 @@ function joinSession() {
 				$('#join').show();
 				$('#session').hide();
 			}
+			window.close();
 		});
 
 		session.on('recordingStarted', event => {
@@ -198,7 +199,6 @@ function joinSession() {
 
 		session.on('recordingStopped', event => {
 			pushEvent(event);
-			window.close();
 		});
 
 		// On every asynchronous exception...
@@ -312,7 +312,7 @@ function leaveSession() {
 	// --- 9) Leave the session by calling 'disconnect' method over the Session object ---
 	session.disconnect();
 	enableBtn();
-	// window.close();
+	window.close();
 }
 
 /* OPENVIDU METHODS */
