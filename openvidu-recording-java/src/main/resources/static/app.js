@@ -149,7 +149,7 @@ function joinSession() {
 
 			// 민영 수정 시작: DB로 사용자 videoURL 보내기
 			//streamId = event.stream.streamId;
-			
+
 			// let userInfo = [nickname, sessionId, connectionId, streamId];
 			// userList.push(userInfo);
 			// sendUserInfo();
@@ -368,7 +368,7 @@ function appendNickname(videoElement, connection) {
 	dataNode.id = "data-" + nodeId;
 	dataNode.innerHTML = "<p>" + userData + "</p>";
 	videoElement.parentNode.insertBefore(dataNode, videoElement.nextSibling);
-	addClickListener(videoElement, userData);
+	// addClickListener(videoElement, userData);
 } 
 
 function removeUserData(connection) {
