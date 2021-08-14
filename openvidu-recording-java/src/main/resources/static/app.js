@@ -78,6 +78,7 @@ window.addEventListener("message", (event) => {
 	console.log("nickname: " + nickname);
 	// 민영 수정 끝
 	$('#nickname').attr('disabled', true)
+	document.getElementById("join-btn").disabled = false;
 }, false)
 
 // 호근 수정 끝 : session id
