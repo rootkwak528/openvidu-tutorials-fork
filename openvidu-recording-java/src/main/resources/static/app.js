@@ -147,6 +147,8 @@ function joinSession() {
 		session.on('streamCreated', event => {
 			pushEvent(event);
 
+			session.connection.data = nickname;
+
 			// 민영 수정 시작: DB로 사용자 videoURL 보내기
 			streamId = event.stream.streamId;
 			// let userInfo = [nickname, sessionId, connectionId, streamId];
@@ -159,11 +161,14 @@ function joinSession() {
 			// HTML video will be appended to element with 'video-container' id
 			var subscriber = session.subscribe(event.stream, 'video-container');
 
+			// 닉네임 표시할 때 봐
 			// When the HTML video has been appended to DOM...
 			subscriber.on('videoElementCreated', event => {
 				pushEvent(event);
 				// Add a new HTML element for the user's name and nickname over its video
 				updateNumVideos(1);
+				// 민영 수정
+				appendNickname(event.element, subscriber.stream.connection.data);
 			});
 
 			// When the HTML video has been appended to DOM...
@@ -214,7 +219,7 @@ function joinSession() {
 		// --- 4) Connect to the session passing the retrieved token and some more data from
 		//        the client (in this case a JSON with the nickname chosen by the user) ---
 
-		session.connect(token)
+		session.connect()
 			.then(() => {
 
 				// --- 5) Set page layout for active call ---
@@ -273,6 +278,8 @@ function joinSession() {
 					pushEvent(event);
 					updateNumVideos(1);
 					$(event.element).prop('muted', true); // Mute local video
+					// 민영 수정
+					appendNickname(event.element, nickname);
 				});
 
 				// When the HTML video has been appended to DOM...
