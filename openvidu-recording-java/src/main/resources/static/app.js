@@ -671,6 +671,10 @@ window.onresize = function (event) {
 		totalHeight = rowNum * videoSizeX * 3 / 4 + 10 * (rowNum - 1)
 	}
 
+	if (numVideos == 1) {
+		colNum = 1
+	}
+
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
