@@ -362,6 +362,7 @@ function appendNickname(videoElement, connection) {
 	} else {
 		console.log(connection);
 		console.log(connection.data);
+		console.log(JSON.parse(connection.data));
 		
 		userData = JSON.parse(connection.data).clientData;
 		nodeId = connection.connectionId;
