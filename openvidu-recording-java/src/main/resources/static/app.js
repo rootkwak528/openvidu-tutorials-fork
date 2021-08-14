@@ -118,6 +118,7 @@ function joinSession() {
 			console.log(event.connection.connectionId);
 			connectionId = !connectionId ? event.connection.connectionId : connectionId;
 			// connectionId = event.connection.connectionId;
+			sessionId = event.target.sessionId;
 			// 민영 수정 끝
 		});
 
