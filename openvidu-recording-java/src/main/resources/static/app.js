@@ -147,11 +147,9 @@ function joinSession() {
 		session.on('streamCreated', event => {
 			pushEvent(event);
 
-			// 민영 수정
-			session.connection.data = nickname;
-
 			// 민영 수정 시작: DB로 사용자 videoURL 보내기
-			streamId = event.stream.streamId;
+			//streamId = event.stream.streamId;
+			
 			// let userInfo = [nickname, sessionId, connectionId, streamId];
 			// userList.push(userInfo);
 			// sendUserInfo();
@@ -169,7 +167,7 @@ function joinSession() {
 				// Add a new HTML element for the user's name and nickname over its video
 				updateNumVideos(1);
 				// 민영 수정
-				// appendNickname(event.element, subscriber.stream.connection.data);
+				appendNickname(event.element, subscriber.stream.connection);
 			});
 
 			// When the HTML video has been appended to DOM...
@@ -187,6 +185,7 @@ function joinSession() {
 
 		session.on('streamDestroyed', event => {
 			pushEvent(event);
+			removeUserData(event.stream.connection);
 		});
 
 		session.on('sessionDisconnected', event => {
@@ -220,7 +219,7 @@ function joinSession() {
 		// --- 4) Connect to the session passing the retrieved token and some more data from
 		//        the client (in this case a JSON with the nickname chosen by the user) ---
 
-		session.connect()
+		session.connect(token, {cientData: nickname})
 			.then(() => {
 
 				// --- 5) Set page layout for active call ---
@@ -280,7 +279,7 @@ function joinSession() {
 					updateNumVideos(1);
 					$(event.element).prop('muted', true); // Mute local video
 					// 민영 수정
-					// appendNickname(event.element, nickname);
+					appendNickname(event.element, nickname);
 				});
 
 				// When the HTML video has been appended to DOM...
@@ -352,6 +351,29 @@ function getToken(callback) {
 			callback(token); // Continue the join operation
 		}
 	);
+}
+
+function appendNickname(videoElement, connection) {
+	var userData;
+	var nodeId;
+	if (typeof connection === "string") {
+		userData = connection;
+		nodeId = connection;
+	} else {
+		userData = JSON.parse(connection.data).clientData;
+		nodeId = connection.connectionId;
+	}
+	var dataNode = document.createElement('div');
+	dataNode.className = "data-node";
+	dataNode.id = "data-" + nodeId;
+	dataNode.innerHTML = "<p>" + userData + "</p>";
+	videoElement.parentNode.insertBefore(dataNode, videoElement.nextSibling);
+	addClickListener(videoElement, userData);
+} 
+
+function removeUserData(connection) {
+	var dataNode = document.getElementById("data-" + connection.connectionId);
+	dataNode.parentNode.removeChild(dataNode);
 }
 
 function removeUser() {
