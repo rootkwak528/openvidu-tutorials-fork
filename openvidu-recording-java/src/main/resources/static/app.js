@@ -506,7 +506,7 @@ function startRecording() {
 			console.log(res);
 			// document.getElementById('forceRecordingId').value = res.id;
 			forceRecordingId = res.id;	// 민영 수정
-			console.log(forceRecordingId);
+			console.log("forceRecordingId: " + forceRecordingId);
 			// checkBtnsRecordings();
 			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
 
@@ -518,7 +518,7 @@ function stopRecording() {
 	// var forceRecordingId = document.getElementById('forceRecordingId').value;
 	userJson = JSON.stringify(userList);
 	console.log(userJson);
-	console.log(forceRecordingId);
+	console.log("forceRecordingId: " + forceRecordingId);
 	httpRequest(
 		'POST',
 		'api/recording/stop', {
