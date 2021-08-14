@@ -475,7 +475,7 @@ function sendURL() {
 		},
 		data: {
 			// nickname: nickname,
-			videoURL: 'https://i5a204.p.ssafy.io/openvidu/recordings/' + sessionId + '/' + streamName + '.webm',
+			videoURL: 'https://i5a204.p.ssafy.io/openvidu/recordings/' + sessionId + '/' + streamId + '.webm',
 		}
 	})
 	.then (res => {
