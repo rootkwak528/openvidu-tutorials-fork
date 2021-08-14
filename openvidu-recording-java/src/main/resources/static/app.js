@@ -167,7 +167,7 @@ function joinSession() {
 				// Add a new HTML element for the user's name and nickname over its video
 				updateNumVideos(1);
 				// 민영 수정
-				appendNickname(event.element, subscriber.stream.connection);
+				appendNickname(event.element, subscriber.stream.connection.data.split("%/%")[0]);
 			});
 
 			// When the HTML video has been appended to DOM...
