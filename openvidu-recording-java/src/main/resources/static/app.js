@@ -219,7 +219,7 @@ function joinSession() {
 		// --- 4) Connect to the session passing the retrieved token and some more data from
 		//        the client (in this case a JSON with the nickname chosen by the user) ---
 
-		session.connect(token, {clientData: nickname})
+		session.connect(token, nickname)
 			.then(() => {
 
 				// --- 5) Set page layout for active call ---
@@ -362,7 +362,7 @@ function appendNickname(videoElement, connection) {
 	} else {
 		console.log(connection);
 		console.log(connection.data);
-		console.log(JSON.parse(connection.data));
+		// console.log(JSON.parse(connection.data));
 		
 		userData = JSON.parse(connection.data).clientData;
 		nodeId = connection.connectionId;
