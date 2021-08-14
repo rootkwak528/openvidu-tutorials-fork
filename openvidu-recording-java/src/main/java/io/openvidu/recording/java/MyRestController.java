@@ -392,7 +392,8 @@ public class MyRestController {
 			
 			// url 확인 출력
 			System.out.println("stop recording - url: " + recording.getUrl());
-			String sessionId = recording.getSessionId();
+			// String sessionId = recording.getSessionId();
+			Stirng sessionId = recordingId;
 			System.out.println("stop recording - sessionid: " + sessionId);
 			
 			// upzip
