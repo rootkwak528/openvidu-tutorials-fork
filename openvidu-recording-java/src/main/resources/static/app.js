@@ -324,7 +324,7 @@ function leaveSession() {
 	// --- 9) Leave the session by calling 'disconnect' method over the Session object ---
 	session.disconnect();
 	enableBtn();
-	window.close();
+	// window.close();
 }
 
 /* OPENVIDU METHODS */
