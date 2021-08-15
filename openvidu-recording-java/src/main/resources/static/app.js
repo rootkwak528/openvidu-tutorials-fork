@@ -396,7 +396,7 @@ function explodeSession() {
 			
 			endTime = Date.now()
 			const timeDiff = endTime - startTime
-			const timeThreshold = 6000  // 1분 (ms 단위임)
+			const timeThreshold = 3_600_000  // 1시간 (ms 단위임)
 			
 			if (timeDiff > timeThreshold) {
 				postCcnt()
