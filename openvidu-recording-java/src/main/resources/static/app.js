@@ -73,21 +73,20 @@ let classNo
 
 window.addEventListener("message", (event) => {
 	if (!sessionName) {
+		// 버튼 변경
+		$('#sessionName').val(event.data.sessionName)
+		$('#sessionName').attr('disabled', true)
+		$('#nickname').val(event.data.nickname)
+		$('#nickname').attr('disabled', true)
+		document.getElementById("join-btn").disabled = false;
 
-	// 버튼 변경
-	$('#sessionName').val(event.data.sessionName)
-	$('#sessionName').attr('disabled', true)
-	$('#nickname').val(event.data.nickname)
-	$('#nickname').attr('disabled', true)
-	document.getElementById("join-btn").disabled = false;
-
-	sessionName = event.data.sessionName;
-	nickname = event.data.nickname;
-	isTrainer = event.data.isTrainer;
-	classTitle = event.data.classTitle;
-	classNo = event.data.classNo;
-	
-	document.getElementById('classname').innerText = classTitle
+		sessionName = event.data.sessionName;
+		nickname = event.data.nickname;
+		isTrainer = event.data.isTrainer;
+		classTitle = event.data.classTitle;
+		classNo = event.data.classNo;
+		
+		document.getElementById('classname').innerText = classTitle
 	}
 }, false)
 
