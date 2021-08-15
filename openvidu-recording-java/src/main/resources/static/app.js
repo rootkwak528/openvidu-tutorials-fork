@@ -362,6 +362,7 @@ function appendNickname(videoElement, connection) {
 	} else {
 		console.log(connection);
 		console.log(connection.data);
+		console.log("appendNickname - connectionId: " + connection.connectionId);
 		// console.log(JSON.parse(connection.data));
 		
 		userData = JSON.parse(connection.data).clientData;
@@ -370,6 +371,7 @@ function appendNickname(videoElement, connection) {
 	var dataNode = document.createElement('div');
 	dataNode.className = "data-node";
 	dataNode.id = "data-" + nodeId;
+	// dataNode.id = "data-" + userData;
 	dataNode.innerHTML = "<p>" + userData + "</p>";
 	videoElement.parentNode.insertBefore(dataNode, videoElement.nextSibling);
 	// addClickListener(videoElement, userData);
