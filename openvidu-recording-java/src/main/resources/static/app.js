@@ -149,12 +149,14 @@ function joinSession() {
 		session.on('streamCreated', event => {
 			pushEvent(event);
 
-			console.log("event.stream: " + event.stream);
-			console.log("event.stream.connection.data: " + event.stream.connection.data);
+			// video div와 nickname p tag 넣을 videoNode 생성
+			const videoContainer = document.getElementById('video-container');
+			const videoNode = videoContainer.appendChild(document.createElement("div"));
+			videoNode.id = "video-" + event.stream.connection.data.split("%/%")[0];
 
 			// Subscribe to the Stream to receive it
 			// HTML video will be appended to element with 'video-container' id
-			var subscriber = session.subscribe(event.stream, 'video-container');
+			var subscriber = session.subscribe(event.stream, videoNode.id);
 
 			// 닉네임 표시할 때 봐
 			// When the HTML video has been appended to DOM...
@@ -408,13 +410,11 @@ function appendNickname(videoElement, connection) {
 		userData = connection.data.split("%/%")[0];
 		nodeId = connection.connectionId;
 	}
-	var dataNode = document.createElement('div');
+	var dataNode = document.getElementById("video-" + userData);
 	dataNode.className = "data-node";
-	dataNode.id = "data-" + nodeId;
-	// dataNode.id = "data-" + userData;
-	dataNode.innerHTML = "<p>" + userData + "</p>";
-	videoElement.parentNode.insertBefore(dataNode, videoElement.nextSibling);
-	// addClickListener(videoElement, userData);
+	const nickNode = dataNode.appendChild(document.createElement("p"));
+	nickNode.innerHTML = userData;
+	// videoElement.parentNode.insertBefore(dataNode, videoElement.nextSibling);
 } 
 
 function removeUserData(connection) {
