@@ -167,7 +167,8 @@ function joinSession() {
 				// Add a new HTML element for the user's name and nickname over its video
 				updateNumVideos(1);
 				// 민영 수정
-				appendNickname(event.element, subscriber.stream.connection.data.split("%/%")[0]);
+				// appendNickname(event.element, subscriber.stream.connection.data.split("%/%")[0]);
+				appendNickname(event.element, subscriber.stream.connection);
 			});
 
 			// When the HTML video has been appended to DOM...
@@ -364,8 +365,9 @@ function appendNickname(videoElement, connection) {
 		console.log(connection.data);
 		console.log("appendNickname - connectionId: " + connection.connectionId);
 		// console.log(JSON.parse(connection.data));
-		
-		userData = JSON.parse(connection.data).clientData;
+
+		console.log("connection.data.split...: " + connection.data.split("%/%")[0]);
+		userData = connection.data.split("%/%")[0];
 		nodeId = connection.connectionId;
 	}
 	var dataNode = document.createElement('div');
