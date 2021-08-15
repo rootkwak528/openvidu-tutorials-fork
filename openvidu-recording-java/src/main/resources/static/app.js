@@ -410,6 +410,7 @@ function explodeSession() {
 					.catch(err => {
 						console.log("Fail: DB count update");
 						alert('수업이 올바르게 종료되지 않았습니다.\n다시 시도해주세요.')
+						closeSession()
 					})
 
 			} else {
