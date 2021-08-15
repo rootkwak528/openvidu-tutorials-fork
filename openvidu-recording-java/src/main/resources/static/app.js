@@ -532,7 +532,7 @@ function sendURL() {
 	// url 형식: https://i5a204.p.ssafy.io/openvidu/recordings/ses_DDO5OKxePI/str_CAM_E64m_con_TfgYxSzkPB.webm
 	axios ({
 		url: 'v1/class/video/' + classNo,
-		baseURL: 'https://localhost:8080/',
+		baseURL: 'http://localhost:8080/',
 		method: 'post',
 		headers: {
 			Authorization: "Bearer " + localStorage.getItem("jwt-auth-token")
