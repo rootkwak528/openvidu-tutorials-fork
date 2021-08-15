@@ -685,6 +685,10 @@ window.onbeforeunload = function () { // Gracefully leave session
 	if (session) {
 		removeUser();
 		leaveSession();
+
+		if (isTrainer) {
+			closeSession();
+		}
 	}
 }
 
