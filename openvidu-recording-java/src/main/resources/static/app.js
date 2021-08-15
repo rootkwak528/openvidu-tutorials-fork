@@ -341,7 +341,7 @@ function leaveSession() {
 	// --- 9) Leave the session by calling 'disconnect' method over the Session object ---
 	session.disconnect();
 	enableBtn();
-	window.close();
+	// window.close();
 }
 
 // 호근 민영 수정 시작
@@ -359,7 +359,7 @@ async function trainerLeaveSesion() {
 	.then (res => {
 		console.log("Success: DB participants clear");
 		console.log(res)
-		window.close();
+		// window.close();
 	})
 	.catch (err => {
 		console.log("Fail: clear DB participants");
