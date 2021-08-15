@@ -26,6 +26,10 @@ var publishVideo = true;
 var isAudioMute = false;
 var isVideoMute = false;
 
+// 호근 수정 : 수업 시간
+let startTime
+let endTime
+
 function muteAudio() {
 	publishAudio = !publishAudio
 	publisher.publishAudio(publishAudio)
@@ -327,6 +331,8 @@ function joinSession() {
 				document.getElementById('header').style.display = 'block'
 				document.getElementById('settings').style.display = 'block'
 
+				// 호근 수정 수업 시작 시간
+				startTime = Date.now()
 			})
 			.catch(error => {
 				console.warn('There was an error connecting to the session:', error.code, error.message);
@@ -443,6 +449,10 @@ function closeSession() {
 		.then (res => {
 			console.log("Success: DB participants clear");
 			console.log(res)
+			
+			endTime = Date.now()
+			const timeDiff = endTime - startTime
+			console.log('timeDiff : ', timeDiff)
 			
 			httpRequest(
 				'DELETE',
