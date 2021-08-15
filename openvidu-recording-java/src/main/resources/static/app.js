@@ -767,9 +767,10 @@ window.onresize = function (event) {
 // 더블클릭하면 커지기
 
 window.ondblclick = function (event) {
+	console.log("event.target: " + event.target)
 	if (event.target.className == 'data-node') {
 		console.log("event.target.firstChild: " + event.target.firstChild)
-		console.log(event.target)
+		console.log("event.target: " + event.target)
 		ondblclickVideo(event.target.firstChild)
 	}
 }
