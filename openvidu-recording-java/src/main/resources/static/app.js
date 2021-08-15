@@ -611,7 +611,7 @@ function httpRequest(method, url, body, errorMsg, callback) {
 function sendVideoURL() {
 	// "{"videoUrl":"https://i5a204.p.ssafy.io/openvidu/recordings/ses_PksTTIPw64/undefined.webm"}"
 	// url 형식: https://i5a204.p.ssafy.io/openvidu/recordings/ses_DDO5OKxePI/str_CAM_E64m_con_TfgYxSzkPB.webm
-	console.log(streamId);
+	console.log('>>> https://i5a204.p.ssafy.io/openvidu/recordings/' + sessionId + '/' + streamId + '.webm');
 	axios ({
 		url: '/v1/class/video/' + classNo,
 		baseURL: 'http://localhost:8080/',
