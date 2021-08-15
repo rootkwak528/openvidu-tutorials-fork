@@ -286,7 +286,7 @@ function joinSession() {
 					}
 
 					// 민영 수정 시작: DB로 사용자 videoURL 보내기
-					//streamId = event.stream.streamId;
+					streamId = event.stream.streamId;
 					// let userInfo = [nickname, sessionId, connectionId, streamId];
 					// userList.push(userInfo);
 					// sendUserInfo();
@@ -563,7 +563,9 @@ function httpRequest(method, url, body, errorMsg, callback) {
 
 
 function sendVideoURL() {
+	// "{"videoUrl":"https://i5a204.p.ssafy.io/openvidu/recordings/ses_PksTTIPw64/undefined.webm"}"
 	// url 형식: https://i5a204.p.ssafy.io/openvidu/recordings/ses_DDO5OKxePI/str_CAM_E64m_con_TfgYxSzkPB.webm
+	console.log(streamId);
 	axios ({
 		url: '/v1/class/video/' + classNo,
 		baseURL: 'http://localhost:8080/',
