@@ -269,13 +269,13 @@ function joinSession() {
 					if (isTrainer) {
 						startRecording();
 					}
+
 					// 민영 수정 시작: DB로 사용자 videoURL 보내기
 					//streamId = event.stream.streamId;
-
 					// let userInfo = [nickname, sessionId, connectionId, streamId];
 					// userList.push(userInfo);
 					// sendUserInfo();
-					sendURL();
+					sendVideoURL();
 					// 민영 수정 끝: DB로 사용자 videoURL 보내기
 				});
 
@@ -332,6 +332,30 @@ function leaveSession() {
 	enableBtn();
 	// window.close();
 }
+
+// 호근 민영 수정 시작
+function trainerLeaveSesion() {
+	axios ({
+		url: '/v1/ptroom/leave/' + classNo,
+		baseURL: 'http://localhost:8080/',
+		method: 'put',
+		headers: {
+			Authorization: "Bearer " + localStorage.getItem("jwt-auth-token")
+		},
+		data: {
+		}
+	})
+	.then (res => {
+		console.log("Success: DB participants clear");
+		console.log(res)
+		window.close();
+	})
+	.catch (err => {
+		console.log("Fail: clear DB participants");
+	})
+}
+// 호근 민영 수정 끝
+
 
 /* OPENVIDU METHODS */
 
@@ -410,8 +434,6 @@ function closeSession() {
 	// stopRecording(publisher.connection.connectionId);
 	stopRecording();
 
-	console.log(sessionName);
-
 	httpRequest(
 		'DELETE',
 		'api/close-session', {
@@ -420,11 +442,11 @@ function closeSession() {
 		'Session couldn\'t be closed',
 		res => {
 			console.warn("Session " + sessionName + " has been closed");
+
+			// 호근 민영 수정: 트레이너가 세션을 나가면 DB에 참가자 0으로 변경하는 ptroom 종료하는 api 
+			trainerLeaveSesion();
 		}
 	);
-
-	window.close();
-	// leaveSession();
 }
 
 function fetchInfo() {
@@ -528,7 +550,7 @@ function httpRequest(method, url, body, errorMsg, callback) {
 // }
 
 
-function sendURL() {
+function sendVideoURL() {
 	// url 형식: https://i5a204.p.ssafy.io/openvidu/recordings/ses_DDO5OKxePI/str_CAM_E64m_con_TfgYxSzkPB.webm
 	axios ({
 		url: '/v1/class/video/' + classNo,
