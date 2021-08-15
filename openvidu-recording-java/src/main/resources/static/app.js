@@ -395,7 +395,7 @@ function explodeSession() {
 			
 			endTime = Date.now()
 			const timeDiff = endTime - startTime
-			const timeThreshold = 60000  // 1분 (ms 단위임)
+			const timeThreshold = 6000  // 1분 (ms 단위임)
 			
 			if (timeDiff > timeThreshold) {
 
@@ -406,7 +406,7 @@ function explodeSession() {
 
 						closeSession()
 					})
-					
+
 					.catch(err => {
 						console.log("Fail: DB count update");
 						alert('수업이 올바르게 종료되지 않았습니다.\n다시 시도해주세요.')
