@@ -147,15 +147,6 @@ function joinSession() {
 		session.on('streamCreated', event => {
 			pushEvent(event);
 
-			// 민영 수정 시작: DB로 사용자 videoURL 보내기
-			//streamId = event.stream.streamId;
-
-			// let userInfo = [nickname, sessionId, connectionId, streamId];
-			// userList.push(userInfo);
-			// sendUserInfo();
-			// sendURL();
-			// 민영 수정 끝: DB로 사용자 videoURL 보내기
-
 			// Subscribe to the Stream to receive it
 			// HTML video will be appended to element with 'video-container' id
 			var subscriber = session.subscribe(event.stream, 'video-container');
@@ -271,7 +262,19 @@ function joinSession() {
 				publisher.on('streamCreated', event => {
 					pushEvent(event);
 					console.log("publisher: start recording");
-					startRecording();
+
+					// 호근 민영 수정: 트레이너만 녹화 시작
+					if (isTrainer) {
+						startRecording();
+					}
+					// 민영 수정 시작: DB로 사용자 videoURL 보내기
+					//streamId = event.stream.streamId;
+
+					// let userInfo = [nickname, sessionId, connectionId, streamId];
+					// userList.push(userInfo);
+					// sendUserInfo();
+					sendURL();
+					// 민영 수정 끝: DB로 사용자 videoURL 보내기
 				});
 
 				// When our HTML video has been added to DOM...
