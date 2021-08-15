@@ -768,10 +768,10 @@ window.onresize = function (event) {
 
 window.ondblclick = function (event) {
 	console.log("event.target: " + event.target)
-	if (event.target.className == 'data-node') {
+	if (event.target.tagName == 'VIDEO') {
 		console.log("event.target.firstChild: " + event.target.firstChild)
 		console.log("event.target: " + event.target)
-		ondblclickVideo(event.target.firstChild)
+		ondblclickVideo(event.target)
 	}
 }
 
@@ -785,6 +785,8 @@ function ondblclickVideo(target) {
 		// 하이라이트 비디오가 이미 있다면,
 			// 하이라이트 비디오 일반 비디오로 옮기기
 		// 타겟 비디오 하이라이트 비디오로 옮기기
+
+	const target = target.parentElement;
 
 	if (target.classList.contains('focus')) {
 		focusNum -= 1
@@ -819,7 +821,6 @@ function ondblclickVideo(target) {
 }
 
 // 호근 수정 끝 : 비디오 그리드
-
 
 /* 민영 수정 시작: 필요없는 함수들 주석 */
 function checkBtnsForce() {
