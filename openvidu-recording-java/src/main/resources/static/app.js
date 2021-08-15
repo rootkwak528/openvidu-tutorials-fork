@@ -87,6 +87,8 @@ window.addEventListener("message", (event) => {
 		classNo = event.data.classNo;
 		
 		document.getElementById('classname').innerText = classTitle
+
+		localStorage.setItem('jwt-auth-token', event.data.token)
 	}
 }, false)
 
