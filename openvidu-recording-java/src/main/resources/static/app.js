@@ -86,6 +86,8 @@ window.addEventListener("message", (event) => {
 	classNo = event.data.classNo;
 	
 	document.getElementById('classname').innerText = classTitle
+
+	console("여기확인해", sessionName, nickname, isTrainer, classTitle, classNo);
 }, false)
 
 // 민영 호근 수정 끝 : session id
