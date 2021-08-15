@@ -102,7 +102,7 @@ window.addEventListener("message", (event) => {
 
 function onClose() {
 	if (isTrainer) {
-		closeSession()
+		explodeSession()
 	} else {
 		leaveSession()
 	}
@@ -367,6 +367,61 @@ function trainerLeaveSesion() {
 		}
 	})
 }
+
+function postCcnt() {
+	return axios ({
+		url: '/v1/class/cnt/' + classNo,
+		baseURL: 'http://localhost:8080/',
+		method: 'put',
+		headers: {
+			Authorization: "Bearer " + localStorage.getItem("jwt-auth-token")
+		},
+		data: {
+		}
+	})
+}
+
+function explodeSession() {
+	console.log("closeSession func");
+
+	// stopRecording(publisher.connection.connectionId);
+	stopRecording();
+
+	// 호근 민영 수정: 트레이너가 세션을 나가면 DB에 참가자 0으로 변경하는 ptroom 종료하는 api 
+	trainerLeaveSesion()
+		.then(res => {
+			console.log("Success: DB participants clear");
+			console.log(res)
+			
+			endTime = Date.now()
+			const timeDiff = endTime - startTime
+			const timeThreshold = 60000  // 1분 (ms 단위임)
+			
+			if (timeDiff > timeThreshold) {
+
+				postCcnt()
+					.then(res => {
+						console.log("Success: DB count ++");
+						console.log(res)
+
+						closeSession()
+					})
+					
+					.catch(err => {
+						console.log("Fail: DB count update");
+						alert('수업이 올바르게 종료되지 않았습니다.\n다시 시도해주세요.')
+					})
+
+			} else {
+				closeSession()
+			}
+		})
+
+		.catch(err => {
+			console.log("Fail: clear DB participants");
+			alert('수업이 올바르게 종료되지 않았습니다.\n다시 시도해주세요.')
+		})
+}
 // 호근 민영 수정 끝
 
 
@@ -439,35 +494,16 @@ function removeUser() {
 }
 
 function closeSession() {
-	console.log("closeSession func");
-
-	// stopRecording(publisher.connection.connectionId);
-	stopRecording();
-
-	// 호근 민영 수정: 트레이너가 세션을 나가면 DB에 참가자 0으로 변경하는 ptroom 종료하는 api 
-	trainerLeaveSesion()
-		.then (res => {
-			console.log("Success: DB participants clear");
-			console.log(res)
-			
-			endTime = Date.now()
-			const timeDiff = endTime - startTime
-			console.log('timeDiff : ', timeDiff)
-			
-			httpRequest(
-				'DELETE',
-				'api/close-session', {
-					sessionName: sessionName
-				},
-				'Session couldn\'t be closed',
-				res => {
-					console.warn("Session " + sessionName + " has been closed");
-				}
-			);
-		})
-		.catch (err => {
-			console.log("Fail: clear DB participants");
-		})
+	httpRequest(
+		'DELETE',
+		'api/close-session', {
+			sessionName: sessionName
+		},
+		'Session couldn\'t be closed',
+		res => {
+			console.warn("Session " + sessionName + " has been closed");
+		}
+	);
 }
 
 function fetchInfo() {
