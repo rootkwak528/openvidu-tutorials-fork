@@ -418,8 +418,7 @@ function appendNickname(videoElement, connection) {
 } 
 
 function removeUserData(connection) {
-	console.log(connection.connectionId);
-	var dataNode = document.getElementById("data-" + connection.connectionId);
+	var dataNode = document.getElementById("data-" + connection.data.split("%/%")[0]);
 	dataNode.parentNode.removeChild(dataNode);
 }
 
