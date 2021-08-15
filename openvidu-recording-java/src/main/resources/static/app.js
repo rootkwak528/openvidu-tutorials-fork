@@ -72,6 +72,8 @@ let classTitle
 let classNo
 
 window.addEventListener("message", (event) => {
+	if (!sessionName) {
+
 	// 버튼 변경
 	$('#sessionName').val(event.data.sessionName)
 	$('#sessionName').attr('disabled', true)
@@ -86,8 +88,7 @@ window.addEventListener("message", (event) => {
 	classNo = event.data.classNo;
 	
 	document.getElementById('classname').innerText = classTitle
-
-	console.log("여기확인해", sessionName, nickname, isTrainer, classTitle, classNo);
+	}
 }, false)
 
 // 민영 호근 수정 끝 : session id
