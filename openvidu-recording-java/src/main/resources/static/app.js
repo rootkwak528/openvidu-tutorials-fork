@@ -444,7 +444,7 @@ async function closeSession() {
 			console.warn("Session " + sessionName + " has been closed");
 
 			// 호근 민영 수정: 트레이너가 세션을 나가면 DB에 참가자 0으로 변경하는 ptroom 종료하는 api 
-			await trainerLeaveSesion();
+			trainerLeaveSesion();
 		}
 	);
 }
