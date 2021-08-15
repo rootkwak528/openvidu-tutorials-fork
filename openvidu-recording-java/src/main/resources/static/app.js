@@ -200,7 +200,7 @@ function joinSession() {
 				$('#session').hide();
 			}
 			alert('세션이 종료되었습니다.')
-			window.close();
+			// window.close();
 		});
 
 		session.on('recordingStarted', event => {
