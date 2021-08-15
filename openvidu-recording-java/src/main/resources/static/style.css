@@ -287,6 +287,19 @@ video:hover {
   margin: 0;
 }
 
+#video-focus-inner-container p {
+  position: absolute;
+  background: #f8f8f8;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #777777;
+  padding-bottom: 3px;
+  font-weight: bold;
+  border-bottom-right-radius: 8px;
+  /* border-bottom-left-radius: 8px; */
+  margin: 0;
+}
+
 #video-container p.userName {
 	float: right;
 	border-bottom-left-radius: 4px;
@@ -647,6 +660,11 @@ table i {
 
 /* nickname */
 #video-container .data-node {
+  margin: 0;
+  width: 100%;
+}
+
+#video-focus-inner-container .data-node {
   margin: 0;
   width: 100%;
 }
