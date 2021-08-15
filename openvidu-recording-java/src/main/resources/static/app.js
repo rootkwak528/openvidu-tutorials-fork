@@ -194,7 +194,7 @@ function joinSession() {
 				$('#session').hide();
 			}
 			alert('세션이 종료되었습니다.')
-			// window.close();
+			window.close();	// 트레이너가 세션을 종료했을 때 다른 수강생들의 세션도 종료하고 창닫기
 		});
 
 		session.on('recordingStarted', event => {
@@ -323,14 +323,14 @@ function joinSession() {
 
 }
 
-async function leaveSession() {
+function leaveSession() {
 
 	console.log("leaveSession func");
 
 	// --- 9) Leave the session by calling 'disconnect' method over the Session object ---
 	session.disconnect();
 	enableBtn();
-	// window.close();
+	window.close();
 }
 
 // 호근 민영 수정 시작
@@ -689,7 +689,7 @@ window.onbeforeunload = async function () { // Gracefully leave session
 		if (isTrainer) {
 			await closeSession();	// 세션 폭파
 		} else {
-			await leaveSession();	// 수강생만 세션 나가기
+			leaveSession();	// 수강생만 세션 나가기
 		}
 	}
 }
