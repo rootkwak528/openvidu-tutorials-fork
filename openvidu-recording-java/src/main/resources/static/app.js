@@ -69,6 +69,7 @@ function muteVideo() {
 
 let isTrainer
 let classTitle
+let classNo
 
 window.addEventListener("message", (event) => {
 	// 버튼 변경
@@ -82,7 +83,8 @@ window.addEventListener("message", (event) => {
 	nickname = event.data.nickname;
 	isTrainer = event.data.isTrainer;
 	classTitle = event.data.classTitle;
-
+	classNo = event.data.classNo;
+	
 	document.getElementById('classname').innerText = classTitle
 }, false)
 
