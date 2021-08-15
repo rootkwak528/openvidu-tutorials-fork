@@ -267,14 +267,12 @@ video:hover {
 	overflow: hidden;
 } */
 
-/*
 #video-container div {
 	position: absolute;
 	display: inline-flex;
-	// margin-left: calc(-50% + 15px);
+	/* margin-left: calc(-50% + 15px); */
   margin: 0 auto;
 }
-*/
 
 #video-container p {
   background: #f8f8f8;
