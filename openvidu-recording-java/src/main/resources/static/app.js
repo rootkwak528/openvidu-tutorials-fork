@@ -350,7 +350,7 @@ function leaveSession() {
 
 // 호근 민영 수정 시작
 function trainerLeaveSesion() {
-	axios ({
+	return axios ({
 		url: '/v1/ptroom/leave/' + classNo,
 		baseURL: 'http://localhost:8080/',
 		method: 'put',
@@ -359,14 +359,6 @@ function trainerLeaveSesion() {
 		},
 		data: {
 		}
-	})
-	.then (res => {
-		console.log("Success: DB participants clear");
-		console.log(res)
-		// window.close();
-	})
-	.catch (err => {
-		console.log("Fail: clear DB participants");
 	})
 }
 // 호근 민영 수정 끝
@@ -446,19 +438,26 @@ function closeSession() {
 	// stopRecording(publisher.connection.connectionId);
 	stopRecording();
 
-	httpRequest(
-		'DELETE',
-		'api/close-session', {
-			sessionName: sessionName
-		},
-		'Session couldn\'t be closed',
-		res => {
-			console.warn("Session " + sessionName + " has been closed");
-
-			// 호근 민영 수정: 트레이너가 세션을 나가면 DB에 참가자 0으로 변경하는 ptroom 종료하는 api 
-			trainerLeaveSesion();
-		}
-	);
+	// 호근 민영 수정: 트레이너가 세션을 나가면 DB에 참가자 0으로 변경하는 ptroom 종료하는 api 
+	trainerLeaveSesion()
+		.then (res => {
+			console.log("Success: DB participants clear");
+			console.log(res)
+			
+			httpRequest(
+				'DELETE',
+				'api/close-session', {
+					sessionName: sessionName
+				},
+				'Session couldn\'t be closed',
+				res => {
+					console.warn("Session " + sessionName + " has been closed");
+				}
+			);
+		})
+		.catch (err => {
+			console.log("Fail: clear DB participants");
+		})
 }
 
 function fetchInfo() {
