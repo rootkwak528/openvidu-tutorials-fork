@@ -275,6 +275,7 @@ video:hover {
 }
 
 #video-container p {
+  position: absolute;
   background: #f8f8f8;
   padding-left: 10px;
   padding-right: 10px;
