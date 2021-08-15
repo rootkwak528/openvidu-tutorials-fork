@@ -297,7 +297,8 @@ video:hover {
   font-weight: bold;
   border-bottom-right-radius: 8px;
   /* border-bottom-left-radius: 8px; */
-  margin: 0;
+  /* margin: 0; */
+  margin-top: -480px;
 }
 
 #video-container p.userName {
