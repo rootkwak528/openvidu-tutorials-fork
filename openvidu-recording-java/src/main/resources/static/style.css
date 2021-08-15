@@ -268,7 +268,7 @@ video:hover {
 } */
 
 #video-container div {
-	/* position: absolute; */
+	position: absolute;
 	display: inline-flex;
 	/* margin-left: calc(-50% + 15px); */
   margin: 0 auto;
