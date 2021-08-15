@@ -684,10 +684,12 @@ events = '';
 window.onbeforeunload = function () { // Gracefully leave session
 	if (session) {
 		removeUser();
-		leaveSession();
 
+		// 호근 민영 수정: X 탭 눌러서 나갔을 때 트레이너, 수강생 별도 처리
 		if (isTrainer) {
-			closeSession();
+			closeSession();	// 세션 폭파
+		} else {
+			leaveSession();	// 수강생만 세션 나가기
 		}
 	}
 }
