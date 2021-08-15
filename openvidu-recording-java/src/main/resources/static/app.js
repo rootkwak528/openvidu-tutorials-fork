@@ -369,6 +369,7 @@ function trainerLeaveSesion() {
 }
 
 function postCcnt() {
+	console.log(localStorage.getItem("jwt-auth-token"))
 	return axios ({
 		url: '/v1/class/cnt/' + classNo,
 		baseURL: 'http://localhost:8080/',
@@ -398,7 +399,6 @@ function explodeSession() {
 			const timeThreshold = 6000  // 1분 (ms 단위임)
 			
 			if (timeDiff > timeThreshold) {
-
 				postCcnt()
 					.then(res => {
 						console.log("Success: DB count ++");
