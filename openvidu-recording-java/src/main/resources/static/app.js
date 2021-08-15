@@ -683,7 +683,7 @@ events = '';
 
 window.onbeforeunload = async function () { // Gracefully leave session
 	if (session) {
-		removeUser();
+		removeUser();	// Problems in the app server: the SESSION does not exist 에러 뜨지만 문제없음
 
 		// 호근 민영 수정: X 탭 눌러서 나갔을 때 트레이너, 수강생 별도 처리
 		if (isTrainer) {
