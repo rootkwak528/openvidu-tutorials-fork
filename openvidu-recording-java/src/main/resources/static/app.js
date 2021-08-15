@@ -323,7 +323,7 @@ function joinSession() {
 
 }
 
-function leaveSession() {
+async function leaveSession() {
 
 	console.log("leaveSession func");
 
@@ -334,8 +334,8 @@ function leaveSession() {
 }
 
 // 호근 민영 수정 시작
-function trainerLeaveSesion() {
-	axios ({
+async function trainerLeaveSesion() {
+	await axios ({
 		url: '/v1/ptroom/leave/' + classNo,
 		baseURL: 'http://localhost:8080/',
 		method: 'put',
@@ -428,13 +428,13 @@ function removeUser() {
 	);
 }
 
-function closeSession() {
+async function closeSession() {
 	console.log("closeSession func");
 
 	// stopRecording(publisher.connection.connectionId);
 	stopRecording();
 
-	httpRequest(
+	await httpRequest(
 		'DELETE',
 		'api/close-session', {
 			sessionName: sessionName
@@ -444,7 +444,7 @@ function closeSession() {
 			console.warn("Session " + sessionName + " has been closed");
 
 			// 호근 민영 수정: 트레이너가 세션을 나가면 DB에 참가자 0으로 변경하는 ptroom 종료하는 api 
-			trainerLeaveSesion();
+			await trainerLeaveSesion();
 		}
 	);
 }
@@ -503,13 +503,13 @@ function forceUnpublish() {
 	);
 }
 
-function httpRequest(method, url, body, errorMsg, callback) {
+async function httpRequest(method, url, body, errorMsg, callback) {
 	// $('#textarea-http').text('');
 	var http = new XMLHttpRequest();
 	http.open(method, url, true);
 	http.setRequestHeader('Content-type', 'application/json');
 	http.addEventListener('readystatechange', processRequest, false);
-	http.send(JSON.stringify(body));
+	await http.send(JSON.stringify(body));
 
 	function processRequest() {
 		if (http.readyState == 4) {
@@ -681,15 +681,15 @@ function listRecordings() {
 
 events = '';
 
-window.onbeforeunload = function () { // Gracefully leave session
+window.onbeforeunload = async function () { // Gracefully leave session
 	if (session) {
 		removeUser();
 
 		// 호근 민영 수정: X 탭 눌러서 나갔을 때 트레이너, 수강생 별도 처리
 		if (isTrainer) {
-			closeSession();	// 세션 폭파
+			await closeSession();	// 세션 폭파
 		} else {
-			leaveSession();	// 수강생만 세션 나가기
+			await leaveSession();	// 수강생만 세션 나가기
 		}
 	}
 }
