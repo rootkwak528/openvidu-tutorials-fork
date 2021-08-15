@@ -149,6 +149,9 @@ function joinSession() {
 		session.on('streamCreated', event => {
 			pushEvent(event);
 
+			console.log("event.stream: " + event.stream);
+			console.log("event.stream.connection.data: " + event.stream.connection.data);
+
 			// Subscribe to the Stream to receive it
 			// HTML video will be appended to element with 'video-container' id
 			var subscriber = session.subscribe(event.stream, 'video-container');
@@ -224,7 +227,13 @@ function joinSession() {
 
 				// --- 6) Get your own camera stream ---
 
-				publisher = OV.initPublisher('video-container', {
+				// video div와 nickname p tag 넣을 videoNode 생성
+				const videoContainer = document.getElementById('video-container');
+				const videoNode = videoContainer.appendChild(document.createElement("div"));
+				videoNode.id = "video-" + nickname;
+
+				//publisher = OV.initPublisher('video-container', {
+				publisher = OV.initPublisher(videoNode.id, {
 					audioSource: undefined, // The source of audio. If undefined default microphone
 					videoSource: undefined, // The source of video. If undefined default webcam
 					publishAudio: publishAudio, // Whether you want to start publishing with your audio unmuted or not
