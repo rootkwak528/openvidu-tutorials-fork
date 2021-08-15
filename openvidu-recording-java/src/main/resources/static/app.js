@@ -345,8 +345,8 @@ function leaveSession() {
 }
 
 // 호근 민영 수정 시작
-async function trainerLeaveSesion() {
-	await axios ({
+function trainerLeaveSesion() {
+	axios ({
 		url: '/v1/ptroom/leave/' + classNo,
 		baseURL: 'http://localhost:8080/',
 		method: 'put',
@@ -436,13 +436,13 @@ function removeUser() {
 	);
 }
 
-async function closeSession() {
+function closeSession() {
 	console.log("closeSession func");
 
 	// stopRecording(publisher.connection.connectionId);
 	stopRecording();
 
-	await httpRequest(
+	httpRequest(
 		'DELETE',
 		'api/close-session', {
 			sessionName: sessionName
@@ -511,13 +511,13 @@ function forceUnpublish() {
 	);
 }
 
-async function httpRequest(method, url, body, errorMsg, callback) {
+function httpRequest(method, url, body, errorMsg, callback) {
 	// $('#textarea-http').text('');
 	var http = new XMLHttpRequest();
 	http.open(method, url, true);
 	http.setRequestHeader('Content-type', 'application/json');
 	http.addEventListener('readystatechange', processRequest, false);
-	await http.send(JSON.stringify(body));
+	http.send(JSON.stringify(body));
 
 	function processRequest() {
 		if (http.readyState == 4) {
@@ -689,13 +689,13 @@ function listRecordings() {
 
 events = '';
 
-window.onbeforeunload = async function () { // Gracefully leave session
+window.onbeforeunload = function () { // Gracefully leave session
 	if (session) {
 		removeUser();	// Problems in the app server: the SESSION does not exist 에러 뜨지만 문제없음
 
 		// 호근 민영 수정: X 탭 눌러서 나갔을 때 트레이너, 수강생 별도 처리
 		if (isTrainer) {
-			await closeSession();	// 세션 폭파
+			closeSession();	// 세션 폭파
 		} else {
 			leaveSession();	// 수강생만 세션 나가기
 		}
