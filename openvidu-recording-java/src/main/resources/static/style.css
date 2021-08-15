@@ -295,6 +295,7 @@ video:hover {
   color: #777777;
   padding-bottom: 3px;
   font-weight: bold;
+  border-top-left-radius: 8px;
   border-bottom-right-radius: 8px;
   /* border-bottom-left-radius: 8px; */
   /* margin: 0; */
