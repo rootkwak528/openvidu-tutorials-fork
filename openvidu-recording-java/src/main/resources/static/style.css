@@ -666,6 +666,11 @@ table i {
   width: 100%;
 }
 
+#video-container .horizontal-scroll .data-node {
+  margin: 0;
+  width: auto;
+}
+
 #video-focus-inner-container .data-node {
   margin: 0;
   width: 100%;
