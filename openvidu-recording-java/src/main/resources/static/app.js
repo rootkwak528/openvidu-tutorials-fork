@@ -786,7 +786,7 @@ function ondblclickVideo(target) {
 			// 하이라이트 비디오 일반 비디오로 옮기기
 		// 타겟 비디오 하이라이트 비디오로 옮기기
 
-	const target = target.parentElement;
+	target = target.parentElement;
 
 	if (target.classList.contains('focus')) {
 		focusNum -= 1
