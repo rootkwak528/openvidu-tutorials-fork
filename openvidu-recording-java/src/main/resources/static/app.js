@@ -517,29 +517,30 @@ function httpRequest(method, url, body, errorMsg, callback) {
 // 	);
 // }
 
-/*
+
 function sendURL() {
 	// url 형식: https://i5a204.p.ssafy.io/openvidu/recordings/ses_DDO5OKxePI/str_CAM_E64m_con_TfgYxSzkPB.webm
 	axios ({
-		url: '',
-		baseURL: 'https://i5a204.p.ssafy.io:8080/',
+		url: 'v1/class/video/' + classNo,
+		baseURL: 'https://localhost:8080/',
 		method: 'post',
 		headers: {
-			Authorization: localStorage.getItem("jwt-auth-token")
+			Authorization: "Bearer " + localStorage.getItem("jwt-auth-token")
 		},
 		data: {
 			// nickname: nickname,
-			videoURL: 'https://i5a204.p.ssafy.io/openvidu/recordings/' + sessionId + '/' + streamId + '.webm',
+			videoUrl: 'https://i5a204.p.ssafy.io/openvidu/recordings/' + sessionId + '/' + streamId + '.webm',
 		}
 	})
 	.then (res => {
 		console.log("Success: send url to DB");
+		console.log(res)
 	})
 	.catch (err => {
 		console.log("Fail: send url to DB");
 	})
 }
-*/
+
 /* 민영 수정 끝: DB로 url 보내기 */
 
 
