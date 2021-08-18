@@ -16,8 +16,6 @@ var nickname
 var streamId
 
 var publisher
-var publishAudio = true  // 음성 송출
-var publishVideo = true  // 영상 송출
 var isAudioMute = false
 var isVideoMute = false
 
@@ -36,17 +34,16 @@ let videoHighlight = false
 let focusNum = 0
 
 function muteAudio() {
-	publishAudio = !publishAudio
-	publisher.publishAudio(publishAudio)
-
   if(isAudioMute == true) {
     isAudioMute = false
+		publisher.publishAudio(true)
     document.getElementById("muteAudioBtn").innerHTML = `<i class="fas fa-microphone fa-2x"></i>`
     document.getElementById("muteAudioBtn").style.backgroundColor = "#e8e8e8"
     document.getElementById("muteAudioBtn2").innerHTML = `<i class="fas fa-microphone fa-2x"></i>`
     document.getElementById("muteAudioBtn2").style.backgroundColor = "#e8e8e8"
   } else {
     isAudioMute = true
+		publisher.publishAudio(false)
     document.getElementById("muteAudioBtn").innerHTML = `<i class="fas fa-microphone-slash fa-2x"></i>`
     document.getElementById("muteAudioBtn").style.backgroundColor = "#f35747"
     document.getElementById("muteAudioBtn2").innerHTML = `<i class="fas fa-microphone-slash fa-2x"></i>`
@@ -55,17 +52,16 @@ function muteAudio() {
 }
 
 function muteVideo() {
-	publishVideo = !publishVideo
-	publisher.publishVideo(publishVideo)
-
   if(isVideoMute == true) {
     isVideoMute = false
+		publisher.publishVideo(true)
     document.getElementById("muteVideoBtn").innerHTML = `<i class="fas fa-video fa-2x"></i>`
     document.getElementById("muteVideoBtn").style.backgroundColor = "#e8e8e8"
     document.getElementById("muteVideoBtn2").innerHTML = `<i class="fas fa-video fa-2x"></i>`
     document.getElementById("muteVideoBtn2").style.backgroundColor = "#e8e8e8"
   } else {
     isVideoMute = true
+		publisher.publishVideo(false)
 		document.getElementById("muteVideoBtn").innerHTML = `<i class="fas fa-video-slash fa-2x"></i>`
     document.getElementById("muteVideoBtn").style.backgroundColor = "#6cd8d7"
 		document.getElementById("muteVideoBtn2").innerHTML = `<i class="fas fa-video-slash fa-2x"></i>`
@@ -223,8 +219,8 @@ function joinSession() {
 				publisher = OV.initPublisher(videoNode.id, {
 					audioSource: undefined, // The source of audio. If undefined default microphone
 					videoSource: undefined, // The source of video. If undefined default webcam
-					publishAudio: publishAudio, // Whether you want to start publishing with your audio unmuted or not
-					publishVideo: publishVideo, // Whether you want to start publishing with your video enabled or not
+					publishAudio: true, // Whether you want to start publishing with your audio unmuted or not
+					publishVideo: true, // Whether you want to start publishing with your video enabled or not
 					resolution: '640x480', // The resolution of your video
 					frameRate: 30, // The frame rate of your video
 					insertMode: 'APPEND', // How the video is inserted in the target element 'video-container'
