@@ -1,25 +1,25 @@
-var OV;
-var session;
+var OV
+var session
 
-var sessionName;
-var nickname;
-var token;
-var numVideos = 0;
+var sessionName
+var nickname
+var token
+var numVideos = 0
 
 // 영상 녹화
-var connectionId;
-var uRecordUrl;
-var forceRecordingId;
-var userJson;
-var userList = [];
-var nickname;
-var streamId;
+var connectionId
+var uRecordUrl
+var forceRecordingId
+var userJson
+var userList = []
+var nickname
+var streamId
 
-var publisher;
-var publishAudio = true;  // 음성 송출
-var publishVideo = true;  // 영상 송출
-var isAudioMute = false;
-var isVideoMute = false;
+var publisher
+var publishAudio = true  // 음성 송출
+var publishVideo = true  // 영상 송출
+var isAudioMute = false
+var isVideoMute = false
 
 // 수업 시간 체크
 let startTime
@@ -30,22 +30,27 @@ let isTrainer
 let classTitle
 let classNo
 
+// 비디오 그리드
+let colNum = 1
+let videoHighlight = false
+let focusNum = 0
+
 function muteAudio() {
 	publishAudio = !publishAudio
 	publisher.publishAudio(publishAudio)
 
   if(isAudioMute == true) {
-    isAudioMute = false;
-    document.getElementById("muteAudioBtn").innerHTML = `<i class="fas fa-microphone fa-2x"></i>`;
-    document.getElementById("muteAudioBtn").style.backgroundColor = "#e8e8e8";
-    document.getElementById("muteAudioBtn2").innerHTML = `<i class="fas fa-microphone fa-2x"></i>`;
-    document.getElementById("muteAudioBtn2").style.backgroundColor = "#e8e8e8";
+    isAudioMute = false
+    document.getElementById("muteAudioBtn").innerHTML = `<i class="fas fa-microphone fa-2x"></i>`
+    document.getElementById("muteAudioBtn").style.backgroundColor = "#e8e8e8"
+    document.getElementById("muteAudioBtn2").innerHTML = `<i class="fas fa-microphone fa-2x"></i>`
+    document.getElementById("muteAudioBtn2").style.backgroundColor = "#e8e8e8"
   } else {
-    isAudioMute = true;
-    document.getElementById("muteAudioBtn").innerHTML = `<i class="fas fa-microphone-slash fa-2x"></i>`;
-    document.getElementById("muteAudioBtn").style.backgroundColor = "#f35747";
-    document.getElementById("muteAudioBtn2").innerHTML = `<i class="fas fa-microphone-slash fa-2x"></i>`;
-    document.getElementById("muteAudioBtn2").style.backgroundColor = "#f35747";
+    isAudioMute = true
+    document.getElementById("muteAudioBtn").innerHTML = `<i class="fas fa-microphone-slash fa-2x"></i>`
+    document.getElementById("muteAudioBtn").style.backgroundColor = "#f35747"
+    document.getElementById("muteAudioBtn2").innerHTML = `<i class="fas fa-microphone-slash fa-2x"></i>`
+    document.getElementById("muteAudioBtn2").style.backgroundColor = "#f35747"
   }
 }
 
@@ -54,16 +59,18 @@ function muteVideo() {
 	publisher.publishVideo(publishVideo)
 
   if(isVideoMute == true) {
-    isVideoMute = false;
-    document.getElementById("muteVideoBtn").innerHTML = `<i class="fas fa-video fa-2x"></i>`;
-    document.getElementById("muteVideoBtn").style.backgroundColor = "#e8e8e8";
-    document.getElementById("muteVideoBtn2").innerHTML = `<i class="fas fa-video fa-2x"></i>`;
-    document.getElementById("muteVideoBtn2").style.backgroundColor = "#e8e8e8";
+    isVideoMute = false
+    document.getElementById("muteVideoBtn").innerHTML = `<i class="fas fa-video fa-2x"></i>`
+    document.getElementById("muteVideoBtn").style.backgroundColor = "#e8e8e8"
+    document.getElementById("muteVideoBtn2").innerHTML = `<i class="fas fa-video fa-2x"></i>`
+    document.getElementById("muteVideoBtn2").style.backgroundColor = "#e8e8e8"
   } else {
-    isVideoMute = true;document.getElementById("muteVideoBtn").innerHTML = `<i class="fas fa-video-slash fa-2x"></i>`;
-    document.getElementById("muteVideoBtn").style.backgroundColor = "#6cd8d7";
-    isVideoMute = true;document.getElementById("muteVideoBtn2").innerHTML = `<i class="fas fa-video-slash fa-2x"></i>`;
-    document.getElementById("muteVideoBtn2").style.backgroundColor = "#6cd8d7";
+    isVideoMute = true
+		document.getElementById("muteVideoBtn").innerHTML = `<i class="fas fa-video-slash fa-2x"></i>`
+    document.getElementById("muteVideoBtn").style.backgroundColor = "#6cd8d7"
+    isVideoMute = true
+		document.getElementById("muteVideoBtn2").innerHTML = `<i class="fas fa-video-slash fa-2x"></i>`
+    document.getElementById("muteVideoBtn2").style.backgroundColor = "#6cd8d7"
   }
 }
 
@@ -74,23 +81,19 @@ window.addEventListener("message", (event) => {
 		$('#sessionName').attr('disabled', true)
 		$('#nickname').val(event.data.nickname)
 		$('#nickname').attr('disabled', true)
-		document.getElementById("join-btn").disabled = false;
+		document.getElementById("join-btn").disabled = false
 
-		sessionName = event.data.sessionName;
-		nickname = event.data.nickname;
-		isTrainer = event.data.isTrainer;
-		classTitle = event.data.classTitle;
-		classNo = event.data.classNo;
+		sessionName = event.data.sessionName
+		nickname = event.data.nickname
+		isTrainer = event.data.isTrainer
+		classTitle = event.data.classTitle
+		classNo = event.data.classNo
 		
 		document.getElementById('classname').innerText = classTitle
 
 		localStorage.setItem('jwt-auth-token', event.data.token)
 	}
 }, false)
-
-// 민영 호근 수정 끝 : session id
-
-// 민영 호근 수정 시작 : close
 
 function onClose() {
 	if (isTrainer) {
@@ -100,120 +103,103 @@ function onClose() {
 	}
 }
 
-// 민영 호근 수정 끝 : close
-
-// 호근 수정 시작 : video grid
-
-let colNum = 1;
-let videoHighlight = false;
-let focusNum = 0;
-
-// 호근 수정 끝 : video grid
-
 /* OPENVIDU METHODS */
 
 function joinSession() {
 
 	// --- 0) Change the button ---
 		
-	document.getElementById("join-btn").disabled = true;
-	document.getElementById("join-btn").innerHTML = "Joining...";
+	document.getElementById("join-btn").disabled = true
+	document.getElementById("join-btn").innerHTML = "Joining..."
 
 	getToken(function () {
 
 		// --- 1) Get an OpenVidu object ---
 
-		OV = new OpenVidu();
+		OV = new OpenVidu()
 
 		// --- 2) Init a session ---
 
-		session = OV.initSession();
+		session = OV.initSession()
 
 		// --- 3) Specify the actions when events take place in the session ---
 
 		session.on('connectionCreated', event => {
-			pushEvent(event);
-			// 민영 수정 시작
-			console.log(event.connection.connectionId);
-			connectionId = !connectionId ? event.connection.connectionId : connectionId;
-			// connectionId = event.connection.connectionId;
-			sessionId = event.target.sessionId;
-			// 민영 수정 끝
-		});
+			pushEvent(event)
+			connectionId = !connectionId ? event.connection.connectionId : connectionId
+			sessionId = event.target.sessionId
+		})
 
 		session.on('connectionDestroyed', event => {
-			pushEvent(event);
-		});
+			pushEvent(event)
+		})
 
 		// On every new Stream received...
 		session.on('streamCreated', event => {
-			pushEvent(event);
+			pushEvent(event)
 
 			// video div와 nickname p tag 넣을 videoNode 생성
-			const videoContainer = document.getElementById('video-container');
-			const videoNode = videoContainer.appendChild(document.createElement("div"));
-			videoNode.id = "video-" + event.stream.connection.data.split("%/%")[0];
+			const videoContainer = document.getElementById('video-container')
+			const videoNode = videoContainer.appendChild(document.createElement("div"))
+			videoNode.id = "video-" + event.stream.connection.data.split("%/%")[0]
 
 			// Subscribe to the Stream to receive it
 			// HTML video will be appended to element with 'video-container' id
-			var subscriber = session.subscribe(event.stream, videoNode.id);
+			var subscriber = session.subscribe(event.stream, videoNode.id)
 
-			// 닉네임 표시할 때 봐
 			// When the HTML video has been appended to DOM...
 			subscriber.on('videoElementCreated', event => {
-				pushEvent(event);
+				pushEvent(event)
 				// Add a new HTML element for the user's name and nickname over its video
-				updateNumVideos(1);
-				// 민영 수정
-				// appendNickname(event.element, subscriber.stream.connection.data.split("%/%")[0]);
-				appendNickname(event.element, subscriber.stream.connection);
-			});
+				updateNumVideos(1)
+				appendNickname(event.element, subscriber.stream.connection)
+			})
 
 			// When the HTML video has been appended to DOM...
 			subscriber.on('videoElementDestroyed', event => {
-				pushEvent(event);
+				pushEvent(event)
 				// Add a new HTML element for the user's name and nickname over its video
-				updateNumVideos(-1);
-			});
+				updateNumVideos(-1)
+			})
 
 			// When the subscriber stream has started playing media...
 			subscriber.on('streamPlaying', event => {
-				pushEvent(event);
-			});
-		});
+				pushEvent(event)
+			})
+		})
 
 		session.on('streamDestroyed', event => {
-			pushEvent(event);
-			removeUserData(event.stream.connection);
-		});
+			pushEvent(event)
+			removeUserData(event.stream.connection)
+		})
 
 		session.on('sessionDisconnected', event => {
-			pushEvent(event);
+			pushEvent(event)
 			if (event.reason !== 'disconnect') {
-				removeUser();
+				removeUser()
 			}
 			if (event.reason !== 'sessionClosedByServer') {
-				session = null;
-				numVideos = 0;
-				$('#join').show();
-				$('#session').hide();
+				session = null
+				numVideos = 0
+				$('#join').show()
+				$('#session').hide()
 			}
 			alert('세션이 종료되었습니다.')
-			window.close();	// 트레이너가 세션을 종료했을 때 다른 수강생들의 세션도 종료하고 창닫기
-		});
+			window.close()	// 트레이너가 세션을 종료했을 때 다른 수강생들의 세션도 종료하고 창닫기
+		})
 
 		session.on('recordingStarted', event => {
-			pushEvent(event);
-		});
+			pushEvent(event)
+		})
 
 		session.on('recordingStopped', event => {
-			pushEvent(event);
-		});
+			pushEvent(event)
+		})
 
 		// On every asynchronous exception...
 		session.on('exception', (exception) => {
-			console.warn(exception);
-		});
+			console.warn(exception)
+		})
 
 		// --- 4) Connect to the session passing the retrieved token and some more data from
 		//        the client (in this case a JSON with the nickname chosen by the user) ---
@@ -223,16 +209,16 @@ function joinSession() {
 
 				// --- 5) Set page layout for active call ---
 
-				$('#session-title').text(sessionName);
-				$('#join').hide();
-				$('#session').show();
+				$('#session-title').text(sessionName)
+				$('#join').hide()
+				$('#session').show()
 
 				// --- 6) Get your own camera stream ---
 
 				// video div와 nickname p tag 넣을 videoNode 생성
-				const videoContainer = document.getElementById('video-container');
-				const videoNode = videoContainer.appendChild(document.createElement("div"));
-				videoNode.id = "video-" + nickname;
+				const videoContainer = document.getElementById('video-container')
+				const videoNode = videoContainer.appendChild(document.createElement("div"))
+				videoNode.id = "video-" + nickname
 
 				//publisher = OV.initPublisher('video-container', {
 				publisher = OV.initPublisher(videoNode.id, {
@@ -244,7 +230,7 @@ function joinSession() {
 					frameRate: 30, // The frame rate of your video
 					insertMode: 'APPEND', // How the video is inserted in the target element 'video-container'
 					mirror: false // Whether to mirror your local video or not
-				});
+				})
 
 				// --- 7) Specify the actions when events take place in our publisher ---
 
@@ -252,101 +238,87 @@ function joinSession() {
 				publisher.on('accessAllowed', event => {
 					pushEvent({
 						type: 'accessAllowed'
-					});
-				});
+					})
+				})
 
 				publisher.on('accessDenied', event => {
-					pushEvent(event);
-				});
+					pushEvent(event)
+				})
 
 				publisher.on('accessDialogOpened', event => {
 					pushEvent({
 						type: 'accessDialogOpened'
-					});
-				});
+					})
+				})
 
 				publisher.on('accessDialogClosed', event => {
 					pushEvent({
 						type: 'accessDialogClosed'
-					});
-				});
+					})
+				})
 
 				// When the publisher stream has started playing media...
 				publisher.on('streamCreated', event => {
-					pushEvent(event);
-					console.log("publisher: start recording");
+					pushEvent(event)
+					console.log("publisher: start recording")
 
-					// 호근 민영 수정: 트레이너만 녹화 시작
+					// 트레이너만 녹화 시작
 					if (isTrainer) {
-						startRecording();
+						startRecording()
 					}
 
-					// 민영 수정 시작: DB로 사용자 videoURL 보내기
-					streamId = event.stream.streamId;
-					// let userInfo = [nickname, sessionId, connectionId, streamId];
-					// userList.push(userInfo);
-					// sendUserInfo();
-					sendVideoURL();
-					// 민영 수정 끝: DB로 사용자 videoURL 보내기
-				});
+					// DB로 사용자 videoURL 보내기
+					streamId = event.stream.streamId
+					sendVideoURL()
+				})
 
 				// When our HTML video has been added to DOM...
 				publisher.on('videoElementCreated', event => {
-					pushEvent(event);
-					updateNumVideos(1);
-					$(event.element).prop('muted', true); // Mute local video
-					// 민영 수정
-					appendNickname(event.element, nickname);
-				});
+					pushEvent(event)
+					updateNumVideos(1)
+					$(event.element).prop('muted', true) // Mute local video
+					appendNickname(event.element, nickname)
+				})
 
 				// When the HTML video has been appended to DOM...
 				publisher.on('videoElementDestroyed', event => {
-					pushEvent(event);
+					pushEvent(event)
 					// Add a new HTML element for the user's name and nickname over its video
-					updateNumVideos(-1);
-				});
+					updateNumVideos(-1)
+				})
 
 				// When the publisher stream has started playing media...
 				publisher.on('streamPlaying', event => {
-					pushEvent(event);
-				});
+					pushEvent(event)
+				})
 
 				// --- 8) Publish your stream ---
 
-				session.publish(publisher);
+				session.publish(publisher)
 
-				console.log(publisher);
-
-				// 호근 수정 join-dialogue 숨기기 & 비디오 관련 버튼들 보이기
 				document.getElementById('join-container').classList.toggle('d-flex')
 				document.getElementById('join-container').style.display = 'none'
 				document.getElementById('header').style.display = 'block'
 				document.getElementById('settings').style.display = 'block'
 
-				// 호근 수정 수업 시작 시간
 				startTime = Date.now()
 			})
 			.catch(error => {
-				console.warn('There was an error connecting to the session:', error.code, error.message);
-				enableBtn();
-			});
+				console.warn('There was an error connecting to the session:', error.code, error.message)
+				enableBtn()
+			})
 
-		return false;
-	});
+		return false
+	})
 
 }
 
 function leaveSession() {
-
-	console.log("leaveSession func");
-
 	// --- 9) Leave the session by calling 'disconnect' method over the Session object ---
-	session.disconnect();
-	enableBtn();
-	// window.close();
+	session.disconnect()
+	enableBtn()
 }
 
-// 호근 민영 수정 시작
 function trainerLeaveSesion() {
 	return axios ({
 		url: '/v1/ptroom/leave/' + classNo,
@@ -361,7 +333,6 @@ function trainerLeaveSesion() {
 }
 
 function postCcnt() {
-	console.log(localStorage.getItem("jwt-auth-token"))
 	return axios ({
 		url: '/v1/class/cnt/' + classNo,
 		baseURL: 'http://localhost:8080/',
@@ -375,16 +346,14 @@ function postCcnt() {
 }
 
 function explodeSession() {
-	console.log("closeSession func");
 
-	// stopRecording(publisher.connection.connectionId);
-	stopRecording();
+	// stopRecording(publisher.connection.connectionId)
+	stopRecording()
 
-	// 호근 민영 수정: 트레이너가 세션을 나가면 DB에 참가자 0으로 변경하는 ptroom 종료하는 api 
+	// 트레이너가 세션을 나가면 DB에 참가자 0으로 변경하는 ptroom 종료하는 api 
 	trainerLeaveSesion()
 		.then(res => {
-			console.log("Success: DB participants clear");
-			console.log(res)
+			console.log("Success: DB participants clear")
 			
 			endTime = Date.now()
 			const timeDiff = endTime - startTime
@@ -393,14 +362,12 @@ function explodeSession() {
 			if (timeDiff > timeThreshold) {
 				postCcnt()
 					.then(res => {
-						console.log("Success: DB count ++");
-						console.log(res)
+						console.log("Success: DB count ++")
 
 						closeSession()
 					})
-
 					.catch(err => {
-						console.log("Fail: DB count update");
+						console.log("Fail: DB count update")
 						alert('수업이 올바르게 종료되지 않았습니다.\n다시 시도해주세요.')
 						closeSession()
 					})
@@ -409,26 +376,23 @@ function explodeSession() {
 				closeSession()
 			}
 		})
-
 		.catch(err => {
-			console.log("Fail: clear DB participants");
+			console.log("Fail: clear DB participants")
 			alert('수업이 올바르게 종료되지 않았습니다.\n다시 시도해주세요.')
 		})
 }
-// 호근 민영 수정 끝
-
 
 /* OPENVIDU METHODS */
 
 function enableBtn (){
-	document.getElementById("join-btn").disabled = false;
-	document.getElementById("join-btn").innerHTML = "Join!";
+	document.getElementById("join-btn").disabled = false
+	document.getElementById("join-btn").innerHTML = "Join!"
 }
 
 /* APPLICATION REST METHODS */
 
 function getToken(callback) {
-	sessionName = $("#sessionName").val(); // Video-call chosen by the user
+	sessionName = $("#sessionName").val() // Video-call chosen by the user
 
 	httpRequest(
 		'POST',
@@ -437,39 +401,32 @@ function getToken(callback) {
 		},
 		'Request of TOKEN gone WRONG:',
 		res => {
-			token = res[0]; // Get token from response
-			console.warn('Request of TOKEN gone WELL (TOKEN:' + token + ')');
-			callback(token); // Continue the join operation
+			token = res[0] // Get token from response
+			console.warn('Request of TOKEN gone WELL (TOKEN:' + token + ')')
+			callback(token) // Continue the join operation
 		}
-	);
+	)
 }
 
 function appendNickname(videoElement, connection) {
-	var userData;
-	var nodeId;
+	var userData
+	var nodeId
 	if (typeof connection === "string") {
-		userData = connection;
-		nodeId = connection;
+		userData = connection
+		nodeId = connection
 	} else {
-		console.log(connection);
-		console.log(connection.data);
-		console.log("appendNickname - connectionId: " + connection.connectionId);
-		// console.log(JSON.parse(connection.data));
-
-		console.log("connection.data.split...: " + connection.data.split("%/%")[0]);
-		userData = connection.data.split("%/%")[0];
-		nodeId = connection.connectionId;
+		userData = connection.data.split("%/%")[0]
+		nodeId = connection.connectionId
 	}
-	var dataNode = document.getElementById("video-" + userData);
-	dataNode.className = "data-node";
-	const nickNode = dataNode.appendChild(document.createElement("p"));
-	nickNode.innerHTML = userData;
-	// videoElement.parentNode.insertBefore(dataNode, videoElement.nextSibling);
+	var dataNode = document.getElementById("video-" + userData)
+	dataNode.className = "data-node"
+	const nickNode = dataNode.appendChild(document.createElement("p"))
+	nickNode.innerHTML = userData
 } 
 
 function removeUserData(connection) {
-	var dataNode = document.getElementById("video-" + connection.data.split("%/%")[0]);
-	dataNode.parentNode.removeChild(dataNode);
+	var dataNode = document.getElementById("video-" + connection.data.split("%/%")[0])
+	dataNode.parentNode.removeChild(dataNode)
 }
 
 function removeUser() {
@@ -481,9 +438,9 @@ function removeUser() {
 		},
 		'User couldn\'t be removed from session',
 		res => {
-			console.warn("You have been removed from session " + sessionName);
+			console.warn("You have been removed from session " + sessionName)
 		}
-	);
+	)
 }
 
 function closeSession() {
@@ -494,9 +451,9 @@ function closeSession() {
 		},
 		'Session couldn\'t be closed',
 		res => {
-			console.warn("Session " + sessionName + " has been closed");
+			console.warn("Session " + sessionName + " has been closed")
 		}
-	);
+	)
 }
 
 function fetchInfo() {
@@ -507,10 +464,9 @@ function fetchInfo() {
 		},
 		'Session couldn\'t be fetched',
 		res => {
-			console.warn("Session info has been fetched");
-			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
+			console.warn("Session info has been fetched")
 		}
-	);
+	)
 }
 
 function fetchAll() {
@@ -519,10 +475,9 @@ function fetchAll() {
 		'api/fetch-all', {},
 		'All session info couldn\'t be fetched',
 		res => {
-			console.warn("All session info has been fetched");
-			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
+			console.warn("All session info has been fetched")
 		}
-	);
+	)
 }
 
 function forceDisconnect() {
@@ -534,9 +489,9 @@ function forceDisconnect() {
 		},
 		'Connection couldn\'t be closed',
 		res => {
-			console.warn("Connection has been closed");
+			console.warn("Connection has been closed")
 		}
-	);
+	)
 }
 
 function forceUnpublish() {
@@ -548,62 +503,37 @@ function forceUnpublish() {
 		},
 		'Stream couldn\'t be closed',
 		res => {
-			console.warn("Stream has been closed");
+			console.warn("Stream has been closed")
 		}
-	);
+	)
 }
 
 function httpRequest(method, url, body, errorMsg, callback) {
-	// $('#textarea-http').text('');
-	var http = new XMLHttpRequest();
-	http.open(method, url, true);
-	http.setRequestHeader('Content-type', 'application/json');
-	http.addEventListener('readystatechange', processRequest, false);
-	http.send(JSON.stringify(body));
+	var http = new XMLHttpRequest()
+	http.open(method, url, true)
+	http.setRequestHeader('Content-type', 'application/json')
+	http.addEventListener('readystatechange', processRequest, false)
+	http.send(JSON.stringify(body))
 
 	function processRequest() {
 		if (http.readyState == 4) {
 			if (http.status == 200) {
 				try {
-					callback(JSON.parse(http.responseText));
+					callback(JSON.parse(http.responseText))
 				} catch (e) {
-					callback(e);
+					callback(e)
 				}
 			} else {
-				console.warn(errorMsg + ' (' + http.status + ')');
-				console.warn(http.responseText);
-				// $('#textarea-http').text(errorMsg + ": HTTP " + http.status + " (" + http.responseText + ")");
+				console.warn(errorMsg + ' (' + http.status + ')')
+				console.warn(http.responseText)
 			}
 		}
 	}
 }
 
 
-
-
-/* 민영 수정 시작: DB로 url 보내기 */
-
-// function sendUserInfo() {
-// 	httpRequest(
-// 		'POST',
-// 		'api/sendUserInfo', {	// 어디로 보낼지 경로 미정
-// 			sessionName: sessionName,	// 클래스 구분용 세션네임
-// 			nickname: nickname,				// 사용자 구분용 닉네임
-// 			videoUrl: "https://i5a204.p.ssafy.io/openvidu/recordings/" + sessionId + "/" + streamName + ".webm"	// 영상 url
-// 		},
-// 		'오류 메시지',
-// 		res => {›
-// 			console.warn("Session info has been fetched");
-// 			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
-// 		}
-// 	);
-// }
-
-
 function sendVideoURL() {
-	// "{"videoUrl":"https://i5a204.p.ssafy.io/openvidu/recordings/ses_PksTTIPw64/undefined.webm"}"
 	// url 형식: https://i5a204.p.ssafy.io/openvidu/recordings/ses_DDO5OKxePI/str_CAM_E64m_con_TfgYxSzkPB.webm
-	console.log('>>> https://i5a204.p.ssafy.io/openvidu/recordings/' + sessionId + '/' + streamId + '.webm');
 	axios ({
 		url: '/v1/class/video/' + classNo,
 		baseURL: 'http://localhost:8080/',
@@ -612,144 +542,72 @@ function sendVideoURL() {
 			Authorization: "Bearer " + localStorage.getItem("jwt-auth-token")
 		},
 		data: {
-			// nickname: nickname,
 			videoUrl: 'https://i5a204.p.ssafy.io/openvidu/recordings/' + sessionId + '/' + streamId + '.webm',
 		}
 	})
 	.then (res => {
-		console.log("Success: send url to DB");
-		console.log(res)
+		console.log("Success: send url to DB")
 	})
 	.catch (err => {
-		console.log("Fail: send url to DB");
+		console.log("Fail: send url to DB")
 	})
 }
 
-/* 민영 수정 끝: DB로 url 보내기 */
-
-
 function startRecording() {
-	// var outputMode = $('input[name=outputMode]:checked').val();
 
 	httpRequest(
 		'POST',
 		'api/recording/start', {
 			session: session.sessionId,
-			outputMode: "INDIVIDUAL",	// 민영 수정
+			outputMode: "INDIVIDUAL",
 			hasAudio: true,
 			hasVideo: true
 		},
 		'Start recording WRONG',
 		res => {
-			console.log(res);
-			// document.getElementById('forceRecordingId').value = res.id;
-			forceRecordingId = res.id;	// 민영 수정
-			console.log("forceRecordingId: " + forceRecordingId);
-			// checkBtnsRecordings();
-			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
-
+			forceRecordingId = res.id
 		}
-	);
+	)
 }
 
 function stopRecording() {
-	// var forceRecordingId = document.getElementById('forceRecordingId').value;
-	userJson = JSON.stringify(userList);
-	console.log(userJson);
-	console.log("forceRecordingId: " + forceRecordingId);
+	userJson = JSON.stringify(userList)
 	httpRequest(
 		'POST',
 		'api/recording/stop', {
 			recording: sessionId,
-			connectionId: connectionId, // 민영 수정
-			// userList: userList // 민영 수정
+			connectionId: connectionId,
 		},
 		'Stop recording WRONG',
 		res => {
-			console.log(res);
-			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
-
-			// 민영 수정
-			uRecordUrl = res.url;
-			console.log(uRecordUrl);
-			// 녹화본 정보 가져온 후 바로 recording zip 파일 삭제
-			// > 지우지마! 지우면 url 접근 불가, 내 생각에는 사용자가 직접 영상 삭제하기
-			// deleteRecording();
+			uRecordUrl = res.url
 		}
-	);
+	)
 }
 
-/*
-function deleteRecording() {
-	var forceRecordingId = document.getElementById('forceRecordingId').value;
-	httpRequest(
-		'DELETE',
-		'api/recording/delete', {
-			recording: forceRecordingId
-		},
-		'Delete recording WRONG',
-		res => {
-			console.log("DELETE ok");
-			// $('#textarea-http').text("DELETE ok");
-		}
-	);
-}
-*/
-
-/*
-function getRecording() {
-	var forceRecordingId = document.getElementById('forceRecordingId').value;
-	httpRequest(
-		'GET',
-		'api/recording/get/' + forceRecordingId, {},
-		'Get recording WRONG',
-		res => {
-			console.log(res);
-			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
-		}
-	);
-}
-*/
-
-/*
-function listRecordings() {
-	httpRequest(
-		'GET',
-		'api/recording/list', {},
-		'List recordings WRONG',
-		res => {
-			console.log(res);
-			// $('#textarea-http').text(JSON.stringify(res, null, "\t"));
-		}
-	);
-}
-*/
 
 /* APPLICATION REST METHODS */
 
-
-
 /* APPLICATION BROWSER METHODS */
 
-events = '';
+events = ''
 
 window.onbeforeunload = function () { // Gracefully leave session
 	if (session) {
-		removeUser();	// Problems in the app server: the SESSION does not exist 에러 뜨지만 문제없음
+		removeUser()
 
-		// 호근 민영 수정: X 탭 눌러서 나갔을 때 트레이너, 수강생 별도 처리
+		// X 탭 눌러서 나갔을 때 트레이너, 수강생 별도 처리
 		if (isTrainer) {
-			closeSession();	// 세션 폭파
+			closeSession()	// 세션 폭파
 		} else {
-			leaveSession();	// 수강생만 세션 나가기
+			leaveSession()	// 수강생만 세션 나가기
 		}
 	}
 }
 
-// 호근 수정 시작 : 비디오 그리드
-
+// 비디오 그리드
 function updateNumVideos(i) {
-	numVideos += i;
+	numVideos += i
 	const participantDOM = document.getElementById('participants')
 	participantDOM.innerHTML = `<i class="fas fa-users" id="participants">&nbsp&nbsp${numVideos}</i>`
 
@@ -772,11 +630,6 @@ function updateNumVideos(i) {
 	}
 
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
-
-	// DB에 참여 인원 업데이트
-	// axios({
-	// 	url: 'https://i5a204.p.ssafy.io:8080/api'
-	// })
 }
 
 window.onresize = function (event) {
@@ -803,17 +656,9 @@ window.onresize = function (event) {
 	$('#video-container').css('grid-template-columns', `repeat(${colNum}, 1fr)`)
 }
 
-// $('video').dblclick(function (event) {
-// 	console.log(event.target)
-// })
-
 // 더블클릭하면 커지기
-
 window.ondblclick = function (event) {
-	console.log("event.target: " + event.target)
 	if (event.target.tagName == 'VIDEO') {
-		console.log("event.target.firstChild: " + event.target.firstChild)
-		console.log("event.target: " + event.target)
 		ondblclickVideo(event.target)
 	}
 }
@@ -829,7 +674,7 @@ function ondblclickVideo(target) {
 			// 하이라이트 비디오 일반 비디오로 옮기기
 		// 타겟 비디오 하이라이트 비디오로 옮기기
 
-	target = target.parentElement;
+	target = target.parentElement
 
 	if (target.classList.contains('focus')) {
 		focusNum -= 1
@@ -863,46 +708,8 @@ function ondblclickVideo(target) {
 	}
 }
 
-// 호근 수정 끝 : 비디오 그리드
-
-/* 민영 수정 시작: 필요없는 함수들 주석 */
-function checkBtnsForce() {
-	if (document.getElementById("forceValue").value === "") {
-		// document.getElementById('buttonForceUnpublish').disabled = true;
-		// document.getElementById('buttonForceDisconnect').disabled = true;
-	} else {
-		// document.getElementById('buttonForceUnpublish').disabled = false;
-		// document.getElementById('buttonForceDisconnect').disabled = false;
-	}
-}
-
-function checkBtnsRecordings() {
-	if (forceRecordingId === "") {
-	// if (document.getElementById("forceRecordingId").value === "") {
-		// document.getElementById('buttonGetRecording').disabled = true;
-		// document.getElementById('buttonStopRecording').disabled = true;
-		// document.getElementById('buttonDeleteRecording').disabled = true;
-	} else {
-		// document.getElementById('buttonGetRecording').disabled = false;
-		// document.getElementById('buttonStopRecording').disabled = false;
-		// document.getElementById('buttonDeleteRecording').disabled = false;
-	}
-}
-/* 민영 수정 끝: 필요없는 함수들 주석 */
-
-
 function pushEvent(event) {
-	events += (!events ? '' : '\n') + event.type;
-	// $('#textarea-events').text(events);
-}
-
-function clearHttpTextarea() {
-	// $('#textarea-http').text('');
-}
-
-function clearEventsTextarea() {
-	// $('#textarea-events').text('');
-	events = '';
+	events += (!events ? '' : '\n') + event.type
 }
 
 /* APPLICATION BROWSER METHODS */
