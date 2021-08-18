@@ -1,7 +1,3 @@
-// 호근 수정 시작 : axios
-// const axios = require('axios');
-// 호근 수정 끝 : axios
-
 var OV;
 var session;
 
@@ -10,7 +6,7 @@ var nickname;
 var token;
 var numVideos = 0;
 
-// 민영 수정
+// 영상 녹화
 var connectionId;
 var uRecordUrl;
 var forceRecordingId;
@@ -19,16 +15,20 @@ var userList = [];
 var nickname;
 var streamId;
 
-// 민영 호근 수정 시작 : 음소거
 var publisher;
-var publishAudio = false;
-var publishVideo = true;
+var publishAudio = true;  // 음성 송출
+var publishVideo = true;  // 영상 송출
 var isAudioMute = false;
 var isVideoMute = false;
 
-// 호근 수정 : 수업 시간
+// 수업 시간 체크
 let startTime
 let endTime
+
+// postMessage
+let isTrainer
+let classTitle
+let classNo
 
 function muteAudio() {
 	publishAudio = !publishAudio
@@ -66,14 +66,6 @@ function muteVideo() {
     document.getElementById("muteVideoBtn2").style.backgroundColor = "#6cd8d7";
   }
 }
-
-// 민영 호근 수정 끝 : 음소거
-
-// 민영 호근 수정 시작 : session id
-
-let isTrainer
-let classTitle
-let classNo
 
 window.addEventListener("message", (event) => {
 	if (!sessionName) {
