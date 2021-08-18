@@ -68,7 +68,6 @@ function muteVideo() {
     isVideoMute = true
 		document.getElementById("muteVideoBtn").innerHTML = `<i class="fas fa-video-slash fa-2x"></i>`
     document.getElementById("muteVideoBtn").style.backgroundColor = "#6cd8d7"
-    isVideoMute = true
 		document.getElementById("muteVideoBtn2").innerHTML = `<i class="fas fa-video-slash fa-2x"></i>`
     document.getElementById("muteVideoBtn2").style.backgroundColor = "#6cd8d7"
   }
