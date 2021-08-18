@@ -84,19 +84,9 @@ public class MyRestController {
 
 	/*******************/
 	/*** Create Room ***/
-	/**
-	 * @throws URISyntaxException *****************/
-	// https://i5a204.p.ssafy.io:5000?sessionId=blahblahblabh&name=hogeun/
-	// @GetMapping
-	// public ResponseEntity<JsonObject> getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) {
-	//public ResponseEntity<Object> getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) throws URISyntaxException {
-	// public RedirectView getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) throws URISyntaxException {
-	
-	
-	// https://13.124.187.160:5000/createRoom/?sessionName=1234&nickName=1234
+	/*** @throws URISyntaxException *****************/
 	@RequestMapping(value = "/createRoom", method = RequestMethod.GET)
 	public ResponseEntity<?> getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) throws URISyntaxException {
-	//public ModelAndView getRoom(@RequestParam Map<String, String> sessionName, @RequestParam Map<String, String> nickName) throws URISyntaxException {
 		// 만들 방 정보 받아오기	
 		sName = (String) sessionName.get("sessionName");
 		nName = (String) nickName.get("nickName");
@@ -116,18 +106,7 @@ public class MyRestController {
 		httpHeaders.add("sessinInfo", sName + "," + nName);
 
 		return new ResponseEntity<>(httpHeaders, HttpStatus.OK);
-		
-//		ModelAndView mnv = new ModelAndView();
-//		
-//		RedirectView redirectView = new RedirectView();
-//	    redirectView.setUrl("https://i5a204.p.ssafy.io:5000/");
-//	    redirectView.addStaticAttribute("sessionInfo", json);
-//	    
-//	    mnv.setView(redirectView);
-//	    return mnv;
 	}
-	
-	
 	
 	/*******************/
 	/*** Session API ***/
@@ -379,26 +358,15 @@ public class MyRestController {
 	public ResponseEntity<?> stopRecording(@RequestBody Map<String, Object> params) throws IOException {
 		String recordingId = (String) params.get("recording");
 		String connectionId = (String) params.get("connectionId");
-		// Object userJson = params.get("userJson");
-
-		// System.out.println("userJson을 Object으로 받음");
 		
 		System.out.println("Stoping recording | {recordingId}=" + recordingId);
 		System.out.println("Stoping recording | {connectionId}=" + connectionId);
-		// System.out.println(userJson.toString());
 		
 		try {
-			System.out.println("error1");
 			Recording recording = this.openVidu.stopRecording(recordingId);
-			
-			// url 확인 출력
-			System.out.println("error2");
 			System.out.println("stop recording - url: " + recording.getUrl());
 
-			System.out.println("error3");
 			String sessionId = recording.getSessionId();
-			// Stirng sessionId = recordingId;
-			
 			System.out.println("stop recording - sessionid: " + sessionId);
 			
 			// upzip
@@ -416,12 +384,10 @@ public class MyRestController {
 					File f = new File(upzipDir + File.separator +  entryName);
 					//create all folder needed to store in correct relative path.
 					f.getParentFile().mkdirs();
-					// OutputStream out = new FileOutputStream(entryName);
 					FileOutputStream fos = new FileOutputStream(f);
 					int len;
 					byte buffer[] = new byte[1024];
 					while ((len = zis.read(buffer)) > 0) {
-						// out.write(buffer, 0, len);
 						fos.write(buffer, 0, len);
 					}
 					fos.close();  
@@ -444,7 +410,6 @@ public class MyRestController {
 			for(int i = 0; i < recordArray.size(); i++) {
 				JsonObject recordFile = (JsonObject) recordArray.get(i);
 				System.out.println("recordFile: " + recordFile);
-				// System.out.println("connectionId: " + recordFile.get("connectionId").toString());
 				String curConnectionId = recordFile.get("connectionId").toString().replace("\"", "");
 				System.out.println("curConnectionId: " + curConnectionId);
 				System.out.println(connectionId.equals(curConnectionId));
@@ -455,22 +420,15 @@ public class MyRestController {
 				}
 			}
 			
-			// https://i5a204.p.ssafy.io/openvidu/recordings/ses_DDO5OKxePI/str_CAM_E64m_con_TfgYxSzkPB.webm
 			// 사용자 녹화본 url로 변환
-			// String uRecordPath = File.separator + "opt" + File.separator + "openvidu" + File.separator + "recordings" + File.separator + sessionId + File.separator + recordName;
-			// File uRecordFile = new File(uRecordPath);
-			// URI uRecordUrl = uRecordFile.toURI();
-			// URL uRecordUrl = new URL("file:" + File.separator + File.separator + uRecordPath);
 			String uRecordUrl = "https:" + File.separator + File.separator + "i5a204.p.ssafy.io" + File.separator + 
 					"openvidu" + File.separator + "recordings" + File.separator + sessionId + File.separator + recordName;
 			System.out.println("uRecordUrl: " + uRecordUrl);
 			
 			RecordUrlDto urlDto = new RecordUrlDto(recording, uRecordUrl);
-			
 			this.sessionRecordings.remove(recording.getSessionId());
-			// return new ResponseEntity<>(recording, HttpStatus.OK);
+
 			return new ResponseEntity<>(urlDto, HttpStatus.OK);
-			
 		} catch (OpenViduJavaClientException | OpenViduHttpException e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
