@@ -316,7 +316,8 @@ function leaveSession() {
 
 function trainerLeaveSesion() {
 	return axios ({
-		url: 'http://localhost:8080/v1/ptroom/leave/' + classNo,
+		url: '/v1/ptroom/leave/' + classNo,
+		baseUrl: 'http://localhost:8080/',
 		method: 'put',
 		headers: {
 			Authorization: "Bearer " + localStorage.getItem("jwt-auth-token")
@@ -328,7 +329,8 @@ function trainerLeaveSesion() {
 
 function postCcnt() {
 	return axios ({
-		url: 'http://localhost:8080/v1/class/cnt/' + classNo,
+		url: '/v1/class/cnt/' + classNo,
+		baseUrl: 'http://localhost:8080/',
 		method: 'put',
 		headers: {
 			Authorization: "Bearer " + localStorage.getItem("jwt-auth-token")
@@ -528,7 +530,8 @@ function httpRequest(method, url, body, errorMsg, callback) {
 function sendVideoURL() {
 	// url 형식: https://i5a204.p.ssafy.io/openvidu/recordings/ses_DDO5OKxePI/str_CAM_E64m_con_TfgYxSzkPB.webm
 	axios ({
-		url: 'http://localhost:8080/v1/class/video/' + classNo,
+		url: '/v1/class/video/' + classNo,
+		baseUrl: 'http://localhost:8080/',
 		method: 'post',
 		headers: {
 			Authorization: "Bearer " + localStorage.getItem("jwt-auth-token")
